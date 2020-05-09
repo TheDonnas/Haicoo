@@ -8,9 +8,9 @@ const mobilenet = require('@tensorflow-models/mobilenet')
 global.fetch = require('node-fetch')
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  //<React.StrictMode>
+    <App />,
+  //</React.StrictMode>,
   document.getElementById('root')
 );
 
