@@ -1,6 +1,8 @@
 const fetch = require("node-fetch");
-const DATAMUSE_FULL_APIBASE = "https://cors-anywhere.herokuapp.com/https://api.datamuse.com/words?md=sp&sp=s*";
-const DATAMUSE_APIBASE = "https://cors-anywhere.herokuapp.com/https://api.datamuse.com/words?md=sp&max=250";
+const DATAMUSE_FULL_APIBASE =
+  "https://cors-anywhere.herokuapp.com/https://api.datamuse.com/words?md=sp&sp=s*";
+const DATAMUSE_APIBASE =
+  "https://cors-anywhere.herokuapp.com/https://api.datamuse.com/words?md=sp&max=250";
 //getting a COR local host error will need to debug without this route // change to axios?
 const DATAMUSE_LIMIT_ARG = "&max={}";
 const DATAMUSE_STARTSWITH_ARG = "&sp={}*";
@@ -219,7 +221,7 @@ export default class HaikuGenerator extends PoemGenerator {
   }
 
   async buildHaiku() {
-    console.log("THIS IS INSIDE HAIKUGENERATOR");
+    console.log("THIS IS THE WORD INSIDE HAIKUGENERATOR", this.word);
     try {
       let haikuSyllables = [5, 7, 5];
       let result = []; // will be a nested arr
@@ -278,11 +280,11 @@ export default class HaikuGenerator extends PoemGenerator {
       }
       console.log(result, "result");
 
-      return `${result[0].join(" ")}\n${result[1].join(" ")}\n${result[2].join(" ")}`
+      return `${result[0].join(" ")}\n${result[1].join(" ")}\n${result[2].join(
+        " "
+      )}`;
     } catch (error) {
       console.log(error);
     }
   }
 }
-
-

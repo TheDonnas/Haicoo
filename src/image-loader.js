@@ -44,8 +44,13 @@ function ImageLoader(props) {
     setResults(results);
     console.log(results);
     let word = results[0].className.split(", ")[0];
-    console.log(word);
+    if (word.includes(" ")) {
+      word = word.split(" ").join("+");
+      console.log("word", word);
+    }
+    console.log("inside identify", word);
     props.updateWord(word);
+    console.log(word);
     next();
   };
 
