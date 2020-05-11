@@ -30,7 +30,7 @@ function ImageLoader(props) {
 
   const [appState, dispatch] = useReducer(reducer, machine.initial);
   const next = () => dispatch("next");
-
+  
   const loadModel = async () => {
     next();
     const model = await mobilenet.load();
