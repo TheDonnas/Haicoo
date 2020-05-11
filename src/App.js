@@ -13,21 +13,15 @@ class App extends React.Component {
   updateWord(word) {
     this.setState({ word });
   }
-  componentDidUpdate() {
-    console.log("updated", this.state);
-  }
+
   render() {
     let { word } = this.state;
 
-    if (word.includes(" ")) {
-      word = word.split(" ").join("+");
-      console.log("word", word);
-    }
     console.log("THIS STATE IN APP", this.state);
     return (
       <div>
         <ImageLoader updateWord={this.updateWord} />
-        {word.length ? <Haiku word={word} /> : <div />}
+        {word.length && <Haiku key={word} word={word} />}
       </div>
     );
   }

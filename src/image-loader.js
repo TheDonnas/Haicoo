@@ -45,12 +45,10 @@ function ImageLoader(props) {
     console.log(results);
     let word = results[0].className.split(", ")[0];
     if (word.includes(" ")) {
-      word = word.split(" ").join("+");
-      console.log("word", word);
+      word = word.split(" ");
+      word = word[word.length - 1];
     }
-    console.log("inside identify", word);
     props.updateWord(word);
-    console.log(word);
     next();
   };
 
