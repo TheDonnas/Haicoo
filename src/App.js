@@ -1,30 +1,30 @@
-import React from 'react'
-import ImageLoader from './image-loader'
-import Haiku from './haiku'
+import React from "react";
+import ImageLoader from "./image-loader";
+import Haiku from "./haiku";
 
-class App extends React.Component{
-  constructor(){
-    super()
+class App extends React.Component {
+  constructor() {
+    super();
     this.state = {
-      word :''
-    }
-    this.updateWord = this.updateWord.bind(this)
+      word: "",
+    };
+    this.updateWord = this.updateWord.bind(this);
   }
-  updateWord(word){
-    this.setState({word})
+  updateWord(word) {
+    this.setState({ word });
   }
-  render() {
-    console.log("THIS STATE IN APP", this.state)
-    return(
-      <div>
 
-        <ImageLoader updateWord= {this.updateWord}/>
-        {this.state.word.length
-        ? <Haiku word = {this.state.word}/>
-        :<div/>}
+  render() {
+    let { word } = this.state;
+
+    console.log("THIS STATE IN APP", this.state);
+    return (
+      <div>
+        <ImageLoader updateWord={this.updateWord} />
+        {word.length && <Haiku key={word} word={word} />}
       </div>
-    )
+    );
   }
 }
 
-export default App
+export default App;

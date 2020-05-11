@@ -1,10 +1,12 @@
 const fetch = require("node-fetch");
-const DATAMUSE_FULL_APIBASE = "https://cors-anywhere.herokuapp.com/https://api.datamuse.com/words?md=sp&sp=s*";
-const DATAMUSE_APIBASE = "https://cors-anywhere.herokuapp.com/https://api.datamuse.com/words?md=sp&max=250";
+// const DATAMUSE_FULL_APIBASE =
+//   "https://cors-anywhere.herokuapp.com/https://api.datamuse.com/words?md=sp&sp=s*";
+const DATAMUSE_APIBASE =
+  "https://cors-anywhere.herokuapp.com/https://api.datamuse.com/words?md=sp&max=500";
 //getting a COR local host error will need to debug without this route // change to axios?
-const DATAMUSE_LIMIT_ARG = "&max={}";
-const DATAMUSE_STARTSWITH_ARG = "&sp={}*";
-const LINE_SPACE = "\n";
+// const DATAMUSE_LIMIT_ARG = "&max={}";
+// const DATAMUSE_STARTSWITH_ARG = "&sp={}*";
+// const LINE_SPACE = "\n";
 
 class PoemGenerator {
   constructor(word) {
@@ -30,8 +32,6 @@ class PoemGenerator {
     try {
       const res = await fetch(url);
       const data = await res.json();
-      // console.log("getReq: ", res);
-      // console.log("DATA: ", data);
       return data;
     } catch (error) {
       console.log(error);
@@ -53,6 +53,7 @@ class PoemGenerator {
       const nouns = await this.requestWords(
         `${DATAMUSE_APIBASE}&rel_jja=${word}`
       );
+      console.log("NOUN LIST", nouns);
       return nouns;
     } catch (error) {
       console.log(error);
@@ -68,6 +69,9 @@ class PoemGenerator {
           verbsList.push(relatedWords[i]);
         }
       }
+      if (!verbsList.length) {
+        verbsList = ["am", "are", "were", "is", "be", "can", "will", "love"];
+      }
       console.log("VERB LIST", verbsList);
       return verbsList;
     } catch (error) {
@@ -78,14 +82,13 @@ class PoemGenerator {
   async getAdv(word) {
     try {
       const followingWords = await this.followingWords;
-      // console.log("FOLLOWINGWORDS: ", followingWords);
       let advList = [];
       for (let i in followingWords) {
         if (followingWords[i].tags && followingWords[i].tags.includes("adv")) {
           advList.push(followingWords[i]);
         }
       }
-      // console.log("ADV LIST: ", advList);
+      console.log("ADV LIST: ", advList);
       return advList;
     } catch (error) {
       console.log(error);
@@ -97,6 +100,7 @@ class PoemGenerator {
       const adjs = await this.requestWords(
         `${DATAMUSE_APIBASE}&rel_jjb=${word}`
       );
+      console.log("ADJ LIST: ", adjs);
       return adjs;
     } catch (error) {
       console.log(error);
@@ -213,18 +217,15 @@ class PoemGenerator {
 
 export default class HaikuGenerator extends PoemGenerator {
   choose(choices) {
-    //choices = []
     let index = Math.floor(Math.random() * choices.length);
     return choices[index];
   }
 
   async buildHaiku() {
-    console.log("THIS IS INSIDE HAIKUGENERATOR");
     try {
       let haikuSyllables = [5, 7, 5];
       let result = []; // will be a nested arr
       let currWordType = this.choose(["adj", "n", "v"]);
-      console.log(currWordType);
       let structureMap = {
         n: { next: "v", wordList: await this.nouns },
         v: {
@@ -247,12 +248,15 @@ export default class HaikuGenerator extends PoemGenerator {
         let syllableTarget = syllableCount; // 5-2, 3-1, 0
         let currLine = []; //["salad", "sweet"]
         let errCount = 0; //1
-        while (syllableTarget > 0) {
+        let counter = 0;
+        while (syllableTarget > 0 && counter < 30) {
+          if (counter === 29) {
+            console.log("I AM GOING TO TAKE YOU OUT OF THIS INFINITE LOOP ;)");
+          }
+          counter++;
           console.log("PART OF SPEECH", structureMap[currWordType].next);
           errCount += 1; // 1
           let currWords = []; //["salad", "sweet", "baked"] STORE EVERY POSSIBLE WORD <= 5/7 SYLL
-          // console.log("STMAP.CURRWORD TYPE: ", structureMap["n"]);
-          // console.log("STMAP.CURRWORD TYPE: ", structureMap.n["wordList"]);
           for (let word of structureMap[currWordType].wordList) {
             if (word.numSyllables && word["numSyllables"] <= syllableTarget) {
               currWords.push(word);
@@ -266,23 +270,31 @@ export default class HaikuGenerator extends PoemGenerator {
           ) {
             continue;
           } else if (wordToAdd) {
-            //wordToAdd is truthy
             usedWords.push(wordToAdd["word"]);
             currLine.push(wordToAdd["word"]);
             syllableTarget -= wordToAdd["numSyllables"];
           }
           currWordType = structureMap[currWordType].next;
         }
-        console.log("HAIKUGENERATOR AFTER WHILE LOOP");
         result.push(currLine);
       }
-      console.log(result, "result");
 
-      return `${result[0].join(" ")}\n${result[1].join(" ")}\n${result[2].join(" ")}`
+      return `${result[0].join(" ")}\n${result[1].join(" ")}\n${result[2].join(
+        " "
+      )}`;
     } catch (error) {
       console.log(error);
     }
   }
 }
 
+// function main() {
+//   let pg = new HaikuGenerator("flower");
+//   console.log(pg.buildHaiku());
+// }
 
+// main();
+
+// const generator = new PoemGenerator();
+// const results = generator.getRelatedWords("flower");
+// console.log("RESULTS", results);
