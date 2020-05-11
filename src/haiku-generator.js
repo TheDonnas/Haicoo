@@ -250,6 +250,9 @@ export default class HaikuGenerator extends PoemGenerator {
         let errCount = 0; //1
         let counter = 0;
         while (syllableTarget > 0 && counter < 30) {
+          if (counter === 29) {
+            console.log("I AM GOING TO TAKE YOU OUT OF THIS INFINITE LOOP ;)");
+          }
           counter++;
           console.log("PART OF SPEECH", structureMap[currWordType].next);
           errCount += 1; // 1
