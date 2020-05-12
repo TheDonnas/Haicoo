@@ -88,7 +88,16 @@ class PoemGenerator {
         `${DATAMUSE_APIBASE}&ml=${word}`
       );
       let nouns;
-      if (popularNouns.length < 5) {
+      if (popularNouns.length < 1) {
+        nouns = [
+          {word: "life", numSyllables: 1},
+          {word: "joy", numSyllables: 1},
+          {word: "magic", numSyllables: 2},
+          {word: "comedy", numSyllables: 3},
+          {word: "colors", numSyllables: 2},
+          {word: "light", numSyllables: 1},
+        ]
+      } else if (popularNouns.length < 5) {
         nouns = relatedNouns;
       } else {
         nouns = popularNouns;
@@ -109,7 +118,16 @@ class PoemGenerator {
         }
       }
       if (verbsList.length < 1) {
-        verbsList = ["am", "are", "were", "is", "be", "can", "will", "love"];
+        verbsList = [
+          {word: "am", numSyllables: 1},
+          {word: "are", numSyllables: 1},
+          {word: "were", numSyllables: 1},
+          {word: "is", numSyllables: 1},
+          {word: "be", numSyllables: 1},
+          {word: "can", numSyllables: 1},
+          {word: "will", numSyllables: 1},
+          {word: "love", numSyllables: 1},
+        ];
       }
       return verbsList;
     } catch (error) {
@@ -121,9 +139,22 @@ class PoemGenerator {
     try {
       const followingWords = await this.followingWords;
       let advList = [];
-      for (let i in followingWords) {
-        if (followingWords[i].tags && followingWords[i].tags.includes("adv")) {
-          advList.push(followingWords[i]);
+      if (followingWords.length < 1) {
+        advList = [
+          {word: "cheerfully", numSyllables: 3},
+          {word: "happily", numSyllables: 3},
+          {word: "warmly", numSyllables: 2},
+          {word: "finally", numSyllables: 3},
+          {word: "sometimes", numSyllables: 3},
+          {word: "slowly", numSyllables: 2},
+          {word: "only", numSyllables: 2},
+          {word: "always", numSyllables: 2},
+        ]
+      } else {
+          for (let i in followingWords) {
+            if (followingWords[i].tags && followingWords[i].tags.includes("adv")) {
+              advList.push(followingWords[i]);
+            }
         }
       }
       return advList;
@@ -134,9 +165,19 @@ class PoemGenerator {
 
   async getAdj(word) {
     try {
-      const adjs = await this.requestWords(
+      let adjs = await this.requestWords(
         `${DATAMUSE_APIBASE}&rel_jjb=${word}`
       );
+      if (adjs.length < 1) {
+        adjs = [
+          {word: "beautiful", numSyllables: 4},
+          {word: "fancy", numSyllables: 2},
+          {word: "faithful", numSyllables: 2},
+          {word: "silly", numSyllables: 2},
+          {word: "calm", numSyllables: 1},
+          {word: "nice", numSyllables: 1},
+        ]
+      }
       return adjs;
     } catch (error) {
       console.log(error);
