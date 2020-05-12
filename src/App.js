@@ -21,7 +21,8 @@ class App extends React.Component {
     return (
       <div>
         <ImageLoader updateWord={this.updateWord} />
-        {word.length && <Haiku key={word} word={word} />}
+        { word.length
+        ? <Haiku key={word} word={word}/> : <div/>}
       </div>
     );
   }
