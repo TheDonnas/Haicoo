@@ -1,1 +1,1 @@
-web: node src/serviceWorker.js
+web: node build
