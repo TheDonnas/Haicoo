@@ -11,17 +11,37 @@ const DATAMUSE_APIBASE =
 class PoemGenerator {
   constructor(word) {
     this.word = word;
-    this.followingWords = this.getFollowingWords(word);
-    this.nouns = this.getNouns(word);
-    this.verbs = this.getVerbs(word);
-    this.adj = this.getAdj(word);
+    Promise.all([
+      (this.followingWords = this.getFollowingWords(word)),
+      (this.nouns = this.getNouns(word)),
+      (this.verbs = this.getVerbs(word)),
+      (this.adj = this.getAdj(word)),
+      (this.adv = this.getAdv(word)),
+      (this.relatedWords = this.getRelatedWords(word)),
+    ]).then((results) => {
+      const [followingWords, nouns, verbs, adj, adv, relatedWords] = results;
+
+      console.log(
+        "PROMISE RESULTS",
+        "followingWords: ",
+        followingWords,
+        "nouns: ",
+        nouns,
+        "verbs: ",
+        verbs,
+        "adjectives: ",
+        adj,
+        "adverbs: ",
+        adv,
+        "relatedWords: ",
+        relatedWords
+      );
+    });
+
     // this.associatedWords = this.getAssociatedWords(word);
     // this.synonyms = this.getSynonyms(word);
     // this.kindofWords = this.getKindofWords(word);
     // this.precedingWords = this.getPrecedingWords(word);
-    this.adv = this.getAdv(word);
-    this.relatedWords = this.getRelatedWords(word);
-
     // this.allNouns = this.getAllNouns()
     // this.allVerbs = this.getAllVerbs()
     // // this.allAdj = this.getAllAdj()
@@ -32,8 +52,6 @@ class PoemGenerator {
     try {
       const res = await fetch(url);
       const data = await res.json();
-      console.log('RES: ', res)
-      console.log('DATA: ', data)
       return data;
     } catch (error) {
       console.log(error);
@@ -60,22 +78,21 @@ class PoemGenerator {
       console.log(error);
     }
   }
-  
+
   async getNouns(word) {
     try {
       const popularNouns = await this.requestWords(
         `${DATAMUSE_APIBASE}&rel_jja=${word}`
       );
-      const relatedNouns = await this.requestWords(`${DATAMUSE_APIBASE}&ml=${word}`)
-      console.log("POPULAR NOUN LIST", popularNouns);
-      console.log("RELATED NOUNS: ", relatedNouns)
+      const relatedNouns = await this.requestWords(
+        `${DATAMUSE_APIBASE}&ml=${word}`
+      );
       let nouns;
       if (popularNouns.length < 5) {
-        nouns = relatedNouns
+        nouns = relatedNouns;
       } else {
-        nouns = popularNouns
+        nouns = popularNouns;
       }
-      console.log("FINAL NOUND LIST: ", nouns)
       return nouns;
     } catch (error) {
       console.log(error);
@@ -91,11 +108,9 @@ class PoemGenerator {
           verbsList.push(followingWords[i]);
         }
       }
-      console.log("VERB LIST BEFORE DEFAULT", verbsList);
       if (verbsList.length < 1) {
         verbsList = ["am", "are", "were", "is", "be", "can", "will", "love"];
       }
-      console.log("VERB LIST AFTER DEFAULT", verbsList);
       return verbsList;
     } catch (error) {
       console.log(error);
@@ -109,9 +124,8 @@ class PoemGenerator {
       for (let i in followingWords) {
         if (followingWords[i].tags && followingWords[i].tags.includes("adv")) {
           advList.push(followingWords[i]);
-        } 
+        }
       }
-      console.log("ADV LIST: ", advList);
       return advList;
     } catch (error) {
       console.log(error);
@@ -123,7 +137,6 @@ class PoemGenerator {
       const adjs = await this.requestWords(
         `${DATAMUSE_APIBASE}&rel_jjb=${word}`
       );
-      console.log("ADJ LIST: ", adjs);
       return adjs;
     } catch (error) {
       console.log(error);
@@ -157,8 +170,6 @@ class PoemGenerator {
   //   );
   //   return this.precedingWords;
   // }
-
-
 
   //   indirectExtendWordLists(wordType="n") {
   //       let extraWords = []
@@ -293,9 +304,10 @@ export default class HaikuGenerator extends PoemGenerator {
         result.push(currLine);
       }
 
-      return `${result[0].join(" ")}\n${result[1].join(" ")}\n${result[2].join(
-        " "
-      )}`;
+      return result;
+      // `${result[0].join(" ")}\n${result[1].join(" ")}\n${result[2].join(
+      //   " "
+      // )}`;
     } catch (error) {
       console.log(error);
     }
