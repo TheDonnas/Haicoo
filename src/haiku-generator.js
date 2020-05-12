@@ -2,7 +2,7 @@ const fetch = require("node-fetch");
 // const DATAMUSE_FULL_APIBASE =
 //   "https://cors-anywhere.herokuapp.com/https://api.datamuse.com/words?md=sp&sp=s*";
 const DATAMUSE_APIBASE =
-  "https://cors-anywhere.herokuapp.com/https://api.datamuse.com/words?md=sp&max=500";
+  "https://cors-anywhere.herokuapp.com/https://api.datamuse.com/words?md=sp&max=250";
 //getting a COR local host error will need to debug without this route // change to axios?
 // const DATAMUSE_LIMIT_ARG = "&max={}";
 // const DATAMUSE_STARTSWITH_ARG = "&sp={}*";
@@ -11,17 +11,37 @@ const DATAMUSE_APIBASE =
 class PoemGenerator {
   constructor(word) {
     this.word = word;
-    this.nouns = this.getNouns(word);
-    this.verbs = this.getVerbs(word);
-    this.adj = this.getAdj(word);
+    Promise.all([
+      (this.followingWords = this.getFollowingWords(word)),
+      (this.nouns = this.getNouns(word)),
+      (this.verbs = this.getVerbs(word)),
+      (this.adj = this.getAdj(word)),
+      (this.adv = this.getAdv(word)),
+      (this.relatedWords = this.getRelatedWords(word)),
+    ]).then((results) => {
+      const [followingWords, nouns, verbs, adj, adv, relatedWords] = results;
+
+      console.log(
+        "PROMISE RESULTS",
+        "followingWords: ",
+        followingWords,
+        "nouns: ",
+        nouns,
+        "verbs: ",
+        verbs,
+        "adjectives: ",
+        adj,
+        "adverbs: ",
+        adv,
+        "relatedWords: ",
+        relatedWords
+      );
+    });
+
     // this.associatedWords = this.getAssociatedWords(word);
     // this.synonyms = this.getSynonyms(word);
     // this.kindofWords = this.getKindofWords(word);
     // this.precedingWords = this.getPrecedingWords(word);
-    this.followingWords = this.getFollowingWords(word);
-    this.adv = this.getAdv(word);
-    this.relatedWords = this.getRelatedWords(word);
-
     // this.allNouns = this.getAllNouns()
     // this.allVerbs = this.getAllVerbs()
     // // this.allAdj = this.getAllAdj()
@@ -48,12 +68,31 @@ class PoemGenerator {
     }
   }
 
+  async getFollowingWords(word) {
+    try {
+      this.followingWords = await this.requestWords(
+        `${DATAMUSE_APIBASE}&rel_bga=${word}`
+      );
+      return this.followingWords;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   async getNouns(word) {
     try {
-      const nouns = await this.requestWords(
+      const popularNouns = await this.requestWords(
         `${DATAMUSE_APIBASE}&rel_jja=${word}`
       );
-      console.log("NOUN LIST", nouns);
+      const relatedNouns = await this.requestWords(
+        `${DATAMUSE_APIBASE}&ml=${word}`
+      );
+      let nouns;
+      if (popularNouns.length < 5) {
+        nouns = relatedNouns;
+      } else {
+        nouns = popularNouns;
+      }
       return nouns;
     } catch (error) {
       console.log(error);
@@ -62,17 +101,16 @@ class PoemGenerator {
 
   async getVerbs(word) {
     try {
-      const relatedWords = await this.relatedWords;
+      const followingWords = await this.followingWords;
       let verbsList = [];
-      for (let i in relatedWords) {
-        if (relatedWords[i].tags && relatedWords[i].tags.includes("v")) {
-          verbsList.push(relatedWords[i]);
+      for (let i in followingWords) {
+        if (followingWords[i].tags && followingWords[i].tags.includes("v")) {
+          verbsList.push(followingWords[i]);
         }
       }
-      if (!verbsList.length) {
+      if (verbsList.length < 1) {
         verbsList = ["am", "are", "were", "is", "be", "can", "will", "love"];
       }
-      console.log("VERB LIST", verbsList);
       return verbsList;
     } catch (error) {
       console.log(error);
@@ -88,7 +126,6 @@ class PoemGenerator {
           advList.push(followingWords[i]);
         }
       }
-      console.log("ADV LIST: ", advList);
       return advList;
     } catch (error) {
       console.log(error);
@@ -100,7 +137,6 @@ class PoemGenerator {
       const adjs = await this.requestWords(
         `${DATAMUSE_APIBASE}&rel_jjb=${word}`
       );
-      console.log("ADJ LIST: ", adjs);
       return adjs;
     } catch (error) {
       console.log(error);
@@ -134,17 +170,6 @@ class PoemGenerator {
   //   );
   //   return this.precedingWords;
   // }
-
-  async getFollowingWords(word) {
-    try {
-      this.followingWords = await this.requestWords(
-        `${DATAMUSE_APIBASE}&rel_bga=${word}`
-      );
-      return this.followingWords;
-    } catch (error) {
-      console.log(error);
-    }
-  }
 
   //   indirectExtendWordLists(wordType="n") {
   //       let extraWords = []
@@ -279,9 +304,10 @@ export default class HaikuGenerator extends PoemGenerator {
         result.push(currLine);
       }
 
-      return `${result[0].join(" ")}\n${result[1].join(" ")}\n${result[2].join(
-        " "
-      )}`;
+      return result;
+      // `${result[0].join(" ")}\n${result[1].join(" ")}\n${result[2].join(
+      //   " "
+      // )}`;
     } catch (error) {
       console.log(error);
     }
