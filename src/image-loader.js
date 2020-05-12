@@ -40,16 +40,22 @@ function ImageLoader(props) {
     next();
     console.log("MODEL LOADED!!!!")
   };
-
+  
+  const chooseRandom = (choices) => {
+    let index = Math.floor(Math.random() * choices.length);
+    return choices[index];
+  }
+  
   const identify = async () => {
     next();
     const results = await model.classify(imageRef.current);
     setResults(results);
     console.log(results);
-    let word
+    let word;
+    
     console.log(typeof results[0].probability, "PROBABILITY??? type")
     if (results.length && results[0].probability < .25 && results[2].probability < .10){
-      word = "flower"
+      word = chooseRandom(["flower", "love", "rainbow", "star"])
     } else {
       word = results[0].className.split(", ")[0];
     }
