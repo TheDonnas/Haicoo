@@ -1,39 +1,30 @@
-import React from 'react';
-// import logo from './logo.svg';
-import './App.css';
-// import * as mobilenet from '@tensorflow-models/mobilenet';
+import React from "react";
+import ImageLoader from "./image-loader";
+import Haiku from "./haiku";
 
-// const img = document.getElementById('img');
+class App extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      word: "",
+    };
+    this.updateWord = this.updateWord.bind(this);
+  }
+  updateWord(word) {
+    this.setState({ word });
+  }
 
-// // Load the model.
-// const model = await mobilenet.load();
+  render() {
+    let { word } = this.state;
 
-// // Classify the image.
-// const predictions = await model.classify(img);
-
-// console.log('Predictions: ');
-// console.log(predictions);
-
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-      {/* <img id="img" crossorigin src="https://i.imgur.com/JlUvsxa.jpg" width="227" height="227"/> */}
-        {/* <img src={logo} className="App-logo" alt="logo" /> */}
-        {/* <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a> */}
-      </header>
-    </div>
-  );
+    console.log("THIS STATE IN APP", this.state);
+    return (
+      <div>
+        <ImageLoader updateWord={this.updateWord} />
+        {word.length && <Haiku key={word} word={word} />}
+      </div>
+    );
+  }
 }
 
 export default App;
