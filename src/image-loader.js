@@ -2,16 +2,16 @@ import React, { useState, useRef, useReducer, useEffect } from "react";
 import * as mobilenet from "@tensorflow-models/mobilenet";
 import "./App.css";
 
+let counter = 0
+
 const machine = {
-  initial: "loadingModel",
+  initial: "uploadReady",
   states: {
-    // initial: { on: { next: "loadingModel" } },
-    loadingModel: { on: { next: "modelReady" } },
-    modelReady: { on: { next: "imageReady" }, showResults: false },
+    uploadReady: { on: { next: "imageReady" }, showResults: false },
     imageReady: { on: { next: "identifying" }, showImage: true, showResults: false },
     identifying: { on: { next: "complete" } },
     complete: {
-      on: { next: "modelReady" },
+      on: { next: "uploadReady" },
       showImage: true,
       showResults: true,
     },
@@ -24,7 +24,7 @@ function ImageLoader(props) {
   const [model, setModel] = useState(null);
   const imageRef = useRef();
   const inputRef = useRef();
-  useEffect(() => {loadModel()}, [])
+  // useEffect(() => {loadModel()}, [])
 
   const reducer = (state, event) => {
     return machine.states[state].on[event] || machine.initial;
@@ -34,25 +34,27 @@ function ImageLoader(props) {
   const next = () => dispatch("next");
 
   const loadModel = async () => {
+    if(counter === 0){
     console.log("MODEL WILL BE LOADED")
     const model = await mobilenet.load();
     setModel(model);
-    next();
     console.log("MODEL LOADED!!!!")
+    counter++
+    }
   };
-  
+
   const chooseRandom = (choices) => {
     let index = Math.floor(Math.random() * choices.length);
     return choices[index];
   }
-  
+
   const identify = async () => {
     next();
     const results = await model.classify(imageRef.current);
     setResults(results);
     console.log(results);
     let word;
-    
+
     console.log(typeof results[0].probability, "PROBABILITY??? type")
     if (results.length && results[0].probability < .25 && results[2].probability < .10){
       word = chooseRandom(["flower", "love", "rainbow", "star"])
@@ -73,7 +75,11 @@ function ImageLoader(props) {
     next();
   };
 
-  const upload = () => inputRef.current.click();
+  const upload = () => {
+    loadModel()
+    inputRef.current.click();
+  }
+
 
   const handleUpload = (event) => {
     const { files } = event.target;
@@ -85,9 +91,7 @@ function ImageLoader(props) {
   };
 
   const actionButton = {
-    // initial: {  text: "Get Started" },
-    loadingModel: { text: "Loading..." },
-    modelReady: { action: upload, text: "Upload Image" },
+    uploadReady: { action: upload, text: "Upload Image" },
     imageReady: { action: identify, text: "Give me a Haiku" },
     identifying: { text: "Identifying..." },
     complete: { action: reset, text: "Reset" },
