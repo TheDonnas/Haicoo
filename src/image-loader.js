@@ -1,6 +1,6 @@
 import React, { useState, useRef, useReducer, useEffect } from "react";
 import * as mobilenet from "@tensorflow-models/mobilenet";
-import "./App.css";
+// import "../App.css";
 
 let counter = 0
 
