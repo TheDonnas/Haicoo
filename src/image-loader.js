@@ -32,7 +32,7 @@ function ImageLoader(props) {
 
   const [appState, dispatch] = useReducer(reducer, machine.initial);
   const next = () => dispatch("next");
-  
+
   const loadModel = async () => {
     console.log("MODEL WILL BE LOADED")
     const model = await mobilenet.load();
@@ -40,13 +40,25 @@ function ImageLoader(props) {
     next();
     console.log("MODEL LOADED!!!!")
   };
-
+  
+  const chooseRandom = (choices) => {
+    let index = Math.floor(Math.random() * choices.length);
+    return choices[index];
+  }
+  
   const identify = async () => {
     next();
     const results = await model.classify(imageRef.current);
     setResults(results);
     console.log(results);
-    let word = results[0].className.split(", ")[0];
+    let word;
+    
+    console.log(typeof results[0].probability, "PROBABILITY??? type")
+    if (results.length && results[0].probability < .25 && results[2].probability < .10){
+      word = chooseRandom(["flower", "love", "rainbow", "star"])
+    } else {
+      word = results[0].className.split(", ")[0];
+    }
     if (word.includes(" ")) {
       word = word.split(" ");
       word = word[word.length - 1];
