@@ -1,6 +1,6 @@
 import React, { useState, useRef, useReducer, useEffect } from "react";
 import * as mobilenet from "@tensorflow-models/mobilenet";
-import "./App.css";
+// import "../App.css";
 
 let counter = 0
 
@@ -9,7 +9,8 @@ const machine = {
   states: {
     uploadReady: { on: { next: "imageReady" }, showResults: false },
     imageReady: { on: { next: "identifying" }, showImage: true, showResults: false },
-    identifying: { on: { next: "complete" } },
+    beforeReIdentify: { on: { next: "identifying" }, showImage: true, showResults: false},
+    identifying: { on: { next: "complete" }, showImage: true, showResults: false },
     complete: {
       on: { next: "uploadReady" },
       showImage: true,
@@ -68,6 +69,13 @@ function ImageLoader(props) {
     props.updateWord(word);
     next();
   };
+  
+  const beforeReIdentify = () => {
+    next();
+    setResults([]);
+    props.updateWord("");
+    next();
+  };
 
   const reset = async () => {
     setResults([]);
@@ -95,6 +103,7 @@ function ImageLoader(props) {
   const actionButton = {
     uploadReady: { action: upload, text: "Upload Image" },
     imageReady: { action: identify, text: "Give me a Haiku" },
+    reIdentify: { action: beforeReIdentify },
     identifying: { text: "Identifying..." },
     complete: { action: reset, text: "Reset" },
   };
@@ -107,8 +116,7 @@ function ImageLoader(props) {
       {showImage && <img src={imageURL} alt="upload-preview" ref={imageRef} />}
       <input
         type="file"
-        accept="image/*"
-        capture="camera"
+        accept="image/x-png,image/jpeg,image/gif"
         onChange={handleUpload}
         ref={inputRef}
       />
@@ -117,6 +125,10 @@ function ImageLoader(props) {
       <button onClick={actionButton[appState].action || (() => {})}>
         {actionButton[appState].text}
       </button>
+      
+      {actionButton[appState].text === "Reset" && <button onClick={actionButton.reIdentify.action || (() => {})}>
+        Give me another Haiku
+      </button>}
     </div>
   );
 }

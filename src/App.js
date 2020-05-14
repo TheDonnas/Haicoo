@@ -35,7 +35,7 @@ class App extends React.Component {
 
     console.log("THIS STATE IN APP", this.state);
     return (
-      <div>
+      <div id="background">
         <div id = "saveme">
           <ImageLoader updateWord={this.updateWord} />
           { word.length
