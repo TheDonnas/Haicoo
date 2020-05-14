@@ -4,8 +4,6 @@ import * as mobilenet from "@tensorflow-models/mobilenet";
 
 let counter = 0
 
-let counter = 0
-
 const machine = {
   initial: "uploadReady",
   states: {
@@ -71,7 +69,7 @@ function ImageLoader(props) {
     props.updateWord(word);
     next();
   };
-  
+
   const beforeReIdentify = () => {
     next();
     setResults([]);
@@ -127,7 +125,7 @@ function ImageLoader(props) {
       <button onClick={actionButton[appState].action || (() => {})}>
         {actionButton[appState].text}
       </button>
-      
+
       {actionButton[appState].text === "Reset" && <button onClick={actionButton.reIdentify.action || (() => {})}>
         Give me another Haiku
       </button>}
