@@ -26,7 +26,7 @@ class Haiku extends React.Component {
   render() {
     const { poem } = this.state;
     return (
-      <div id="saveme">
+      <div>
         {poem.map((line) => (
           <p key={line}>{line}</p>
         ))}
