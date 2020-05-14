@@ -105,7 +105,6 @@ function ImageLoader(props) {
       <input
         type="file"
         accept="image/*"
-        capture="camera"
         onChange={handleUpload}
         ref={inputRef}
       />
