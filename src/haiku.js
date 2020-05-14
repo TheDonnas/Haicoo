@@ -21,16 +21,22 @@ class Haiku extends React.Component {
       //when component mounts set state with poem after haiku generator is called
       poem = poem.map((line) => line.join(" "));
       this.setState({ poem });
+      this.sendToApp();
     }
   }
+  
+  sendToApp = () => {
+    this.props.callbackFromHaiku(this.state.poem);
+  };
+  
   render() {
-    const { poem } = this.state;
+    // const { poem } = this.state;
     return (
-      <div>
-        {poem.map((line) => (
-          <p key={line}>{line}</p>
-        ))}
-      </div>
+      <div />
+        // {/* {poem.map((line) => (
+        //   <p key={line}>{line}</p>
+        // ))} */}
+      // </div>
     );
   }
 }
