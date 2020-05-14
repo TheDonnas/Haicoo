@@ -98,6 +98,8 @@ function ImageLoader(props) {
     }
   };
 
+
+
   const actionButton = {
     uploadReady: { action: upload, text: "Upload Image" },
     imageReady: { action: identify, text: "Give me a Haiku" },
@@ -110,6 +112,7 @@ function ImageLoader(props) {
 
   return (
     <div>
+      <div>
       {showImage && <img src={imageURL} alt="upload-preview" ref={imageRef} />}
       <input
         type="file"
@@ -117,6 +120,7 @@ function ImageLoader(props) {
         onChange={handleUpload}
         ref={inputRef}
       />
+      </div>
 
       <button onClick={actionButton[appState].action || (() => {})}>
         {actionButton[appState].text}
