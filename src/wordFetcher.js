@@ -13,13 +13,15 @@ export default class WordFetcher {
     this.word = word;
     Promise.all([
       (this.followingWords = this.getFollowingWords(word)),
-      (this.nouns = this.getNouns(word)),
-      (this.verbs = this.getVerbs(word)),
-      (this.adj = this.getAdj(word)),
-      (this.adv = this.getAdv(word)),
+      (this.popularNouns = this.getPopularNouns(word)),
+      (this.popularAdjs = this.getPopularAdjs(word)),
       (this.relatedWords = this.getRelatedWords(word)),
+      (this.nouns = this.getNouns()),
+      (this.verbs = this.getVerbs()),
+      (this.adj = this.getAdj()),
+      (this.adv = this.getAdv())
     ]).then((results) => {
-      const [followingWords, nouns, verbs, adj, adv, relatedWords] = results;
+      const [followingWords, popularNouns, popularAdjs, relatedWords, nouns, verbs, adj, adv ] = results;
 
       console.log(
         "PROMISE RESULTS",
@@ -34,7 +36,11 @@ export default class WordFetcher {
         "adverbs: ",
         adv,
         "relatedWords: ",
-        relatedWords
+        relatedWords,
+        "popularNouns: ",
+        popularNouns,
+        "popularAdjs: ",
+        popularAdjs
       );
     });
 
@@ -78,37 +84,57 @@ export default class WordFetcher {
       console.log(error);
     }
   }
-
-  async getNouns(word) {
+  
+  async getPopularNouns(word) {
     try {
-      const popularNouns = await this.requestWords(
+      this.popularNouns = await this.requestWords(
         `${DATAMUSE_APIBASE}&rel_jja=${word}`
       );
-      const relatedNouns = await this.requestWords(
-        `${DATAMUSE_APIBASE}&ml=${word}`
+      return this.popularNouns;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  
+  async getPopularAdjs(word) {
+    try {
+      this.popularAdjs = await this.requestWords(
+        `${DATAMUSE_APIBASE}&rel_jjb=${word}`
       );
-      let nouns;
-      if (popularNouns.length < 1) {
-        nouns = [
-          {word: "life", numSyllables: 1},
-          {word: "joy", numSyllables: 1},
-          {word: "magic", numSyllables: 2},
-          {word: "comedy", numSyllables: 3},
-          {word: "colors", numSyllables: 2},
-          {word: "light", numSyllables: 1},
-        ]
-      } else if (popularNouns.length < 5) {
-        nouns = relatedNouns;
-      } else {
-        nouns = popularNouns;
-      }
-      return nouns;
+      return this.popularAdjs;
     } catch (error) {
       console.log(error);
     }
   }
 
-  async getVerbs(word) {
+  async getNouns() {
+    try {
+      const popularNouns = await this.popularNouns
+      const relatedNouns = await this.relatedWords
+      let nouns;
+      nouns = [...popularNouns, ...relatedNouns];
+      return nouns;
+    } catch (error) {
+      let nouns = [
+        {word: "life", numSyllables: 1},
+        {word: "joy", numSyllables: 1},
+        {word: "magic", numSyllables: 2},
+        {word: "happiness", numSyllables: 3},
+        {word: "goodness", numSyllables: 2},
+        {word: "color", numSyllables: 2},
+        {word: "excitement", numSyllables: 3},
+        {word: "light", numSyllables: 1},
+        {word: "humor", numSyllables: 2},
+        {word: "delight", numSyllables: 2},
+        {word: "fun", numSyllables: 1},
+        {word: "rest", numSyllables: 1},
+      ];
+      console.log(error);
+      return nouns;
+    }
+  }
+
+  async getVerbs() {
     try {
       const followingWords = await this.followingWords;
       let verbsList = [];
@@ -120,13 +146,23 @@ export default class WordFetcher {
       if (verbsList.length < 1) {
         verbsList = [
           {word: "am", numSyllables: 1},
-          {word: "are", numSyllables: 1},
-          {word: "were", numSyllables: 1},
+          {word: "could", numSyllables: 1},
+          {word: "was", numSyllables: 1},
           {word: "is", numSyllables: 1},
           {word: "be", numSyllables: 1},
           {word: "can", numSyllables: 1},
           {word: "will", numSyllables: 1},
           {word: "love", numSyllables: 1},
+          {word: "want", numSyllables: 1},
+          {word: "take", numSyllables: 1},
+          {word: "make", numSyllables: 1},
+          {word: "may", numSyllables: 1},
+          {word: "must", numSyllables: 1},
+          {word: "do", numSyllables: 1},
+          {word: "know", numSyllables: 1},
+          {word: "find", numSyllables: 1},
+          {word: "use", numSyllables: 1},
+          {word: "try", numSyllables: 1},
         ];
       }
       return verbsList;
@@ -135,11 +171,16 @@ export default class WordFetcher {
     }
   }
 
-  async getAdv(word) {
+  async getAdv() {
     try {
       const followingWords = await this.followingWords;
       let advList = [];
-      if (followingWords.length < 1) {
+      for (let i in followingWords) {
+        if (followingWords[i].tags && followingWords[i].tags.includes("adv")) {
+          advList.push(followingWords[i]);
+        }
+      } 
+      if (advList.length < 1) {
         advList = [
           {word: "cheerfully", numSyllables: 3},
           {word: "happily", numSyllables: 3},
@@ -149,13 +190,22 @@ export default class WordFetcher {
           {word: "slowly", numSyllables: 2},
           {word: "only", numSyllables: 2},
           {word: "always", numSyllables: 2},
-        ]
-      } else {
-          for (let i in followingWords) {
-            if (followingWords[i].tags && followingWords[i].tags.includes("adv")) {
-              advList.push(followingWords[i]);
-            }
-        }
+          {word: "aha", numSyllables: 2},
+          {word: "ahh", numSyllables: 1},
+          {word: "OH", numSyllables: 1},
+          {word: "DANG", numSyllables: 1},
+          {word: "alas", numSyllables: 2},
+          {word: "darn", numSyllables: 1},
+          {word: "fiddlesticks", numSyllables: 3},
+          {word: "golly", numSyllables: 2},
+          {word: "EUREKA", numSyllables: 3},
+          {word: "UH-OH", numSyllables: 2},
+          {word: "shh", numSyllables: 1},
+          {word: "WOW", numSyllables: 1},
+          {word: "yeah", numSyllables: 1},
+          {word: "well", numSyllables: 1},
+          {word: "WHOA", numSyllables: 1}
+        ]  
       }
       return advList;
     } catch (error) {
@@ -163,11 +213,11 @@ export default class WordFetcher {
     }
   }
 
-  async getAdj(word) {
+  async getAdj() {
     try {
-      let adjs = await this.requestWords(
-        `${DATAMUSE_APIBASE}&rel_jjb=${word}`
-      );
+      const popularAdj = await this.popularAdjs;
+      let adjs = popularAdj;
+      console.log('ADJS BEFORE IF STMT: ', adjs);
       if (adjs.length < 1) {
         adjs = [
           {word: "beautiful", numSyllables: 4},
@@ -176,11 +226,34 @@ export default class WordFetcher {
           {word: "silly", numSyllables: 2},
           {word: "calm", numSyllables: 1},
           {word: "nice", numSyllables: 1},
+          {word: "ARGHH", numSyllables: 1},
+          {word: "PSST", numSyllables: 1},
+          {word: "POP", numSyllables: 1},
+          {word: "POW", numSyllables: 1},
+          {word: "BANG", numSyllables: 1},
+          {word: "SMASH", numSyllables: 1},
+          {word: "THUD", numSyllables: 1}
         ]
       }
       return adjs;
     } catch (error) {
+      let adjs = [
+        {word: "beautiful", numSyllables: 4},
+        {word: "fancy", numSyllables: 2},
+        {word: "faithful", numSyllables: 2},
+        {word: "silly", numSyllables: 2},
+        {word: "calm", numSyllables: 1},
+        {word: "nice", numSyllables: 1},
+        {word: "ARGHH", numSyllables: 1},
+        {word: "PSST", numSyllables: 1},
+        {word: "POP", numSyllables: 1},
+        {word: "POW", numSyllables: 1},
+        {word: "BANG", numSyllables: 1},
+        {word: "SMASH", numSyllables: 1},
+        {word: "THUD", numSyllables: 1}
+      ]
       console.log(error);
+      return adjs;
     }
   }
 

@@ -5,7 +5,7 @@
   "engines": {
     "node": "12.11.1",
     "npm": "~5.6.0"
-    },
+  },
   "dependencies": {
     "@tensorflow-models/mobilenet": "^2.0.4",
     "@tensorflow/tfjs-converter": "^1.7.4",
