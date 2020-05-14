@@ -4,17 +4,14 @@ import * as mobilenet from "@tensorflow-models/mobilenet";
 
 let counter = 0
 
-let counter = 0
-
 const machine = {
   initial: "uploadReady",
   states: {
     uploadReady: { on: { next: "imageReady" }, showResults: false },
     imageReady: { on: { next: "identifying" }, showImage: true, showResults: false },
-    beforeReIdentify: { on: { next: "identifying" }, showImage: true, showResults: false},
     identifying: { on: { next: "complete" }, showImage: true, showResults: false },
     complete: {
-      on: { next: "uploadReady" },
+      on: { next: "uploadReady", redo: "identifying" },
       showImage: true,
       showResults: true,
     },
@@ -25,8 +22,8 @@ function ImageLoader(props) {
   const [results, setResults] = useState([]);
   const [imageURL, setImageURL] = useState(null);
   const [model, setModel] = useState(null);
-  const imageRef = useRef();
-  const inputRef = useRef();
+  let imageRef = useRef();
+  let inputRef = useRef();
   // useEffect(() => {loadModel()}, [])
 
   const reducer = (state, event) => {
@@ -35,6 +32,7 @@ function ImageLoader(props) {
 
   const [appState, dispatch] = useReducer(reducer, machine.initial);
   const next = () => dispatch("next");
+  const redo = () => dispatch("redo");
 
   const loadModel = async () => {
     if(counter === 0){
@@ -72,10 +70,26 @@ function ImageLoader(props) {
     next();
   };
   
-  const beforeReIdentify = () => {
-    next();
+  const reIdentify = async () => {
     setResults([]);
     props.updateWord("");
+    redo();
+    const results = await model.classify(imageRef.current);
+    setResults(results);
+    console.log(results);
+    let word;
+
+    console.log(typeof results[0].probability, "PROBABILITY??? type")
+    if (results.length && results[0].probability < .25 && results[2].probability < .10){
+      word = chooseRandom(["flower", "love", "rainbow", "star"])
+    } else {
+      word = results[0].className.split(", ")[0];
+    }
+    if (word.includes(" ")) {
+      word = word.split(" ");
+      word = word[word.length - 1];
+    }
+    props.updateWord(word);
     next();
   };
 
@@ -105,7 +119,7 @@ function ImageLoader(props) {
   const actionButton = {
     uploadReady: { action: upload, text: "Upload Image" },
     imageReady: { action: identify, text: "Give me a Haiku" },
-    reIdentify: { action: beforeReIdentify },
+    reIdentify: { action: reIdentify },
     identifying: { text: "Identifying..." },
     complete: { action: reset, text: "Reset" },
   };
