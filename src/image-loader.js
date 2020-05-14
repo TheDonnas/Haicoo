@@ -70,7 +70,7 @@ function ImageLoader(props) {
     props.updateWord(word);
     next();
   };
-  
+
   const reIdentify = async () => {
     setResults([]);
     props.updateWord("");
@@ -97,11 +97,14 @@ function ImageLoader(props) {
   const reset = async () => {
     setResults([]);
     props.updateWord("");
+    props.callbackFromHaiku("")
+    inputRef.current.value = ''
     next();
   };
 
   const upload = () => {
     loadModel()
+    console.log("Input REF", inputRef)
     inputRef.current.click();
   }
 
@@ -138,7 +141,7 @@ function ImageLoader(props) {
         ref={inputRef}
       />
       </div>
-      
+
       <div>
         {props.poem && props.poem.map((line) => (
           <p key={line}>{line}</p>
