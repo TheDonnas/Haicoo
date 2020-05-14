@@ -4,6 +4,8 @@ import * as mobilenet from "@tensorflow-models/mobilenet";
 
 let counter = 0
 
+let counter = 0
+
 const machine = {
   initial: "uploadReady",
   states: {
