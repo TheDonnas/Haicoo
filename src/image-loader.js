@@ -25,6 +25,7 @@ function ImageLoader(props) {
   let imageRef = useRef();
   let inputRef = useRef();
   // useEffect(() => {loadModel()}, [])
+  console.log("PROPS: ", props)
 
   const reducer = (state, event) => {
     return machine.states[state].on[event] || machine.initial;
@@ -136,6 +137,12 @@ function ImageLoader(props) {
         onChange={handleUpload}
         ref={inputRef}
       />
+      </div>
+      
+      <div>
+        {props.poem && props.poem.map((line) => (
+          <p key={line}>{line}</p>
+        ))}
       </div>
 
       <button onClick={actionButton[appState].action || (() => {})}>

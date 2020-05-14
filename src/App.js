@@ -9,13 +9,16 @@ class App extends React.Component {
     super();
     this.state = {
       word: "",
+      poem: null
     };
     this.updateWord = this.updateWord.bind(this);
-    this.saveImage = this.saveImage.bind(this)
+    this.saveImage = this.saveImage.bind(this);
   }
+  
   updateWord(word) {
     this.setState({ word });
   }
+  
   saveImage = async () => {
     try{
       console.log("pushhhh")
@@ -30,16 +33,22 @@ class App extends React.Component {
       console.error(err)
     }
   };
+  
+  callbackFromHaiku = (haiku) => {
+    this.setState({poem: haiku})
+    console.log("STATE POEM IN APP: ", this.state.poem);
+  };
+  
   render() {
-    let { word } = this.state;
+    let { word, poem } = this.state;
 
     console.log("THIS STATE IN APP", this.state);
     return (
       <div id="background">
         <div id = "saveme">
-          <ImageLoader updateWord={this.updateWord} />
           { word.length
-          ? <Haiku key={word} word={word}/> : <div/>}
+          ? <Haiku key={word} word={word} callbackFromHaiku={this.callbackFromHaiku}/> : <div/>}
+          <ImageLoader updateWord={this.updateWord} poem={poem}/>
         </div>
         <div>
         { word.length
