@@ -131,9 +131,7 @@ function ImageLoader(props) {
       <button onClick={actionButton[appState].action || (() => {})}>
         {actionButton[appState].text}
       </button>
-      { results.length
-      ? <button onClick = {saveImage}>Save Me</button>
-      : <div/> }
+      { showResults && <button onClick = {saveImage}>Save Me</button>}
     </div>
   );
 }
