@@ -141,7 +141,7 @@ function ImageLoader(props) {
       <button onClick={actionButton[appState].action || (() => {})}>
         {actionButton[appState].text}
       </button>
-      
+
       {actionButton[appState].text === "Reset" && <button onClick={actionButton.reIdentify.action || (() => {})}>
         Give me another Haiku
       </button>}
