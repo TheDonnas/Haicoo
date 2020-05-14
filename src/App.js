@@ -19,7 +19,7 @@ class App extends React.Component {
 
     console.log("THIS STATE IN APP", this.state);
     return (
-      <div>
+      <div id="background" >
         <ImageLoader updateWord={this.updateWord} />
         { word.length
         ? <Haiku key={word} word={word}/> : <div/>}
