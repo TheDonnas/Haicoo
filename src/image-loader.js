@@ -1,5 +1,6 @@
 import React, { useState, useRef, useReducer, useEffect } from "react";
 import * as mobilenet from "@tensorflow-models/mobilenet";
+import * as htmlToImage from 'html-to-image';
 import "./App.css";
 
 let counter = 0
@@ -90,6 +91,21 @@ function ImageLoader(props) {
     }
   };
 
+  const saveImage = async () => {
+    try{
+      console.log("pushhhh")
+    htmlToImage.toJpeg(document.getElementById('saveme'), { quality: 0.95 })
+      .then(function (dataUrl) {
+      var link = document.createElement('a');
+      link.download = 'my-image-name.jpeg';
+      link.href = dataUrl;
+      link.click();
+    })
+   } catch (err) {
+      console.error(err)
+    }
+  };
+
   const actionButton = {
     uploadReady: { action: upload, text: "Upload Image" },
     imageReady: { action: identify, text: "Give me a Haiku" },
@@ -101,6 +117,7 @@ function ImageLoader(props) {
 
   return (
     <div>
+      <div id = "saveme">
       {showImage && <img src={imageURL} alt="upload-preview" ref={imageRef} />}
       <input
         type="file"
@@ -109,10 +126,14 @@ function ImageLoader(props) {
         onChange={handleUpload}
         ref={inputRef}
       />
+      </div>
 
       <button onClick={actionButton[appState].action || (() => {})}>
         {actionButton[appState].text}
       </button>
+      { results.length
+      ? <button onClick = {saveImage}>Save Me</button>
+      : <div/> }
     </div>
   );
 }
