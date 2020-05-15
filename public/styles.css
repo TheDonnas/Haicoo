@@ -18,7 +18,7 @@ body {
   background-size: 100%;
   background-size: cover;
   background-repeat: no-repeat;
-  background-position: 60;
+  /* background-position: 60; */
   background-position: fixed;
 }
 
@@ -62,7 +62,7 @@ ul {
 
 img {
   width: 300px;
-  margin-bottom: 25px;
+  /* margin-bottom: 25px; */
 }
 
 ul {
@@ -81,9 +81,9 @@ div .container {
 }
 
 #saveme {
-  background-color: #673C47;
-  padding: 10px;
-  border-radius: 25px
+  background-color: rgb(255, 245, 199);
+  /* padding: 10px;
+  border-radius: 25px */
 }
 
 #container {
