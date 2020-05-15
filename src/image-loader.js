@@ -143,32 +143,35 @@ function ImageLoader(props) {
   const { showImage, showResults } = machine.states[appState];
 
   return (
-    <div>
-      <div>
-        {showImage && (
-          <img src={imageURL} alt="upload-preview" ref={imageRef} />
-        )}
+
+    <div id="container">
+      <h2 id="title">Haicoo~</h2>
+      <div id="content-container">
+        <div>
+        {showImage && <img src={imageURL} alt="upload-preview" ref={imageRef} />}
         <input
           type="file"
           accept="image/x-png,image/jpeg,image/gif"
           onChange={handleUpload}
           ref={inputRef}
         />
-      </div>
+        </div>
+        
+        <div>
+          {showResults && props.poem && props.poem.map((line) => (
+            <p key={line}>{line}</p>
+          ))}
+        </div>
 
-      <div>
-        {props.poem && props.poem.map((line) => <p key={line}>{line}</p>)}
-      </div>
-
-      <button onClick={actionButton[appState].action || (() => {})}>
-        {actionButton[appState].text}
-      </button>
-
-      {actionButton[appState].text === "Reset" && (
-        <button onClick={actionButton.reIdentify.action || (() => {})}>
-          Give me another Haiku
+        <button id="action-btn" onClick={actionButton[appState].action || (() => {})}>
+          {actionButton[appState].text}
         </button>
-      )}
+        
+        {actionButton[appState].text === "Reset" && <button id="reidentify-btn" onClick={actionButton.reIdentify.action || (() => {})}>
+          Give me another Haiku
+        </button>}
+      </div>
+
     </div>
   );
 }
