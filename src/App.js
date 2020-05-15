@@ -53,7 +53,7 @@ class App extends React.Component {
         </div>
         <div>
         { word.length
-          ? <button onClick = {this.saveImage}>Save Me</button>
+          ? <button onClick = {this.saveImage} id="save-me-btn" className="btn btn-outline-dark btn-pill">Save Me</button>
           : <div/>}
         </div>
       </div>
