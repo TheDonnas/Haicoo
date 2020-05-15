@@ -46,7 +46,7 @@ class App extends React.Component {
     console.log("THIS STATE IN APP", this.state);
     return (
       <div id="background">
-        <div id = "saveme">
+        <div>
           { word.length
           ? <Haiku key={word} word={word} callbackFromHaiku={this.callbackFromHaiku}/> : <div/>}
           <ImageLoader updateWord={this.updateWord} poem={poem} callbackFromHaiku={this.callbackFromHaiku}/>
