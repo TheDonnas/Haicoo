@@ -113,6 +113,8 @@ function ImageLoader(props) {
   const reset = async () => {
     setResults([]);
     props.updateWord("");
+    props.callbackFromHaiku("")
+    inputRef.current.value = ''
     next();
   };
 
