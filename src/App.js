@@ -1,19 +1,19 @@
 import React from "react";
 import ImageLoader from "./image-loader";
 import Haiku from "./haiku";
-import * as htmlToImage from 'html-to-image';
-
+import * as htmlToImage from "html-to-image";
+import InstallButton from "./InstallButton";
 
 class App extends React.Component {
   constructor() {
     super();
     this.state = {
       word: "",
-      poem: null
+      poem: null,
     };
     this.updateWord = this.updateWord.bind(this);
     this.saveImage = this.saveImage.bind(this);
-    this.callbackFromHaiku = this.callbackFromHaiku.bind(this)
+    this.callbackFromHaiku = this.callbackFromHaiku.bind(this);
   }
 
   updateWord(word) {
@@ -21,28 +21,28 @@ class App extends React.Component {
   }
 
   saveImage = async () => {
-    try{
-      console.log("pushhhh")
-      htmlToImage.toJpeg(document.getElementById("saveme"), { quality: 0.95 })
-      .then(function (dataUrl) {
-      var link = document.createElement('a');
-      link.download = 'my-image-name.jpeg';
-      link.href = dataUrl;
-      link.click();
-    })
-   } catch (err) {
-      console.error(err)
+    try {
+      console.log("pushhhh");
+      htmlToImage
+        .toJpeg(document.getElementById("saveme"), { quality: 0.95 })
+        .then(function (dataUrl) {
+          var link = document.createElement("a");
+          link.download = "my-image-name.jpeg";
+          link.href = dataUrl;
+          link.click();
+        });
+    } catch (err) {
+      console.error(err);
     }
   };
 
   callbackFromHaiku = (haiku) => {
-    this.setState({poem: haiku})
+    this.setState({ poem: haiku });
     console.log("STATE POEM IN APP: ", this.state.poem);
   };
 
   render() {
     let { word, poem } = this.state;
-
     console.log("THIS STATE IN APP", this.state);
     return (
       <div id="background">
@@ -52,9 +52,11 @@ class App extends React.Component {
           <ImageLoader updateWord={this.updateWord} poem={poem} callbackFromHaiku={this.callbackFromHaiku}/>
         </div>
         <div>
-        { word.length
-          ? <button onClick = {this.saveImage}>Save Me</button>
-          : <div/>}
+          {word.length ? (
+            <button onClick={this.saveImage}>Save Me</button>
+          ) : (
+            <InstallButton />
+          )}
         </div>
       </div>
     );
