@@ -147,7 +147,7 @@ function ImageLoader(props) {
     <div id="container">
       <h2 id="title">Haicoo~</h2>
       <div id="content-container">
-        <div>
+        <div id ="saveme">
         {showImage && <img src={imageURL} alt="upload-preview" ref={imageRef} />}
         <input
           type="file"
