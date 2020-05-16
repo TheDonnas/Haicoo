@@ -155,18 +155,14 @@ function ImageLoader(props) {
           onChange={handleUpload}
           ref={inputRef}
         />
-        </div>
-        
-        <div>
-          {showResults && props.poem && props.poem.map((line) => (
+        {showResults && props.poem && props.poem.map((line) => (
             <p key={line}>{line}</p>
           ))}
         </div>
-
         <button id="action-btn" className="btn btn-outline-dark btn-pill" onClick={actionButton[appState].action || (() => {})}>
           {actionButton[appState].text}
         </button>
-        
+
         {actionButton[appState].text === "Reset" && <button id="reidentify-btn" className="btn btn-outline-dark btn-pill" onClick={actionButton.reIdentify.action || (() => {})}>
           Give me another Haiku
         </button>}

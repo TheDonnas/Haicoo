@@ -24,7 +24,7 @@ class App extends React.Component {
     try {
       console.log("pushhhh");
       htmlToImage
-        .toJpeg(document.getElementById("saveme"), { quality: 0.95 })
+        .toJpeg(document.getElementById("saveme"), { quality: 0.95, backgroundColor:'#FFF5C7' })
         .then(function (dataUrl) {
           var link = document.createElement("a");
           link.download = "my-image-name.jpeg";

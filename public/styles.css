@@ -15,10 +15,12 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background: url("background-img.jpg") ;
+  height: 100%;
+  width: 100%;
   background-size: cover;
   background-repeat: no-repeat;
   /* background-position: 60; */
-  background-position: fixed;
+  background-attachment: fixed;
 }
 
 code {
@@ -77,11 +79,7 @@ div .container {
   margin-top: 30%;
 }
 
-#saveme {
-  background-color: rgb(255, 245, 199);
-  /* padding: 10px;
-  border-radius: 25px */
-}
+
 
 #container {
   margin-top: 20%;
