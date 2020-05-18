@@ -24,10 +24,10 @@ class App extends React.Component {
     try {
       console.log("pushhhh");
       htmlToImage
-        .toJpeg(document.getElementById("saveme"), { quality: 0.95, backgroundColor:'#FFF5C7' })
+        .toPng(document.getElementById("saveme"), { quality: 0.95, backgroundColor:'#FFF5C7' })
         .then(function (dataUrl) {
           var link = document.createElement("a");
-          link.download = "my-image-name.jpeg";
+          link.download = "haicoo.png";
           link.href = dataUrl;
           link.click();
         });
@@ -67,12 +67,12 @@ class App extends React.Component {
             <button
               onClick={this.saveImage}
               id="save-me-btn"
-              className="btn btn-outline-dark btn-pill"
+              className="btn btn-info btn-pill"
             >
-              Save Me
+              Download
             </button>
           ) : (
-            <div />
+            null
           )}
           {!word.length ? <InstallButton /> : <div />}
         </div>
