@@ -69,7 +69,7 @@ class App extends React.Component {
               id="save-me-btn"
               className="btn btn-outline-dark btn-pill"
             >
-              Save Me
+              Download
             </button>
           ) : (
             null
