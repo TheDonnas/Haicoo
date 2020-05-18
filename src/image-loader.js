@@ -116,7 +116,7 @@ function ImageLoader(props) {
     props.callbackFromHaiku("")
     inputRef.current.value = ''
     next();
-    // inputRef.current.click();
+    inputRef.current.click();
   };
 
   const upload = () => {
@@ -143,7 +143,7 @@ function ImageLoader(props) {
     imageReady: { action: identify, text: "Give me a Haiku" },
     reIdentify: { action: reIdentify },
     identifying: { text: "Identifying..." },
-    complete: { action: reset, text: "Reset" },
+    complete: { action: reset, text: "Start Over" },
   };
 
   const { showImage, showResults } = machine.states[appState];
@@ -173,7 +173,7 @@ function ImageLoader(props) {
           Choose different Image
         </button>}
         
-        {actionButton[appState].text === "Reset" && <button id="reidentify-btn" className="btn btn-outline-dark btn-pill" onClick={actionButton.reIdentify.action || (() => {})}>
+        {actionButton[appState].text === "Start Over" && <button id="reidentify-btn" className="btn btn-outline-dark btn-pill" onClick={actionButton.reIdentify.action || (() => {})}>
           Give me another Haiku
         </button>}
       </div>
