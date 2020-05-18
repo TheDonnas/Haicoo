@@ -160,11 +160,11 @@ function ImageLoader(props) {
             <p key={line}>{line}</p>
           ))}
         </div>
-        <button id="action-btn" className="btn btn-outline-dark btn-pill" onClick={actionButton[appState].action || (() => {})}>
+        <button id="action-btn" className="btn btn-info btn-pill" onClick={actionButton[appState].action || (() => {})}>
           {actionButton[appState].text}
         </button>
 
-        {actionButton[appState].text === "Reset" && <button id="reidentify-btn" className="btn btn-outline-dark btn-pill" onClick={actionButton.reIdentify.action || (() => {})}>
+        {actionButton[appState].text === "Reset" && <button id="reidentify-btn" className="btn btn-outline-light btn-pill" onClick={actionButton.reIdentify.action || (() => {})}>
           Give me another Haiku
         </button>}
       </div>

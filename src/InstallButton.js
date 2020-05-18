@@ -28,7 +28,7 @@ const InstallButton = () => {
   return (
     <button
       id="install-btn"
-      className="btn btn-outline-dark btn-pill"
+      className="btn btn-light btn-pill"
       onClick={handleClick}
     >
       Install Haicoo~
