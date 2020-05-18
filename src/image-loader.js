@@ -156,11 +156,13 @@ function ImageLoader(props) {
           onChange={handleUpload}
           ref={inputRef}
         />
+        <div>
         {showResults && props.poem && props.poem.map((line) => (
             <p key={line}>{line}</p>
           ))}
         </div>
         <button id="action-btn" className="btn btn-info btn-pill" onClick={actionButton[appState].action || (() => {})}>
+        </div>
           {actionButton[appState].text}
         </button>
 
