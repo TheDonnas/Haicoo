@@ -143,34 +143,45 @@ function ImageLoader(props) {
   const { showImage, showResults } = machine.states[appState];
 
   return (
-
     <div id="container">
       <h2 id="title">Haicoo~</h2>
       <div id="content-container">
+        <div id="saveme">
+          {showImage && (
+            <img src={imageURL} alt="upload-preview" ref={imageRef} />
+          )}
+          <input
+            type="file"
+            accept="image/x-png,image/jpeg,image/gif"
+            onChange={handleUpload}
+            ref={inputRef}
+          />
 
-        <div id ="saveme">
-        {showImage && <img src={imageURL} alt="upload-preview" ref={imageRef} />}
-        <input
-          type="file"
-          accept="image/x-png,image/jpeg,image/gif"
-          onChange={handleUpload}
-          ref={inputRef}
-        />
-        <div id="box">
-        {showResults && props.poem && props.poem.map((line) => (
-            <p key={line}>{line}</p>
-          ))}
-        </div>
-        <button id="action-btn" className="btn btn-info btn-pill" onClick={actionButton[appState].action || (() => {})}>
-          {actionButton[appState].text}
-        </button>
+          {/* <div id="box"> */}
+          {showResults &&
+            props.poem &&
+            props.poem.map((line) => <p key={line}>{line}</p>)}
+          {/* </div> */}
+
+          <button
+            id="action-btn"
+            className="btn btn-info btn-pill"
+            onClick={actionButton[appState].action || (() => {})}
+          >
+            {actionButton[appState].text}
+          </button>
         </div>
 
-        {actionButton[appState].text === "Reset" && <button id="reidentify-btn" className="btn btn-info btn-pill" onClick={actionButton.reIdentify.action || (() => {})}>
-          Give me another Haiku
-        </button>}
+        {actionButton[appState].text === "Reset" && (
+          <button
+            id="reidentify-btn"
+            className="btn btn-info btn-pill"
+            onClick={actionButton.reIdentify.action || (() => {})}
+          >
+            Give me another Haiku
+          </button>
+        )}
       </div>
-
     </div>
   );
 }
