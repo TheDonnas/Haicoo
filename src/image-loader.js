@@ -9,7 +9,7 @@ const machine = {
   states: {
     uploadReady: { on: { next: "imageReady" }, showResults: false },
     imageReady: {
-      on: { next: "identifying" },
+      on: { next: "identifying", redo: "uploadReady" },
       showImage: true,
       showResults: false,
     },
@@ -116,6 +116,7 @@ function ImageLoader(props) {
     props.callbackFromHaiku("")
     inputRef.current.value = ''
     next();
+    // inputRef.current.click();
   };
 
   const upload = () => {
@@ -131,7 +132,12 @@ function ImageLoader(props) {
       next();
     }
   };
-
+  
+  const handleUndo = () => {
+    inputRef.current.value = '';
+    redo();
+  }
+  
   const actionButton = {
     uploadReady: { action: upload, text: "Upload Image" },
     imageReady: { action: identify, text: "Give me a Haiku" },
@@ -162,7 +168,11 @@ function ImageLoader(props) {
         <button id="action-btn" className="btn btn-outline-dark btn-pill" onClick={actionButton[appState].action || (() => {})}>
           {actionButton[appState].text}
         </button>
-
+        
+        {actionButton[appState].text === "Give me a Haiku" && <button id="reidentify-btn" className="btn btn-outline-dark btn-pill" onClick={handleUndo}>
+          Choose different Image
+        </button>}
+        
         {actionButton[appState].text === "Reset" && <button id="reidentify-btn" className="btn btn-outline-dark btn-pill" onClick={actionButton.reIdentify.action || (() => {})}>
           Give me another Haiku
         </button>}
