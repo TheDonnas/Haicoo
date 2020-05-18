@@ -47,16 +47,34 @@ class App extends React.Component {
     return (
       <div id="background">
         <div>
-          { word.length
-          ? <Haiku key={word} word={word} callbackFromHaiku={this.callbackFromHaiku}/> : null}
-          <ImageLoader updateWord={this.updateWord} poem={poem} callbackFromHaiku={this.callbackFromHaiku}/>
+          {word.length ? (
+            <Haiku
+              key={word}
+              word={word}
+              callbackFromHaiku={this.callbackFromHaiku}
+            />
+          ) : (
+            <div />
+          )}
+          <ImageLoader
+            updateWord={this.updateWord}
+            poem={poem}
+            callbackFromHaiku={this.callbackFromHaiku}
+          />
         </div>
         <div>
-
-        { word.length
-          ? <button onClick = {this.saveImage} id="save-me-btn" className="btn btn-outline-dark btn-pill">Download</button>
-          : <div/>}
-
+          {word.length ? (
+            <button
+              onClick={this.saveImage}
+              id="save-me-btn"
+              className="btn btn-outline-dark btn-pill"
+            >
+              Save Me
+            </button>
+          ) : (
+            null
+          )}
+          {!word.length ? <InstallButton /> : <div />}
         </div>
       </div>
     );

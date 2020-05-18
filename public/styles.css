@@ -9,22 +9,22 @@ html {
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: url("background-img.jpg") ;
+  background: url("background-img.jpg");
   height: 100%;
   width: 100%;
   background-size: cover;
   background-repeat: no-repeat;
   /* background-position: 60; */
-  background-attachment: fixed;
+  background-position: fixed;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
 
@@ -79,8 +79,15 @@ div .container {
   margin-top: 30%;
 }
 
+<<<<<<< HEAD
+#saveme {
+  background-color: rgb(255, 245, 199);
+  /* padding: 10px;
+  border-radius: 25px */
+}
 
-
+=======
+>>>>>>> 9416468a2aa997af41cb18b180bd8875e164ecc4
 #container {
   margin-top: 20%;
 }
@@ -109,6 +116,10 @@ div .container {
 }
 
 #save-me-btn {
+  border-radius: 40px;
+}
+
+#install-btn {
   border-radius: 40px;
 }
 /*
