@@ -102,9 +102,10 @@ div .container {
   font-style: italic;
   /* font-family: "URW Chancery L", cursive; */
   /* font-family: "Snell Roundhand", cursive; */
-  font-family: "Bradley Hand", cursive;
+  /* font-family: "Bradley Hand", cursive; */
+  font-family: 'Reenie Beanie', cursive;
   font-weight: 600;
-  font-size: 250%;
+  font-size: 700%;
 }
 
 #action-btn {
