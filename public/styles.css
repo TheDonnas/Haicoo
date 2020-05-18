@@ -20,10 +20,9 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background:
-  /* linear-gradient(
-    rgba(255, 238, 192, 0.3),
-    rgba(255, 255, 255, 0.1)
-  ), */
+  linear-gradient(rgba(0, 0, 0, 0.1),
+  rgba(0, 0, 0, 0.1)
+  ),
   url("background-img\ blur.jpg");
   height: 100%;
   width: 100%;
@@ -100,12 +99,9 @@ div .container {
 }
 #title {
   font-style: italic;
-  /* font-family: "URW Chancery L", cursive; */
-  /* font-family: "Snell Roundhand", cursive; */
-  /* font-family: "Bradley Hand", cursive; */
   font-family: 'Reenie Beanie', cursive;
-  font-weight: 600;
-  font-size: 700%;
+  font-size: 1000%;
+  color: rgba(230, 232, 238, 0.9);
 }
 
 #action-btn {
@@ -126,9 +122,18 @@ div .container {
 #install-btn {
   border-radius: 40px;
 }
-/*
-@media only screen and (min-device-width: 400px) {
-  body {
-    background-position-x: left;
-  }
+
+/* div #box {
+  color: aliceblue;
+  padding: 10px;
+  background-color: rgba(35, 35, 36, 0.089);
 } */
+
+
+@media only screen and (max-width: 500px) {
+  #title {
+    font-family: 'Reenie Beanie', cursive;
+    font-size: 600%;
+    color: rgba(230, 232, 238, 0.9);
+  }
+}
