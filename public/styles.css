@@ -14,13 +14,9 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-<<<<<<< HEAD
-  background: url("background-img.jpg") ;
-=======
   background: url("background-img.jpg");
   height: 100%;
   width: 100%;
->>>>>>> 9416468a2aa997af41cb18b180bd8875e164ecc4
   background-size: cover;
   background-repeat: no-repeat;
   /* background-position: 60; */
