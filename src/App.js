@@ -26,7 +26,7 @@ class App extends React.Component {
       htmlToImage
         .toPng(document.getElementById("saveme"), {
           quality: 0.95,
-          backgroundColor: "#FFF5C7",
+          backgroundColor: "#f0fff0",
         })
         .then(function (dataUrl) {
           var link = document.createElement("a");
