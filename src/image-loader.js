@@ -1,5 +1,7 @@
 import React, { useState, useRef, useReducer, useEffect } from "react";
 import * as mobilenet from "@tensorflow-models/mobilenet";
+import { SwatchesPicker } from "react-color";
+import { bindColorTextureToFramebuffer } from "@tensorflow/tfjs-core/dist/backends/webgl/webgl_util";
 // import "../App.css";
 
 let counter = 0;
@@ -34,6 +36,7 @@ function ImageLoader(props) {
   const [results, setResults] = useState([]);
   const [imageURL, setImageURL] = useState(null);
   const [model, setModel] = useState(null);
+  const [fontColor, setFontColor] = useState("#fff");
   let imageRef = useRef();
   let inputRef = useRef();
   // useEffect(() => {loadModel()}, [])
@@ -137,6 +140,10 @@ function ImageLoader(props) {
     }
   };
 
+  const handleChange = (color) => {
+    setFontColor(color.hex);
+  };
+
   const handleUndo = () => {
     inputRef.current.value = "";
     redo();
@@ -154,8 +161,6 @@ function ImageLoader(props) {
 
   return (
     <div id="container">
-
-      {/* <div id="content-container"> */}
       <div id="saveme">
         <input
           type="file"
@@ -167,43 +172,52 @@ function ImageLoader(props) {
           <img src={imageURL} alt="upload-preview" ref={imageRef} />
         )}
 
-        {/* <div id="box"> */}
-        {showResults &&
-          props.poem &&
-          props.poem.map((line) => <p key={line}>{line}</p>)}
-        {/* </div> */}
+        <div id="poem">
+          {showResults &&
+            props.poem &&
+            props.poem.map((line) => (
+              <p style={{ color: fontColor }} key={line}>
+                {line}
+              </p>
+            ))}
+        </div>
       </div>
 
-      <button
-        id="action-btn"
-        className="btn btn-info btn-pill"
-        onClick={actionButton[appState].action || (() => {})}
-      >
-        {actionButton[appState].text}
-      </button>
-
-      {actionButton[appState].text === "Give me a Haiku" && (
-        <button
-          id="reidentify-btn"
-          className="btn btn-info btn-pill"
-          onClick={handleUndo}
-        >
-
-          Choose different Image
-        </button>
-      )}
-
+      {/* color-picker */}
       {actionButton[appState].text === "Start Over" && (
-        <button
-          id="reidentify-btn"
-          className="btn btn-info btn-pill"
-          onClick={actionButton.reIdentify.action || (() => {})}
-        >
-          Give me another Haiku
-        </button>
+        <SwatchesPicker id="picker" onChange={handleChange} color={fontColor} />
       )}
 
-      {/* </div> */}
+      <div id="buttons">
+        {/* main button */}
+        <button
+          id="action-btn"
+          className="btn btn-info btn-pill"
+          onClick={actionButton[appState].action || (() => {})}
+        >
+          {actionButton[appState].text}
+        </button>
+        {/* choose different image button */}
+        {actionButton[appState].text === "Give me a Haiku" && (
+          <button
+            id="reidentify-btn"
+            className="btn btn-info btn-pill"
+            onClick={handleUndo}
+          >
+            Choose different Image
+          </button>
+        )}
+        {/* give another haiku button */}
+        {actionButton[appState].text === "Start Over" && (
+          <button
+            id="reidentify-btn"
+            className="btn btn-info btn-pill"
+            onClick={actionButton.reIdentify.action || (() => {})}
+          >
+            Give me another Haiku
+          </button>
+        )}
+      </div>
     </div>
   );
 }

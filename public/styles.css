@@ -1,6 +1,6 @@
 * {
-  overflow-y: scroll;
-  scroll-behavior: smooth;
+  /* overflow-y: scroll;
+  scroll-behavior: smooth; */
 }
 
 body {
@@ -10,6 +10,8 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-y: scroll;
+  scroll-behavior: smooth;
 }
 
 div #home {
@@ -30,6 +32,10 @@ div #app {
   padding-bottom: 100px;
   background-color: rgba(240, 255, 240, 0.507);
   height: 100vh;
+}
+
+div #buttons {
+  background-color: red;
 }
 
 div #saveme {
@@ -90,7 +96,7 @@ li:not(:last-child) {
 }
 
 /* div .container { */
-  /* margin-top: 30%; */
+/* margin-top: 30%; */
 /* } */
 
 /* #container {
@@ -143,7 +149,7 @@ li:not(:last-child) {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  margin-top: 3%
+  margin-top: 3%;
 }
 
 img {
@@ -151,9 +157,7 @@ img {
   border-radius: 10px;
   margin: 20px 35px 35px 35px;
   padding: 5px;
-  box-shadow:
-  0 4px 8px 0 rgba(0, 0, 0, 0.2),
-  0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   background-color: rgba(35, 35, 36, 0.089);
   /* padding-bottom: 10px; */
 }
