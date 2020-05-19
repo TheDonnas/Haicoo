@@ -171,14 +171,6 @@ function ImageLoader(props) {
           props.poem &&
           props.poem.map((line) => <p key={line}>{line}</p>)}
         {/* </div> */}
-
-        {/* <button
-            id="action-btn"
-            className="btn btn-info btn-pill"
-            onClick={actionButton[appState].action || (() => {})}
-          >
-            {actionButton[appState].text}
-          </button> */}
       </div>
 
       <button

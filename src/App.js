@@ -61,7 +61,7 @@ class App extends React.Component {
             </button>
           </a>
         </div>
-        <div id="app">
+        <div id="app" className="container-fluid">
           {word.length ? (
             <Haiku
               key={word}
