@@ -24,7 +24,10 @@ class App extends React.Component {
     try {
       console.log("pushhhh");
       htmlToImage
-        .toPng(document.getElementById("saveme"), { quality: 0.95, backgroundColor:'#FFF5C7' })
+        .toPng(document.getElementById("saveme"), {
+          quality: 0.95,
+          backgroundColor: "#f0fff0",
+        })
         .then(function (dataUrl) {
           var link = document.createElement("a");
           link.download = "haicoo.png";
@@ -47,7 +50,19 @@ class App extends React.Component {
     
     return (
       <div id="background">
-        <div>
+        <div id="home">
+          <h2 id="title">Haicoo~</h2>
+          <a href="#app">
+            <button
+              id="get-started-btn"
+              type="button"
+              className="btn btn-outline-light btn-pill"
+            >
+              Get Started
+            </button>
+          </a>
+        </div>
+        <div id="app" className="container-fluid">
           {word.length ? (
             <Haiku
               key={word}
@@ -62,8 +77,6 @@ class App extends React.Component {
             poem={poem}
             callbackFromHaiku={this.callbackFromHaiku}
           />
-        </div>
-        <div>
           {word.length ? (
             <button
               onClick={this.saveImage}
@@ -72,9 +85,7 @@ class App extends React.Component {
             >
               Download
             </button>
-          ) : (
-            null
-          )}
+          ) : null}
           {!word.length ? <InstallButton /> : <div />}
         </div>
         <div id="share-btns">

@@ -1,16 +1,7 @@
-/* * {
-  box-sizing: border-box;
-} */
-html {
-  margin: 0px;
-  height: 100%;
-  width: 100%;
+* {
+  overflow-y: scroll;
+  scroll-behavior: smooth;
 }
-
-/* #background {
-  filter: blur(8px);
-  /* -webkit-filter: blur(8px); */
-/* }  */
 
 body {
   margin: 0;
@@ -19,20 +10,32 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background:
-  linear-gradient(rgba(0, 0, 0, 0.1),
-  rgba(0, 0, 0, 0.1)
-  ),
-  url("background-img\ blur.jpg");
-  height: 100%;
-  width: 100%;
+}
+
+div #home {
+  /* background-color: blueviolet; */
+  background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+    url("background-img\ blur.jpg");
+  padding: 50px;
+  height: 100vh;
+  width: 100vw;
   background-size: cover;
   background-repeat: no-repeat;
   /* background-position: 60; */
   background-position: fixed;
 }
 
+div #app {
+  scroll-snap-align: center;
+  padding-bottom: 100px;
+  background-color: rgba(240, 255, 240, 0.507);
+  height: 100vh;
+}
 
+div #saveme {
+  padding-bottom: 5px;
+  padding-top: 5px;
+}
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
@@ -86,41 +89,53 @@ li:not(:last-child) {
   border-bottom: solid 1px;
 }
 
-div .container {
-  margin-top: 30%;
-}
+/* div .container { */
+  /* margin-top: 30%; */
+/* } */
 
-#container {
-  margin-top: 20%;
-}
+/* #container {
+  /* margin-top: 20px; */
+/* } */
 
-#content-container {
+/* #content-container {
   margin-top: 10%;
-}
+} */
+
 #title {
+  /* padding: 200px; */
+  padding-top: 100px;
+  padding-bottom: 350px;
   font-style: italic;
-  font-family: 'Reenie Beanie', cursive;
-  font-size: 1000%;
+  font-family: "Reenie Beanie", cursive;
+  font-size: 1100%;
   color: rgba(230, 232, 238, 0.9);
 }
 
 #action-btn {
-  margin-top: 20%;
+  margin: 5px;
   border-radius: 40px;
 }
 
 #reidentify-btn {
-  margin-top: 3%;
-  margin-bottom: 3%;
+  /* margin-top: 3%;
+  margin-bottom: 3%; */
+  margin: 5px;
   border-radius: 40px;
 }
 
 #save-me-btn {
+  margin: 5px;
   border-radius: 40px;
 }
 
 #install-btn {
-  margin-top: 3%;
+  margin: 5px;
+  border-radius: 40px;
+}
+
+#get-started-btn {
+  margin: 5px;
+  padding: 5px;
   border-radius: 40px;
 }
 
@@ -130,16 +145,22 @@ div .container {
   justify-content: center;
   margin-top: 3%
 }
-/* div #box {
-  color: aliceblue;
-  padding: 10px;
-  background-color: rgba(35, 35, 36, 0.089);
-} */
 
+img {
+  max-width: 90%;
+  border-radius: 10px;
+  margin: 20px 35px 35px 35px;
+  padding: 5px;
+  box-shadow:
+  0 4px 8px 0 rgba(0, 0, 0, 0.2),
+  0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  background-color: rgba(35, 35, 36, 0.089);
+  /* padding-bottom: 10px; */
+}
 
 @media only screen and (max-width: 500px) {
   #title {
-    font-family: 'Reenie Beanie', cursive;
+    font-family: "Reenie Beanie", cursive;
     font-size: 600%;
     color: rgba(230, 232, 238, 0.9);
   }
