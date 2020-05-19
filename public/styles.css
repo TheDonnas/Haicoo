@@ -120,9 +120,16 @@ div .container {
 }
 
 #install-btn {
+  margin-top: 3%;
   border-radius: 40px;
 }
 
+#share-btns {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 3%
+}
 /* div #box {
   color: aliceblue;
   padding: 10px;

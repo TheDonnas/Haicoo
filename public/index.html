@@ -5,10 +5,10 @@
     <link rel="icon" href="logo512.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
-    <meta
+    <!-- <meta
       name="description"
       content="Web site created using create-react-app"
-    />
+    /> -->
     <link rel="manifest" href="manifest.json" />
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-touch-fullscreen" content="yes" />
@@ -79,6 +79,11 @@
     <!-- <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/mobilenet"></script> -->
     <title>Haicoo~</title>
+    <meta property="og:url"           content="https://haicoo.herokuapp.com/index.html" />
+    <meta property="og:type"          content="website" />
+    <meta property="og:title"         content="Haicoo" />
+    <!-- <meta property="og:description"   content="" />
+    <meta property="og:image"         content="" /> -->
     <link rel="stylesheet" href="styles.css" />
     <link
       rel="stylesheet"
@@ -89,6 +94,16 @@
   </head>
   <body>
     <div id="root"></div>
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
+    <script async src="https://platform.twitter.com/widgets.js" charSet="utf-8"></script>
+  
     <script type="text/javascript">
       if ("serviceWorker" in navigator) {
         window.addEventListener("load", function () {
