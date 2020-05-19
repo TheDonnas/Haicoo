@@ -7,7 +7,11 @@ let counter = 0;
 const machine = {
   initial: "uploadReady",
   states: {
-    uploadReady: { on: { next: "imageReady" },showImage: false, showResults: false },
+    uploadReady: {
+      on: { next: "imageReady" },
+      showImage: false,
+      showResults: false,
+    },
     imageReady: {
       on: { next: "identifying", redo: "uploadReady" },
       showImage: true,
@@ -113,8 +117,8 @@ function ImageLoader(props) {
   const reset = async () => {
     setResults([]);
     props.updateWord("");
-    props.callbackFromHaiku("")
-    inputRef.current.value = ''
+    props.callbackFromHaiku("");
+    inputRef.current.value = "";
     next();
     inputRef.current.click();
   };
@@ -134,9 +138,9 @@ function ImageLoader(props) {
   };
 
   const handleUndo = () => {
-    inputRef.current.value = '';
+    inputRef.current.value = "";
     redo();
-  }
+  };
 
   const actionButton = {
     uploadReady: { action: upload, text: "Upload Image" },
@@ -150,46 +154,62 @@ function ImageLoader(props) {
 
   return (
     <div id="container">
-      <div id="content-container">
-        <div id="saveme">
-          <input
-            type="file"
-            accept="image/x-png,image/jpeg,image/gif"
-            onChange={handleUpload}
-            ref={inputRef}
-          />
-          {showImage && (
-            <img src={imageURL} alt="upload-preview" ref={imageRef} />
-          )}
+      {/* <div id="content-container"> */}
+      <div id="saveme">
+        <input
+          type="file"
+          accept="image/x-png,image/jpeg,image/gif"
+          onChange={handleUpload}
+          ref={inputRef}
+        />
+        {showImage && (
+          <img src={imageURL} alt="upload-preview" ref={imageRef} />
+        )}
 
-          {/* <div id="box"> */}
-          {showResults &&
-            props.poem &&
-            props.poem.map((line) => <p key={line}>{line}</p>)}
-          {/* </div> */}
+        {/* <div id="box"> */}
+        {showResults &&
+          props.poem &&
+          props.poem.map((line) => <p key={line}>{line}</p>)}
+        {/* </div> */}
 
-          {/* <button
+        {/* <button
             id="action-btn"
             className="btn btn-info btn-pill"
             onClick={actionButton[appState].action || (() => {})}
           >
             {actionButton[appState].text}
           </button> */}
-        </div>
-
-        <button id="action-btn" className="btn btn-info btn-pill" onClick={actionButton[appState].action || (() => {})}>
-          {actionButton[appState].text}
-        </button>
-
-        {actionButton[appState].text === "Give me a Haiku" && <button id="reidentify-btn" className="btn btn-info btn-pill" onClick={handleUndo}>
-          Choose different Image
-        </button>}
-
-        {actionButton[appState].text === "Start Over" && <button id="reidentify-btn" className="btn btn-info btn-pill" onClick={actionButton.reIdentify.action || (() => {})}>
-          Give me another Haiku
-        </button>}
-
       </div>
+
+      <button
+        id="action-btn"
+        className="btn btn-info btn-pill"
+        onClick={actionButton[appState].action || (() => {})}
+      >
+        {actionButton[appState].text}
+      </button>
+
+      {actionButton[appState].text === "Give me a Haiku" && (
+        <button
+          id="reidentify-btn"
+          className="btn btn-info btn-pill"
+          onClick={handleUndo}
+        >
+          Choose different Image
+        </button>
+      )}
+
+      {actionButton[appState].text === "Start Over" && (
+        <button
+          id="reidentify-btn"
+          className="btn btn-info btn-pill"
+          onClick={actionButton.reIdentify.action || (() => {})}
+        >
+          Give me another Haiku
+        </button>
+      )}
+
+      {/* </div> */}
     </div>
   );
 }

@@ -1,25 +1,6 @@
-/* * {
-  box-sizing: border-box;
-} */
-/* html { */
-  /* margin: 0px; */
-  /* height: 100vh;
-  width: 100vw; */
-/* } */
-
-div #home {
-  /* background-color: blueviolet; */
-  background:
-  linear-gradient(rgba(0, 0, 0, 0.1),
-  rgba(0, 0, 0, 0.1)
-  ),
-  url("background-img\ blur.jpg");
-  height: 100%;
-  width: 100vw;
-  background-size: cover;
-  background-repeat: no-repeat;
-  /* background-position: 60; */
-  background-position: fixed;
+* {
+  overflow-y: scroll;
+  scroll-behavior: smooth;
 }
 
 body {
@@ -31,7 +12,24 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+div #home {
+  /* background-color: blueviolet; */
+  background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+    url("background-img\ blur.jpg");
+  padding: 50px;
+  height: 100%;
+  width: 100vw;
+  background-size: cover;
+  background-repeat: no-repeat;
+  /* background-position: 60; */
+  background-position: fixed;
+}
 
+div #app {
+  height: 700px;
+  width: 500px;
+  scroll-snap-align: center;
+}
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
@@ -96,10 +94,13 @@ div .container {
 #content-container {
   margin-top: 10%;
 }
+
 #title {
-  padding: 200px;
+  /* padding: 200px; */
+  padding-top: 100px;
+  padding-bottom: 150px;
   font-style: italic;
-  font-family: 'Reenie Beanie', cursive;
+  font-family: "Reenie Beanie", cursive;
   font-size: 1100%;
   color: rgba(230, 232, 238, 0.9);
 }
@@ -123,16 +124,20 @@ div .container {
   border-radius: 40px;
 }
 
+#get-started-btn {
+  padding: 10px;
+  border-radius: 40px;
+}
+
 /* div #box {
   color: aliceblue;
   padding: 10px;
   background-color: rgba(35, 35, 36, 0.089);
 } */
 
-
 @media only screen and (max-width: 500px) {
   #title {
-    font-family: 'Reenie Beanie', cursive;
+    font-family: "Reenie Beanie", cursive;
     font-size: 600%;
     color: rgba(230, 232, 238, 0.9);
   }
