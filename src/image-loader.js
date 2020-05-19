@@ -177,10 +177,6 @@ function ImageLoader(props) {
             {actionButton[appState].text}
           </button>
         </div>
-
-        <button id="action-btn" className="btn btn-outline-dark btn-pill" onClick={actionButton[appState].action || (() => {})}>
-          {actionButton[appState].text}
-        </button>
         
         {actionButton[appState].text === "Give me a Haiku" && <button id="reidentify-btn" className="btn btn-outline-dark btn-pill" onClick={handleUndo}>
           Choose different Image
