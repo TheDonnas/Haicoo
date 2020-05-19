@@ -1,37 +1,34 @@
 /* * {
   box-sizing: border-box;
 } */
-html {
-  margin: 0px;
+/* html { */
+  /* margin: 0px; */
   /* height: 100vh;
   width: 100vw; */
-}
+/* } */
 
-/* #background {
-  filter: blur(8px);
-  /* -webkit-filter: blur(8px); */
-/* }  */
-
-body {
-  /* margin: 0; */
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+div #home {
+  /* background-color: blueviolet; */
   background:
   linear-gradient(rgba(0, 0, 0, 0.1),
   rgba(0, 0, 0, 0.1)
   ),
   url("background-img\ blur.jpg");
-  /* height: 100%;
-  width: 100%; */
+  height: 100%;
+  width: 100vw;
   background-size: cover;
   background-repeat: no-repeat;
   /* background-position: 60; */
   background-position: fixed;
-  display: flex;
-  justify-content: center;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 
@@ -100,9 +97,10 @@ div .container {
   margin-top: 10%;
 }
 #title {
+  padding: 200px;
   font-style: italic;
   font-family: 'Reenie Beanie', cursive;
-  font-size: 1000%;
+  font-size: 1100%;
   color: rgba(230, 232, 238, 0.9);
 }
 

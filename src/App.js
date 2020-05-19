@@ -46,6 +46,9 @@ class App extends React.Component {
     console.log("THIS STATE IN APP", this.state);
     return (
       <div id="background">
+        <div id="home">
+        <h2 id="title">Haicoo~</h2>
+        </div>
         <div>
           {word.length ? (
             <Haiku

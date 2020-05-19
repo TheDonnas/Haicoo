@@ -150,7 +150,6 @@ function ImageLoader(props) {
 
   return (
     <div id="container">
-      <h2 id="title">Haicoo~</h2>
       <div id="content-container">
         <div id="saveme">
           <input
