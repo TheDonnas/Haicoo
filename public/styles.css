@@ -139,6 +139,13 @@ li:not(:last-child) {
   border-radius: 40px;
 }
 
+#share-btns {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 3%
+}
+
 img {
   max-width: 90%;
   border-radius: 10px;

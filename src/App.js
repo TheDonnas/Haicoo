@@ -9,7 +9,7 @@ class App extends React.Component {
     super();
     this.state = {
       word: "",
-      poem: null,
+      poem: null
     };
     this.updateWord = this.updateWord.bind(this);
     this.saveImage = this.saveImage.bind(this);
@@ -47,6 +47,7 @@ class App extends React.Component {
   render() {
     let { word, poem } = this.state;
     console.log("THIS STATE IN APP", this.state);
+    
     return (
       <div id="background">
         <div id="home">
@@ -86,6 +87,13 @@ class App extends React.Component {
             </button>
           ) : null}
           {!word.length ? <InstallButton /> : <div />}
+        </div>
+        <div id="share-btns">
+          {/* <div className="fb-share-button" data-href="https://haicoo.herokuapp.com/index.html" data-layout="button" data-size="large" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse" className="fb-xfbml-parse-ignore" target="_blank"> */}
+          <a className="fb-share-button" href="https://haicoo.herokuapp.com/index.html" data-layout="button" data-size="large" >Share</a>
+          {/* </div> */}
+          
+          <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" className="twitter-share-button" data-size="large" data-show-count="false">Twitter</a>
         </div>
       </div>
     );

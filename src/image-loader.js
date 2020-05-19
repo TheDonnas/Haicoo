@@ -154,6 +154,7 @@ function ImageLoader(props) {
 
   return (
     <div id="container">
+
       {/* <div id="content-container"> */}
       <div id="saveme">
         <input
@@ -187,6 +188,7 @@ function ImageLoader(props) {
           className="btn btn-info btn-pill"
           onClick={handleUndo}
         >
+
           Choose different Image
         </button>
       )}
