@@ -1,7 +1,7 @@
-/* * {
-  overflow-y: scroll;
+html {
   scroll-behavior: smooth;
-} */
+  overflow-y: scroll;
+}
 
 body {
   margin: 0;
@@ -10,8 +10,8 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  overflow-y: scroll;
-  scroll-behavior: smooth;
+  /* overflow-y: scroll;
+  scroll-behavior: smooth; */
 }
 
 div #home {
@@ -25,6 +25,7 @@ div #home {
   background-repeat: no-repeat;
   /* background-position: 60; */
   background-position: fixed;
+
 }
 
 div #app {
