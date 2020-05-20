@@ -161,7 +161,7 @@ function ImageLoader(props) {
 
   return (
     <div id="container" className="row">
-      {actionButton[appState].text === "Start Over" && (
+      {(actionButton[appState].text === "Start Over" || actionButton[appState].text === "Identifying...") && (
         <div className="col-sm-3">
           <p>
             <button
@@ -200,7 +200,6 @@ function ImageLoader(props) {
         <div id="saveme">
           {/* <h2>Image</h2> */}
           <input
-            className="custom-file-input"
             type="file"
             accept="image/x-png,image/jpeg,image/gif"
             onChange={handleUpload}
