@@ -36,7 +36,7 @@ function ImageLoader(props) {
   const [results, setResults] = useState([]);
   const [imageURL, setImageURL] = useState(null);
   const [model, setModel] = useState(null);
-  const [fontColor, setFontColor] = useState("#fff");
+  const [fontColor, setFontColor] = useState("#2e0e01e6");
   let imageRef = useRef();
   let inputRef = useRef();
   // useEffect(() => {loadModel()}, [])
@@ -161,18 +161,10 @@ function ImageLoader(props) {
 
   return (
     <div id="container" className="row">
-      <div className="col-sm-3">
+
+      {actionButton[appState].text === "Start Over" &&
+      (<div className="col-sm-3">
         <p>
-          {/* <a
-            className="btn btn-primary"
-            data-toggle="collapse"
-            href="#multiCollapseExample1"
-            role="button"
-            aria-expanded="false"
-            aria-controls="multiCollapseExample1"
-          >
-            Font Style
-          </a> */}
           <button
             className="btn btn-primary"
             type="button"
@@ -185,16 +177,6 @@ function ImageLoader(props) {
           </button>
         </p>
         <div className="row">
-          {/* <div className="col">
-            <div className="collapse multi-collapse" id="multiCollapseExample1">
-              <div className="card card-body">
-                Anim pariatur cliche reprehenderit, enim eiusmod high life
-                accusamus terry richardson ad squid. Nihil anim keffiyeh
-                helvetica, craft beer labore wes anderson cred nesciunt sapiente
-                ea proident.
-              </div>
-            </div>
-          </div> */}
           <div className="col">
             <div className="collapse multi-collapse" id="multiCollapseExample2">
               {/* <div className="card card-body"> */}
@@ -205,9 +187,9 @@ function ImageLoader(props) {
             </div>
           </div>
         </div>
-      </div>
+      </div>)}
 
-      <div id="buttons" className="col-sm-9">
+      <div id="buttons" className="col-sm">
         <div id="saveme">
           <h2>Image</h2>
           <input

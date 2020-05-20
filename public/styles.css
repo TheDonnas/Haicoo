@@ -16,7 +16,7 @@ body {
 
 div #home {
   /* background-color: blueviolet; */
-  background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+  background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
     url("background-img\ blur.jpg");
   padding: 50px;
   height: 100vh;
@@ -31,7 +31,7 @@ div #app {
   scroll-snap-align: center;
   padding-bottom: 30px;
   background-color: rgba(240, 255, 240, 1);
-  height: 80vh;
+  height: 100vh;
   padding-top: 30px;
 }
 
@@ -105,15 +105,15 @@ li:not(:last-child) {
 
 #title {
   padding-top: 100px;
-  padding-bottom: 30px;
+  padding-bottom: 190px;
   font-style: italic;
   font-family: "Reenie Beanie", cursive;
   font-size: 1100%;
-  color: rgba(230, 232, 238, 0.9);
+  color: rgba(238, 232, 230, 0.9);
 }
 
 #description {
-  padding-bottom: 30px;
+  /* padding-bottom: 30px; */
   color: aliceblue;
   font-family: "Reenie Beanie", cursive;
   font-weight: lighter;
@@ -143,7 +143,7 @@ li:not(:last-child) {
 }
 
 #get-started-btn {
-  margin-top: 50px;
+  margin-top: 20px;
   padding: 5px;
   border-radius: 40px;
 }
