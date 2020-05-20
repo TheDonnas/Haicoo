@@ -55,9 +55,9 @@ class App extends React.Component {
           <div id="description">
             {/* <h4>What is Haicoo?</h4> */}
             <p>
-              Click upload image <br />
-              we will give you a haiku<br />
-              then try it again!
+              Click <i>"upload image"</i> <br />
+              we will give you a haiku!<br />
+              ...then try it again!
               </p>
           </div>
           <a href="#app">
