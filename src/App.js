@@ -53,12 +53,18 @@ class App extends React.Component {
     document.execCommand("copy");
     document.body.removeChild(elem);
   }
+
   
   render() {
     let { word, poem } = this.state;
     console.log("THIS STATE IN APP", this.state);
-    let imgUrl = localStorage.getItem("poemImg")
-    document.getElementsByTagName('meta')[12].content= imgUrl
+    // let imgUrl = localStorage.getItem("poemImg")
+    // document.getElementsByTagName('meta')[12].content= imgUrl
+    
+    let link = document.createElement('meta');
+    link.setAttribute('property', 'og:image');
+    link.content = localStorage.getItem("poemImg");
+    document.getElementsByTagName('head')[0].appendChild(link);
     
     return (
       <div id="background">
@@ -117,7 +123,7 @@ class App extends React.Component {
         </div>
         <div id="share-btns">
           {/* <div className="fb-share-button" data-href="https://haicoo.herokuapp.com/index.html" data-layout="button" data-size="large" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse" className="fb-xfbml-parse-ignore" target="_blank"> */}
-          <a className="fb-share-button" href="https://haicoo.herokuapp.com/index.html" data-layout="button" data-size="large" >Share</a>
+          <a className="fb-share-button" href="https://haicoo.herokuapp.com/index.html" data-layout="button" data-size="large">Share</a>
           {/* </div> */}
           
           <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" className="twitter-share-button" data-size="large" data-show-count="false">Twitter</a>
