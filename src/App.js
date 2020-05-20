@@ -33,7 +33,6 @@ class App extends React.Component {
           link.download = "haicoo.png";
           link.href = dataUrl;
           link.click();
-          localStorage.setItem('poemImg', dataUrl)
         })
     } catch (err) {
       console.error(err);
@@ -58,13 +57,6 @@ class App extends React.Component {
   render() {
     let { word, poem } = this.state;
     console.log("THIS STATE IN APP", this.state);
-    // let imgUrl = localStorage.getItem("poemImg")
-    // document.getElementsByTagName('meta')[12].content= imgUrl
-    
-    let link = document.createElement('meta');
-    link.setAttribute('property', 'og:image');
-    link.content = localStorage.getItem("poemImg");
-    document.getElementsByTagName('head')[0].appendChild(link);
     
     return (
       <div id="background">
