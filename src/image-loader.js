@@ -161,9 +161,53 @@ function ImageLoader(props) {
 
   return (
     <div id="container" className="row">
-
       <div className="col-sm-3">
-        <h2>Editor</h2>
+        <p>
+          <a
+            class="btn btn-primary"
+            data-toggle="collapse"
+            href="#multiCollapseExample1"
+            role="button"
+            aria-expanded="false"
+            aria-controls="multiCollapseExample1"
+          >
+            Font Style
+          </a>
+          <button
+            class="btn btn-primary"
+            type="button"
+            data-toggle="collapse"
+            data-target="#multiCollapseExample2"
+            aria-expanded="false"
+            aria-controls="multiCollapseExample2"
+          >
+            Font Color
+          </button>
+        </p>
+        <div class="row">
+          <div class="col">
+            <div class="collapse multi-collapse" id="multiCollapseExample1">
+              <div class="card card-body">
+                {actionButton[appState].text === "Start Over" && (
+                  <div>
+                    <p>Choose Font Color</p>
+                    <SwatchesPicker onChange={handleChange} color={fontColor} />
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="collapse multi-collapse" id="multiCollapseExample2">
+              <div class="card card-body">
+                Anim pariatur cliche reprehenderit, enim eiusmod high life
+                accusamus terry richardson ad squid. Nihil anim keffiyeh
+                helvetica, craft beer labore wes anderson cred nesciunt sapiente
+                ea proident.
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
 
       <div id="buttons" className="col-sm-9">
@@ -191,25 +235,15 @@ function ImageLoader(props) {
           </div>
         </div>
 
-        {/* color-picker */}
-
-        {actionButton[appState].text === "Start Over" && (
-          <SwatchesPicker
-            id="picker"
-            onChange={handleChange}
-            color={fontColor}
-          />
-        )}
-
         {/* main button */}
         <div className="d-flex justify-content-center">
-        <button
-          id="action-btn"
-          className="btn btn-info btn-pill"
-          onClick={actionButton[appState].action || (() => {})}
-        >
-          {actionButton[appState].text}
-        </button>
+          <button
+            id="action-btn"
+            className="btn btn-info btn-pill"
+            onClick={actionButton[appState].action || (() => {})}
+          >
+            {actionButton[appState].text}
+          </button>
         </div>
 
         {/* choose different image button */}

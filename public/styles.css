@@ -25,7 +25,6 @@ div #home {
   background-repeat: no-repeat;
   /* background-position: 60; */
   background-position: fixed;
-
 }
 
 div #app {
@@ -37,13 +36,8 @@ div #app {
 }
 
 /* div #buttons { */
-  /* background-color: red; */
+/* background-color: red; */
 /* } */
-
-div #picker {
-  display: none;
-  background-color: aqua;
- }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
@@ -51,8 +45,8 @@ code {
 }
 
 div {
-  display: flex;
-  flex-direction: column;
+  /* display: flex; */
+  /* flex-direction: column; */
   text-align: center;
   /* align-items: center; */
   /* padding: 30px; */
