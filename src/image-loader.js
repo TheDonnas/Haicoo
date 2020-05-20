@@ -163,8 +163,8 @@ function ImageLoader(props) {
     <div id="container" className="row">
       <div className="col-sm-3">
         <p>
-          <a
-            class="btn btn-primary"
+          {/* <a
+            className="btn btn-primary"
             data-toggle="collapse"
             href="#multiCollapseExample1"
             role="button"
@@ -172,39 +172,36 @@ function ImageLoader(props) {
             aria-controls="multiCollapseExample1"
           >
             Font Style
-          </a>
+          </a> */}
           <button
-            class="btn btn-primary"
+            className="btn btn-primary"
             type="button"
             data-toggle="collapse"
             data-target="#multiCollapseExample2"
             aria-expanded="false"
             aria-controls="multiCollapseExample2"
           >
-            Font Color
+            Editor
           </button>
         </p>
-        <div class="row">
-          <div class="col">
-            <div class="collapse multi-collapse" id="multiCollapseExample1">
-              <div class="card card-body">
-                {actionButton[appState].text === "Start Over" && (
-                  <div>
-                    <p>Choose Font Color</p>
-                    <SwatchesPicker onChange={handleChange} color={fontColor} />
-                  </div>
-                )}
-              </div>
-            </div>
-          </div>
-          <div class="col">
-            <div class="collapse multi-collapse" id="multiCollapseExample2">
-              <div class="card card-body">
+        <div className="row">
+          {/* <div className="col">
+            <div className="collapse multi-collapse" id="multiCollapseExample1">
+              <div className="card card-body">
                 Anim pariatur cliche reprehenderit, enim eiusmod high life
                 accusamus terry richardson ad squid. Nihil anim keffiyeh
                 helvetica, craft beer labore wes anderson cred nesciunt sapiente
                 ea proident.
               </div>
+            </div>
+          </div> */}
+          <div className="col">
+            <div className="collapse multi-collapse" id="multiCollapseExample2">
+              {/* <div className="card card-body"> */}
+              {actionButton[appState].text === "Start Over" && (
+                <SwatchesPicker onChange={handleChange} color={fontColor} />
+              )}
+              {/* </div> */}
             </div>
           </div>
         </div>
