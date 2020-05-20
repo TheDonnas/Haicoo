@@ -92,7 +92,7 @@ class App extends React.Component {
             <button
               onClick={this.saveImage}
               id="save-me-btn"
-              className="btn btn-info btn-pill"
+              className="btn btn-outline-info btn-pill"
             >
               Download
             </button>

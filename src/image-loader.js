@@ -196,7 +196,7 @@ function ImageLoader(props) {
         </div>
       )}
 
-      <div id="buttons" className="col-sm-9">
+      <div id="buttons" className="col-sm">
         <div id="saveme">
           {/* <h2>Image</h2> */}
           <input
@@ -208,11 +208,12 @@ function ImageLoader(props) {
           />
           {!showImage ? (
             <img
+              className="loader"
               alt="img"
               src="https://media3.giphy.com/headers/shanebeam/myU7u7UKroOg.gif"
             />
           ) : (
-            <img src={imageURL} alt="upload-preview" ref={imageRef} />
+            <img id="img" src={imageURL} alt="upload-preview" ref={imageRef} />
           )}
 
           <div id="poem">
@@ -231,12 +232,12 @@ function ImageLoader(props) {
           {actionButton[appState].text === "Identifying..." ? (
             <img
               alt="img"
-              src="https://media1.giphy.com/media/mFTRCmlZgMEr5CHmOV/source.gif"
+              src="https://i.pinimg.com/originals/f2/9f/02/f29f025c9ff5297e8083c52b01f1a709.gif"
             />
           ) : (
             <button
               id="action-btn"
-              className="btn btn-info btn-pill"
+              className="btn btn-outline-info btn-pill"
               onClick={actionButton[appState].action || (() => {})}
             >
               {actionButton[appState].text}
@@ -248,7 +249,7 @@ function ImageLoader(props) {
         {actionButton[appState].text === "Give me a Haiku" && (
           <button
             id="reidentify-btn"
-            className="btn btn-info btn-pill"
+            className="btn btn-outline-info btn-pill"
             onClick={handleUndo}
           >
             Choose different Image
@@ -258,7 +259,7 @@ function ImageLoader(props) {
         {actionButton[appState].text === "Start Over" && (
           <button
             id="reidentify-btn"
-            className="btn btn-info btn-pill"
+            className="btn btn-outline-info btn-pill"
             onClick={actionButton.reIdentify.action || (() => {})}
           >
             Give me another Haiku
