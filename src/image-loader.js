@@ -1,6 +1,6 @@
 import React, { useState, useRef, useReducer, useEffect } from "react";
 import * as mobilenet from "@tensorflow-models/mobilenet";
-import { SwatchesPicker } from "react-color";
+import { HuePicker } from "react-color";
 import { bindColorTextureToFramebuffer } from "@tensorflow/tfjs-core/dist/backends/webgl/webgl_util";
 // import "../App.css";
 
@@ -186,7 +186,7 @@ function ImageLoader(props) {
                 {actionButton[appState].text === "Start Over" && (
                   <div id="picker">
                     <p>Text Color</p>
-                    <SwatchesPicker onChange={handleChange} color={fontColor} />
+                    <HuePicker onChange={handleChange} color={fontColor} />
                   </div>
                 )}
                 {/* </div> */}
@@ -198,7 +198,7 @@ function ImageLoader(props) {
 
       <div id="buttons" className="col-sm-9">
         <div id="saveme">
-          <h2>Image</h2>
+          {/* <h2>Image</h2> */}
           <input
             className="custom-file-input"
             type="file"
