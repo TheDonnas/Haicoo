@@ -1,7 +1,7 @@
-* {
-  /* overflow-y: scroll;
-  scroll-behavior: smooth; */
-}
+/* * {
+  overflow-y: scroll;
+  scroll-behavior: smooth;
+} */
 
 body {
   margin: 0;
@@ -38,10 +38,10 @@ div #buttons {
   background-color: red;
 }
 
-div #saveme {
+/* div #saveme {
   padding-bottom: 5px;
   padding-top: 5px;
-}
+} */
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
@@ -52,7 +52,7 @@ div {
   display: flex;
   flex-direction: column;
   text-align: center;
-  align-items: center;
+  /* align-items: center; */
   /* padding: 30px; */
 }
 
@@ -110,15 +110,23 @@ li:not(:last-child) {
 #title {
   /* padding: 200px; */
   padding-top: 100px;
-  padding-bottom: 350px;
+  padding-bottom: 200px;
   font-style: italic;
   font-family: "Reenie Beanie", cursive;
   font-size: 1100%;
   color: rgba(230, 232, 238, 0.9);
 }
 
+#description {
+  padding: 15px;
+  color: aliceblue;
+  font-family: "Reenie Beanie", cursive;
+  font-weight: lighter;
+  font-size: 130%;
+}
+
 #action-btn {
-  margin: 5px;
+  /* margin: 5px; */
   border-radius: 40px;
 }
 
@@ -135,7 +143,7 @@ li:not(:last-child) {
 }
 
 #install-btn {
-  margin: 5px;
+  /* margin: 5px; */
   border-radius: 40px;
 }
 
@@ -150,6 +158,11 @@ li:not(:last-child) {
   flex-direction: row;
   justify-content: center;
   margin-top: 3%;
+}
+
+#buttonCenter {
+  display: flex;
+  justify-content: center;
 }
 
 img {

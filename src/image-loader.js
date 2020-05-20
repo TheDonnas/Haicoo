@@ -160,36 +160,49 @@ function ImageLoader(props) {
   const { showImage, showResults } = machine.states[appState];
 
   return (
-    <div id="container">
-      <div id="saveme">
-        <input
-          type="file"
-          accept="image/x-png,image/jpeg,image/gif"
-          onChange={handleUpload}
-          ref={inputRef}
-        />
-        {showImage && (
-          <img src={imageURL} alt="upload-preview" ref={imageRef} />
-        )}
+    <div id="container" className="row">
 
-        <div id="poem">
-          {showResults &&
-            props.poem &&
-            props.poem.map((line) => (
-              <p style={{ color: fontColor }} key={line}>
-                {line}
-              </p>
-            ))}
-        </div>
+      <div className="col-sm-3">
+        <h2>Editor</h2>
       </div>
 
-      {/* color-picker */}
-      {actionButton[appState].text === "Start Over" && (
-        <SwatchesPicker id="picker" onChange={handleChange} color={fontColor} />
-      )}
+      <div id="buttons" className="col-sm-9">
+        <div id="saveme">
+          <h2>Image</h2>
+          <input
+            className="custom-file-input"
+            type="file"
+            accept="image/x-png,image/jpeg,image/gif"
+            onChange={handleUpload}
+            ref={inputRef}
+          />
+          {showImage && (
+            <img src={imageURL} alt="upload-preview" ref={imageRef} />
+          )}
 
-      <div id="buttons">
+          <div id="poem">
+            {showResults &&
+              props.poem &&
+              props.poem.map((line) => (
+                <p style={{ color: fontColor }} key={line}>
+                  {line}
+                </p>
+              ))}
+          </div>
+        </div>
+
+        {/* color-picker */}
+
+        {actionButton[appState].text === "Start Over" && (
+          <SwatchesPicker
+            id="picker"
+            onChange={handleChange}
+            color={fontColor}
+          />
+        )}
+
         {/* main button */}
+        <div className="d-flex justify-content-center">
         <button
           id="action-btn"
           className="btn btn-info btn-pill"
@@ -197,6 +210,8 @@ function ImageLoader(props) {
         >
           {actionButton[appState].text}
         </button>
+        </div>
+
         {/* choose different image button */}
         {actionButton[appState].text === "Give me a Haiku" && (
           <button
