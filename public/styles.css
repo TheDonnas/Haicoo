@@ -142,6 +142,11 @@ li:not(:last-child) {
   border-radius: 40px;
 }
 
+#edit-btn {
+  margin: 5px;
+  border-radius: 40px;
+}
+
 #get-started-btn {
   margin-top: 20px;
   padding: 5px;
@@ -159,6 +164,10 @@ li:not(:last-child) {
 #buttonCenter {
   display: flex;
   justify-content: center;
+}
+
+#picker {
+  text-align: left;
 }
 
 img {

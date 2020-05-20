@@ -30,9 +30,7 @@ class Haiku extends React.Component {
   };
 
   render() {
-    return (
-      <div />
-    );
+    return <div />;
   }
 }
 

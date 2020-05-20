@@ -36,7 +36,7 @@ function ImageLoader(props) {
   const [results, setResults] = useState([]);
   const [imageURL, setImageURL] = useState(null);
   const [model, setModel] = useState(null);
-  const [fontColor, setFontColor] = useState("#2e0e01e6");
+  const [fontColor, setFontColor] = useState("#000000");
   let imageRef = useRef();
   let inputRef = useRef();
   // useEffect(() => {loadModel()}, [])
@@ -161,35 +161,42 @@ function ImageLoader(props) {
 
   return (
     <div id="container" className="row">
-
-      {actionButton[appState].text === "Start Over" &&
-      (<div className="col-sm-3">
-        <p>
-          <button
-            className="btn btn-primary"
-            type="button"
-            data-toggle="collapse"
-            data-target="#multiCollapseExample2"
-            aria-expanded="false"
-            aria-controls="multiCollapseExample2"
-          >
-            Editor
-          </button>
-        </p>
-        <div className="row">
-          <div className="col">
-            <div className="collapse multi-collapse" id="multiCollapseExample2">
-              {/* <div className="card card-body"> */}
-              {actionButton[appState].text === "Start Over" && (
-                <SwatchesPicker onChange={handleChange} color={fontColor} />
-              )}
-              {/* </div> */}
+      {actionButton[appState].text === "Start Over" && (
+        <div className="col-sm-3">
+          <p>
+            <button
+              id="edit-btn"
+              className="btn btn-info btn-pill"
+              type="button"
+              data-toggle="collapse"
+              data-target="#multiCollapseExample2"
+              aria-expanded="false"
+              aria-controls="multiCollapseExample2"
+            >
+              Editor
+            </button>
+          </p>
+          <div className="row">
+            <div className="col">
+              <div
+                className="collapse multi-collapse"
+                id="multiCollapseExample2"
+              >
+                {/* <div className="card card-body"> */}
+                {actionButton[appState].text === "Start Over" && (
+                  <div id="picker">
+                    <p>Text Color</p>
+                    <SwatchesPicker onChange={handleChange} color={fontColor} />
+                  </div>
+                )}
+                {/* </div> */}
+              </div>
             </div>
           </div>
         </div>
-      </div>)}
+      )}
 
-      <div id="buttons" className="col-sm">
+      <div id="buttons" className="col-sm-9">
         <div id="saveme">
           <h2>Image</h2>
           <input
@@ -199,7 +206,12 @@ function ImageLoader(props) {
             onChange={handleUpload}
             ref={inputRef}
           />
-          {showImage && (
+          {!showImage ? (
+            <img
+              alt="img"
+              src="https://media3.giphy.com/headers/shanebeam/myU7u7UKroOg.gif"
+            />
+          ) : (
             <img src={imageURL} alt="upload-preview" ref={imageRef} />
           )}
 
@@ -216,13 +228,20 @@ function ImageLoader(props) {
 
         {/* main button */}
         <div className="d-flex justify-content-center">
-          <button
-            id="action-btn"
-            className="btn btn-info btn-pill"
-            onClick={actionButton[appState].action || (() => {})}
-          >
-            {actionButton[appState].text}
-          </button>
+          {actionButton[appState].text === "Identifying..." ? (
+            <img
+              alt="img"
+              src="https://media1.giphy.com/media/mFTRCmlZgMEr5CHmOV/source.gif"
+            />
+          ) : (
+            <button
+              id="action-btn"
+              className="btn btn-info btn-pill"
+              onClick={actionButton[appState].action || (() => {})}
+            >
+              {actionButton[appState].text}
+            </button>
+          )}
         </div>
 
         {/* choose different image button */}
