@@ -1,10 +1,14 @@
 import React, { useState, useRef, useReducer, useEffect } from "react";
 import * as mobilenet from "@tensorflow-models/mobilenet";
 import { HuePicker } from "react-color";
+import FontPicker from "font-picker-react";
 import { bindColorTextureToFramebuffer } from "@tensorflow/tfjs-core/dist/backends/webgl/webgl_util";
 // import "../App.css";
 
+
 let counter = 0;
+
+// const API = process.env.apiKeySecret
 
 const machine = {
   initial: "uploadReady",
@@ -36,6 +40,8 @@ function ImageLoader(props) {
   const [model, setModel] = useState(null);
   const [modelReady, setModelReady] = useState(null);
   const [fontColor, setFontColor] = useState("#000000");
+  const [activeFontFamily, setActiveFontFamily] = useState("Arial");
+
   let imageRef = useRef();
   let inputRef = useRef();
   // useEffect(() => {loadModel()}, [])
@@ -146,6 +152,10 @@ function ImageLoader(props) {
     setFontColor(color.hex);
   };
 
+  const handleFontChange = (nextFont) => {
+    setActiveFontFamily(nextFont.family);
+  };
+
   const handleUndo = () => {
     inputRef.current.value = "";
     redo();
@@ -185,7 +195,7 @@ function ImageLoader(props) {
               aria-expanded="false"
               aria-controls="multiCollapseExample2"
             >
-              Editor
+              {     }editor
             </button>
           </p>
           <div className="row">
@@ -194,12 +204,36 @@ function ImageLoader(props) {
                 className="collapse multi-collapse"
                 id="multiCollapseExample2"
               >
-                {actionButton[appState].text === "Start Over" && (
-                  <div id="picker">
-                    <p>Text Color</p>
-                    <HuePicker onChange={handleChange} color={fontColor} />
-                  </div>
-                )}
+                <div>
+                  {actionButton[appState].text === "Start Over" && (
+                    <div>
+                      <div className="spacer"/>
+                      {/* <div id="text-color"> */}
+                        <HuePicker onChange={handleChange} color={fontColor} />
+                      {/* </div> */}
+                      <div className="spacer2"/>
+                        <FontPicker
+                          apiKey={process.env.REACT_APP_GOOGLE_API_KEY}
+                          nextFont={activeFontFamily}
+                          onChange={handleFontChange}
+                          // font={fontStyle}
+                        />
+                    </div>
+                  )}
+                </div>
+
+                {/* <div>
+                  {actionButton[appState].text === "Start Over" && (
+                    <div id="font">
+                      <FontPicker
+                        apiKey=""
+                        nextFont={activeFontFamily}
+                        onChange={handleFontChange}
+                        // font={fontStyle}
+                      />
+                    </div>
+                  )}
+                </div> */}
               </div>
             </div>
           </div>
@@ -208,7 +242,6 @@ function ImageLoader(props) {
 
       <div id="buttons" className="col-sm">
         <div id="saveme">
-
           <input
             type="file"
             accept="image/x-png,image/jpeg,image/gif"
@@ -226,18 +259,17 @@ function ImageLoader(props) {
           ) : (
             <div>
               {modelReady ? (
-            <div>
-              {/* <div id="spacer2" /> */}
-              <img
-                className="circleLoader"
-                alt="poemLoader"
-                src="https://i.pinimg.com/originals/f2/9f/02/f29f025c9ff5297e8083c52b01f1a709.gif"
-              />
-              </div>
-          ) : (
-            <div id="spacer" />
-
-          )}
+                <div>
+                  {/* <div id="spacer2" /> */}
+                  <img
+                    className="circleLoader"
+                    alt="poemLoader"
+                    src="https://i.pinimg.com/originals/f2/9f/02/f29f025c9ff5297e8083c52b01f1a709.gif"
+                  />
+                </div>
+              ) : (
+                <div id="spacer" />
+              )}
               <img
                 id="loader"
                 alt="imageLoader"
@@ -246,7 +278,7 @@ function ImageLoader(props) {
             </div>
           )}
 
-          <div id="poem">
+          <div className="apply-font" id="poem">
             {showResults &&
               props.poem &&
               props.poem.map((line) => (
