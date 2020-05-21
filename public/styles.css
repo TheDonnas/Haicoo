@@ -197,7 +197,6 @@ li:not(:last-child) {
   bottom: -95vh;
   right: 0;
   left: 0;
-
 }
 
 #share-btns {
@@ -241,20 +240,24 @@ div[id^=font-picker] {
 }
 
 #loader{
-  /* padding-top: 20vh; */
+  padding-top: 10vh;
+  padding-bottom: 3vh;
   width: 75vw;
   position: relative;
 }
 
-circleStick {
+#circleStick {
   position: absolute;
-  bottom: -50vh;
+  bottom: -35vh;
   right: 0;
   left: 0;
 }
 
 img.circleLoader {
-  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin: auto;
 }
 
 #text-color > div > div > div {
