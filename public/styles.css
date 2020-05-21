@@ -12,16 +12,16 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+
 div #home {
   /* background-color: blueviolet; */
   background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
     url("background-img\ blur.jpg");
-  padding: 50px;
+  /* padding: 50spx; */
   height: 100vh;
   width: 100vw;
   background-size: cover;
   background-repeat: no-repeat;
-  /* background-position: 60; */
   background-position: fixed;
 }
 
@@ -34,10 +34,10 @@ div #app {
   /* this used to be 5vh */
 }
 
-#saveme {
+/* #saveme {
   position: relative;
   margin-top: -200px;
-}
+} */
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
@@ -175,14 +175,14 @@ img.circleLoader {
   position: relative;
   top: 80px
 }
-#spacer2 {
+/* #spacer2 {
   height: 25vh
-}
+} */
 
 #spacer {
   /* height: 20px */
-  padding: 20px;
-  margin: 120px;
+  padding: 10vh;
+  /* margin: 120px; */
 }
 
 #image {

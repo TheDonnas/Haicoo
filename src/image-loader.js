@@ -56,7 +56,7 @@ function ImageLoader(props) {
       const model = await mobilenet.load();
       setModel(model);
       setModelReady(null);
-      // console.log("MODEL LOADED!!!!");
+      console.log("MODEL LOADED!!!!");
       counter++;
     }
   };
@@ -199,19 +199,7 @@ function ImageLoader(props) {
 
       <div id="buttons" className="col-sm">
         <div id="saveme">
-          {modelReady ? (
-            <div>
-              <div id="spacer2" />
-              <img
-                className="circleLoader"
-                alt="poemLoader"
-                src="https://i.pinimg.com/originals/f2/9f/02/f29f025c9ff5297e8083c52b01f1a709.gif"
-              />
-              </div>
-          ) : (
-            <div id="spacer" />
 
-          )}
           <input
             type="file"
             accept="image/x-png,image/jpeg,image/gif"
@@ -228,7 +216,19 @@ function ImageLoader(props) {
             />
           ) : (
             <div>
+              {modelReady ? (
+            <div>
+              {/* <div id="spacer2" /> */}
+              <img
+                className="circleLoader"
+                alt="poemLoader"
+                src="https://i.pinimg.com/originals/f2/9f/02/f29f025c9ff5297e8083c52b01f1a709.gif"
+              />
+              </div>
+          ) : (
+            <div id="spacer" />
 
+          )}
               <img
                 id="loader"
                 alt="imageLoader"
