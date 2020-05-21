@@ -70,6 +70,10 @@ ul {
   margin: auto;
   padding: 10px;
 }
+#font-picker > button {
+  width: 90%;
+  left: 0px;
+}
 
 #font-picker {
   box-shadow: none;
@@ -128,10 +132,6 @@ li:not(:last-child) {
   bottom: -43px;
 }
 
-/* #saveme > img {
-
-} */
-
 #install-btn {
   margin: 2.5px;
   border-radius: 50px;
@@ -140,6 +140,17 @@ li:not(:last-child) {
 #edit-btn {
   margin: 2.5px;
   border-radius: 50px;
+  position: absolute;
+  left: -20px;
+  width: 110%;
+}
+
+#buttons {
+  padding-top: 15px;
+}
+
+.btn-info {
+  background-color: linear-gradient(rgba(255, 0, 0, 0.699), rgba(132, 43, 235, 0.801));
 }
 
 #get-started-btn {
@@ -165,9 +176,20 @@ li:not(:last-child) {
   text-align: left;
 }
 
+div[id^=font-picker] {
+  position: sticky;
+}
+
 #font {
   border-radius: 10px;
   text-align: left;
+}
+#multiCollapseExample2 > div > div > div.hue-picker > div > div {
+  border-radius: 20px !important;
+}
+#multiCollapseExample2 > div > div > div.hue-picker {
+  width: 100% !important;
+  border-radius: 20px;
 }
 
 #wrapper {
@@ -184,9 +206,19 @@ img.circleLoader {
   position: relative;
   top: 80px
 }
-/* #spacer2 {
-  height: 25vh
-} */
+
+#text-color > div > div > div {
+  border-radius: 30px;
+  width: 85%;
+}
+
+.spacer {
+  height: 8vh
+}
+
+.spacer2 {
+  height: 4vh
+}
 
 #spacer {
   /* height: 20px */
@@ -198,6 +230,7 @@ img.circleLoader {
   max-width: 60%;
   border-radius: 10px;
   margin-bottom: 20px ;
+  margin-top: 20px ;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   background-color: rgba(35, 35, 36, 0.089);
 }

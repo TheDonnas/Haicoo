@@ -183,7 +183,7 @@ function ImageLoader(props) {
               aria-expanded="false"
               aria-controls="multiCollapseExample2"
             >
-              Editor
+              {     }editor
             </button>
           </p>
           <div className="row">
@@ -194,17 +194,25 @@ function ImageLoader(props) {
               >
                 <div>
                   {actionButton[appState].text === "Start Over" && (
-                    <div id="text-color">
-                      <p>Text Color</p>
-                      <HuePicker onChange={handleChange} color={fontColor} />
+                    <div>
+                      <div className="spacer"/>
+                      {/* <div id="text-color"> */}
+                        <HuePicker onChange={handleChange} color={fontColor} />
+                      {/* </div> */}
+                      <div className="spacer2"/>
+                        <FontPicker
+                          apiKey="AIzaSyDB3hGM8szUhHzyiONthzC7EmWUCrS8urQ"
+                          nextFont={activeFontFamily}
+                          onChange={handleFontChange}
+                          // font={fontStyle}
+                        />
                     </div>
                   )}
                 </div>
 
-                <div>
+                {/* <div>
                   {actionButton[appState].text === "Start Over" && (
                     <div id="font">
-                      <p>Font Style</p>
                       <FontPicker
                         apiKey=""
                         nextFont={activeFontFamily}
@@ -213,7 +221,7 @@ function ImageLoader(props) {
                       />
                     </div>
                   )}
-                </div>
+                </div> */}
               </div>
             </div>
           </div>
@@ -222,7 +230,6 @@ function ImageLoader(props) {
 
       <div id="buttons" className="col-sm">
         <div id="saveme">
-
           <input
             type="file"
             accept="image/x-png,image/jpeg,image/gif"
@@ -240,18 +247,17 @@ function ImageLoader(props) {
           ) : (
             <div>
               {modelReady ? (
-            <div>
-              {/* <div id="spacer2" /> */}
-              <img
-                className="circleLoader"
-                alt="poemLoader"
-                src="https://i.pinimg.com/originals/f2/9f/02/f29f025c9ff5297e8083c52b01f1a709.gif"
-              />
-              </div>
-          ) : (
-            <div id="spacer" />
-
-          )}
+                <div>
+                  {/* <div id="spacer2" /> */}
+                  <img
+                    className="circleLoader"
+                    alt="poemLoader"
+                    src="https://i.pinimg.com/originals/f2/9f/02/f29f025c9ff5297e8083c52b01f1a709.gif"
+                  />
+                </div>
+              ) : (
+                <div id="spacer" />
+              )}
               <img
                 id="loader"
                 alt="imageLoader"
