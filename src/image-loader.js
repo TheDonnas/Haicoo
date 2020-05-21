@@ -37,6 +37,7 @@ function ImageLoader(props) {
   const [fontColor, setFontColor] = useState("#000000");
   let imageRef = useRef();
   let inputRef = useRef();
+
   // useEffect(() => {loadModel()}, [])
   // console.log("PROPS: ", props);
 
@@ -50,10 +51,10 @@ function ImageLoader(props) {
 
   const loadModel = async () => {
     if (counter === 0) {
-      // console.log("MODEL WILL BE LOADED");
+      console.log("MODEL WILL BE LOADED");
       const model = await mobilenet.load();
       setModel(model);
-      // console.log("MODEL LOADED!!!!");
+      console.log("MODEL LOADED!!!!");
       counter++;
     }
   };
@@ -162,7 +163,7 @@ function ImageLoader(props) {
     <div id="container" className="row">
       {(actionButton[appState].text === "Start Over" ||
         actionButton[appState].text === "Identifying...") && (
-        <div className="col-sm-5">
+        <div className="col-sm-4">
           <p>
             <button
               id="edit-btn"
@@ -211,13 +212,21 @@ function ImageLoader(props) {
               ref={imageRef}
             />
           ) : (
-            <div>
+            // {!!counter ? (
               <img
                 id="loader"
                 alt="imageLoader"
                 src="https://media3.giphy.com/headers/shanebeam/myU7u7UKroOg.gif"
               />
-            </div>
+            // ) : (
+            //   <img
+            //     id="loader"
+            //     alt="imageLoader"
+            //     src="https://media3.giphy.com/headers/shanebeam/myU7u7UKroOg.gif"
+            //   />
+            // )
+
+            // }
           )}
 
           <div id="poem">
@@ -260,7 +269,7 @@ function ImageLoader(props) {
           </button>
         )}
         {/* download button */}
-        {showImage && <div id="special">
+        {showResults && <div id="special">
           <button
             onClick={props.saveImage}
             id="save-me-btn"
