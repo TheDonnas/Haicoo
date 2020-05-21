@@ -37,7 +37,7 @@ function ImageLoader(props) {
   const [model, setModel] = useState(null);
   const [modelReady, setModelReady] = useState(null);
   const [fontColor, setFontColor] = useState("#000000");
-  const [activeFontFamily, setActiveFontFamily] = useState("Arial");
+  const [activeFontFamily, setActiveFontFamily] = useState("Open Sans");
 
   let imageRef = useRef();
   let inputRef = useRef();
@@ -128,7 +128,7 @@ function ImageLoader(props) {
     inputRef.current.value = "";
     next();
     inputRef.current.click();
-    console.log("DONE resetting")
+    console.log("DONE resetting");
   };
 
   const upload = () => {
@@ -206,10 +206,10 @@ function ImageLoader(props) {
                     <div id="font">
                       <p>Font Style</p>
                       <FontPicker
-                        apiKey=""
+                        apiKey="AIzaSyBOtUWPZvfqKMJacA8KH-yBVksbBWs4nVs"
+                        activeFontFamily={activeFontFamily}
                         nextFont={activeFontFamily}
                         onChange={handleFontChange}
-                        // font={fontStyle}
                       />
                     </div>
                   )}
@@ -222,7 +222,6 @@ function ImageLoader(props) {
 
       <div id="buttons" className="col-sm">
         <div id="saveme">
-
           <input
             type="file"
             accept="image/x-png,image/jpeg,image/gif"
@@ -240,18 +239,17 @@ function ImageLoader(props) {
           ) : (
             <div>
               {modelReady ? (
-            <div>
-              {/* <div id="spacer2" /> */}
-              <img
-                className="circleLoader"
-                alt="poemLoader"
-                src="https://i.pinimg.com/originals/f2/9f/02/f29f025c9ff5297e8083c52b01f1a709.gif"
-              />
-              </div>
-          ) : (
-            <div id="spacer" />
-
-          )}
+                <div>
+                  {/* <div id="spacer2" /> */}
+                  <img
+                    className="circleLoader"
+                    alt="poemLoader"
+                    src="https://i.pinimg.com/originals/f2/9f/02/f29f025c9ff5297e8083c52b01f1a709.gif"
+                  />
+                </div>
+              ) : (
+                <div id="spacer" />
+              )}
               <img
                 id="loader"
                 alt="imageLoader"
