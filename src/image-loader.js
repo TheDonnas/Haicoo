@@ -212,7 +212,7 @@ function ImageLoader(props) {
                       {/* </div> */}
                       <div className="spacer2" />
                       <FontPicker
-                        apiKey={process.env.REACT_APP_GOOGLE_API_KEY}
+                        apiKey={process.env.REACT_APP_API_KEY}
                         activeFontFamily={activeFontFamily}
                         nextFont={activeFontFamily}
                         onChange={handleFontChange}
