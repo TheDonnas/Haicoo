@@ -40,7 +40,7 @@ function ImageLoader(props) {
   const [model, setModel] = useState(null);
   const [modelReady, setModelReady] = useState(null);
   const [fontColor, setFontColor] = useState("#000000");
-  const [activeFontFamily, setActiveFontFamily] = useState("Arial");
+  const [activeFontFamily, setActiveFontFamily] = useState("Open Sans");
 
   let imageRef = useRef();
   let inputRef = useRef();
@@ -131,7 +131,7 @@ function ImageLoader(props) {
     inputRef.current.value = "";
     next();
     inputRef.current.click();
-    console.log("DONE resetting")
+    console.log("DONE resetting");
   };
 
   const upload = () => {
@@ -226,10 +226,10 @@ function ImageLoader(props) {
                   {actionButton[appState].text === "Start Over" && (
                     <div id="font">
                       <FontPicker
-                        apiKey=""
+                        apiKey="AIzaSyBOtUWPZvfqKMJacA8KH-yBVksbBWs4nVs"
+                        activeFontFamily={activeFontFamily}
                         nextFont={activeFontFamily}
                         onChange={handleFontChange}
-                        // font={fontStyle}
                       />
                     </div>
                   )}
