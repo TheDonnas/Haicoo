@@ -266,7 +266,10 @@ function ImageLoader(props) {
             {showResults &&
               props.poem &&
               props.poem.map((line) => (
-                <p style={{ color: fontColor }} key={line}>
+                <p
+                  style={{ color: fontColor, fontFamily: activeFontFamily }}
+                  key={line}
+                >
                   {line}
                 </p>
               ))}
