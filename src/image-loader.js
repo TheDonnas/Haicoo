@@ -143,6 +143,7 @@ function ImageLoader(props) {
     if (files.length > 0) {
       const url = URL.createObjectURL(event.target.files[0]);
       setImageURL(url);
+      console.log('img URL: ', url)
       next();
     }
   };
