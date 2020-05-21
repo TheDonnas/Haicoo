@@ -38,10 +38,9 @@ function ImageLoader(props) {
   let imageRef = useRef();
   let inputRef = useRef();
   // useEffect(() => {loadModel()}, [])
-  console.log("PROPS: ", props);
+  // console.log("PROPS: ", props);
 
   const reducer = (state, event) => {
-    console.log("stateeeeeee:",machine.states[state].on)
     return machine.states[state].on[event] || machine.initial;
   };
 
@@ -51,10 +50,10 @@ function ImageLoader(props) {
 
   const loadModel = async () => {
     if (counter === 0) {
-      console.log("MODEL WILL BE LOADED");
+      // console.log("MODEL WILL BE LOADED");
       const model = await mobilenet.load();
       setModel(model);
-      console.log("MODEL LOADED!!!!");
+      // console.log("MODEL LOADED!!!!");
       counter++;
     }
   };
@@ -71,7 +70,7 @@ function ImageLoader(props) {
     console.log(results);
     let word;
 
-    console.log(typeof results[0].probability, "PROBABILITY??? type");
+    // console.log(typeof results[0].probability, "PROBABILITY??? type");
     if (
       results.length &&
       results[0].probability < 0.25 &&
@@ -98,7 +97,7 @@ function ImageLoader(props) {
     console.log(results);
     let word;
 
-    console.log(typeof results[0].probability, "PROBABILITY??? type");
+    // console.log(typeof results[0].probability, "PROBABILITY??? type");
     if (
       results.length &&
       results[0].probability < 0.25 &&
@@ -161,8 +160,9 @@ function ImageLoader(props) {
 
   return (
     <div id="container" className="row">
-      {(actionButton[appState].text === "Start Over" || actionButton[appState].text === "Identifying...") && (
-        <div className="col-sm-3">
+      {(actionButton[appState].text === "Start Over" ||
+        actionButton[appState].text === "Identifying...") && (
+        <div className="col-sm-5">
           <p>
             <button
               id="edit-btn"
@@ -182,14 +182,12 @@ function ImageLoader(props) {
                 className="collapse multi-collapse"
                 id="multiCollapseExample2"
               >
-                {/* <div className="card card-body"> */}
                 {actionButton[appState].text === "Start Over" && (
                   <div id="picker">
                     <p>Text Color</p>
                     <HuePicker onChange={handleChange} color={fontColor} />
                   </div>
                 )}
-                {/* </div> */}
               </div>
             </div>
           </div>
@@ -198,7 +196,6 @@ function ImageLoader(props) {
 
       <div id="buttons" className="col-sm">
         <div id="saveme">
-          {/* <h2>Image</h2> */}
           <input
             type="file"
             accept="image/x-png,image/jpeg,image/gif"
@@ -206,15 +203,21 @@ function ImageLoader(props) {
             ref={inputRef}
           />
           {showImage ? (
-            <img id="image" src={imageURL} alt="upload-preview" ref={imageRef} />
-            ) : (
-              <div>
+            // <div id="special">
+            <img
+              id="image"
+              src={imageURL}
+              alt="upload-preview"
+              ref={imageRef}
+            />
+          ) : (
+            <div>
               <img
                 id="loader"
                 alt="imageLoader"
                 src="https://media3.giphy.com/headers/shanebeam/myU7u7UKroOg.gif"
               />
-              </div>
+            </div>
           )}
 
           <div id="poem">
@@ -246,7 +249,6 @@ function ImageLoader(props) {
             </button>
           )}
         </div>
-
         {/* choose different image button */}
         {actionButton[appState].text === "Give me a Haiku" && (
           <button
@@ -257,6 +259,17 @@ function ImageLoader(props) {
             Choose different Image
           </button>
         )}
+        {/* download button */}
+        {showImage && <div id="special">
+          <button
+            onClick={props.saveImage}
+            id="save-me-btn"
+            className="btn btn-success btn-pill"
+          >
+            ↓
+          </button>
+        </div>}
+
         {/* give another haiku button */}
         {actionButton[appState].text === "Start Over" && (
           <button
