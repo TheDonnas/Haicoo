@@ -160,7 +160,7 @@ function ImageLoader(props) {
     inputRef.current.value = "";
     redo();
   };
-  
+
   const copyToClipboard = () => {
     let elem = document.createElement("textarea");
     document.body.appendChild(elem);
@@ -195,7 +195,7 @@ function ImageLoader(props) {
               aria-expanded="false"
               aria-controls="multiCollapseExample2"
             >
-              {     }editor
+              Text Editor
             </button>
           </p>
           <div className="row">
@@ -307,7 +307,7 @@ function ImageLoader(props) {
             </button>
           )}
         </div>
-        
+
         {/* choose different image button */}
         {actionButton[appState].text === "Give me a Haiku" && (
           <button
@@ -318,7 +318,7 @@ function ImageLoader(props) {
             Choose different Image
           </button>
         )}
-        
+
         <div>
         {showResults &&
           <div id="special2">
@@ -326,7 +326,7 @@ function ImageLoader(props) {
           </div>
         }
         </div>
-        
+
         {/* download button */}
         {showResults && (
           <div id="special">
