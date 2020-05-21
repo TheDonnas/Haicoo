@@ -201,7 +201,7 @@ function ImageLoader(props) {
                       {/* </div> */}
                       <div className="spacer2"/>
                         <FontPicker
-                          apiKey="AIzaSyDB3hGM8szUhHzyiONthzC7EmWUCrS8urQ"
+                          apiKey=""
                           nextFont={activeFontFamily}
                           onChange={handleFontChange}
                           // font={fontStyle}
