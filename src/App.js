@@ -26,7 +26,7 @@ class App extends React.Component {
       htmlToImage
         .toPng(document.getElementById("saveme"), {
           quality: 0.95,
-          backgroundColor: "#f0fff0",
+          backgroundColor: "#fffef7",
         })
         .then(function (dataUrl) {
           var link = document.createElement("a");
@@ -45,8 +45,8 @@ class App extends React.Component {
   };
 
   render() {
-    let { word, poem } = this.state;
-    console.log("THIS STATE IN APP", this.state);
+    let { word, poem, button } = this.state;
+    // console.log("THIS STATE IN APP", this.state);
 
     return (
       <div id="background">
@@ -71,7 +71,7 @@ class App extends React.Component {
             </button>
           </a>
         </div>
-        <div id="app" className="container-fluid">
+        <div id="app" className="container">
           {word.length ? (
             <Haiku
               key={word}
@@ -84,21 +84,25 @@ class App extends React.Component {
 
           <ImageLoader
             updateWord={this.updateWord}
+            saveImage={this.saveImage}
+            button={button}
             poem={poem}
             callbackFromHaiku={this.callbackFromHaiku}
           />
+          <div className="col-sm">
 
-          {word.length ? (
+          {/* {word.length ? (
             <button
               onClick={this.saveImage}
               id="save-me-btn"
-              className="btn btn-info btn-pill"
+              className="btn btn-success btn-pill"
             >
-              Download
+              ↓
             </button>
-          ) : null}
-          {!word.length ? <InstallButton /> : <div />}
+          ) : null} */}
 
+          {!word.length ? <InstallButton /> : <div />}
+            </div>
           <div id="share-btns">
             {/* <div className="fb-share-button" data-href="https://haicoo.herokuapp.com/index.html" data-layout="button" data-size="large" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse" className="fb-xfbml-parse-ignore" target="_blank"> */}
             <a
@@ -109,7 +113,6 @@ class App extends React.Component {
             >
               Share
             </a>
-            {/* </div> */}
 
             <a
               href="https://twitter.com/share?ref_src=twsrc%5Etfw"
