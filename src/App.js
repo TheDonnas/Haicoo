@@ -4,6 +4,8 @@ import Haiku from "./haiku";
 import * as htmlToImage from "html-to-image";
 import InstallButton from "./InstallButton";
 
+console.log(process.env.REACT_APP_API_KEY)
+
 class App extends React.Component {
   constructor() {
     super();
