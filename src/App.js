@@ -26,7 +26,8 @@ class App extends React.Component {
       htmlToImage
         .toPng(document.getElementById("saveme"), {
           quality: 0.95,
-          backgroundColor: "#fffef7",
+          backgroundColor: "#f2e9e4",
+          // background: "https://www.pngkey.com/png/detail/203-2032708_scribble-frames-doodle-frame-png.png",
         })
         .then(function (dataUrl) {
           var link = document.createElement("a");
@@ -43,6 +44,7 @@ class App extends React.Component {
     this.setState({ poem: haiku });
     console.log("STATE POEM IN APP: ", this.state.poem);
   };
+
 
   render() {
     let { word, poem, button } = this.state;

@@ -34,10 +34,14 @@ div #app {
   /* this used to be 5vh */
 }
 
-/* #saveme {
-  position: relative;
-  margin-top: -200px;
-} */
+#saveme {
+  /* position: relative; */
+  margin-top: 3%;
+}
+
+#poem {
+  font-family: 'Courier New', Courier, monospace;
+}
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
@@ -126,10 +130,39 @@ li:not(:last-child) {
 #save-me-btn {
   margin: 2.5px;
   border-radius: 50px;
-  width: fit-content;
   position: absolute;
-  margin-left: 105px;
+  margin-left: 110px;
   bottom: -43px;
+  height: 38px;
+  width: 38px;
+  padding: 5px 10px 5px 10px;
+}
+
+#save-me-btn:hover {
+  background-color: rgba(94, 189, 204, 0.445);
+}
+
+#save-me-btn:active:focus {
+  box-shadow: 0 0 0 0.4rem rgba(23,162,184,.5)
+}
+
+#copy-clipboard-btn {
+  margin: 2.5px;
+  position: absolute;
+  bottom: -0.25px;
+  margin-left: 110px;
+  border-radius: 50px;
+  height: 38px;
+  width: 38px;
+  padding: 5px 10px 5px 10px
+}
+
+#copy-clipboard-btn:hover {
+  background-color: rgba(94, 189, 204, 0.445);
+}
+
+#copy-clipboard-btn:active:focus {
+  box-shadow: 0 0 0 0.4rem rgba(23,162,184,.5)
 }
 
 #install-btn {
@@ -163,8 +196,10 @@ li:not(:last-child) {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  margin-top: 3%;
-  margin-bottom: 3%;
+  margin-top: 30%;
+  /* border-top: solid 0.5px rgb(160, 160, 160);
+  padding-top: 2%; */
+  /* height: 0.1px; */
 }
 
 #buttonCenter {
@@ -249,6 +284,10 @@ img.circleLoader {
   position: relative;
 }
 
+#special2 {
+  position: relative;
+}
+
 .row {
   display: flex;
   justify-content: center;
@@ -263,10 +302,12 @@ img.circleLoader {
   }
 }
 /* bigger than 500 */
-/* @media only screen and (min-width: 500px) {
-  #save-me-btn {
-    position: relative;
-    bottom:5px;
-    right:25px;
+/* @media only screen and (min-width: 970px) {
+  #copy-clipboard-btn {
+    margin: 2.5px;
+    position: absolute;
+    bottom: 8px;
+    margin-left: -25px;
+    width: fit-content;
   }
 } */

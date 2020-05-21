@@ -160,6 +160,15 @@ function ImageLoader(props) {
     inputRef.current.value = "";
     redo();
   };
+  
+  const copyToClipboard = () => {
+    let elem = document.createElement("textarea");
+    document.body.appendChild(elem);
+    elem.value = props.poem;
+    elem.select();
+    document.execCommand("copy");
+    document.body.removeChild(elem);
+  }
 
   const actionButton = {
     uploadReady: { action: upload, text: "Upload Image" },
@@ -298,6 +307,7 @@ function ImageLoader(props) {
             </button>
           )}
         </div>
+        
         {/* choose different image button */}
         {actionButton[appState].text === "Give me a Haiku" && (
           <button
@@ -308,16 +318,28 @@ function ImageLoader(props) {
             Choose different Image
           </button>
         )}
+        
+        <div>
+        {showResults &&
+          <div id="special2">
+          {/* <svg id="copy-clipboard-btn" type="button" className="btn btn-outline-info btn-pill" onClick={copyToClipboard} xmlns="http://www.w3.org/2000/svg" height="23" viewBox="-72 0 599 599.318" width="23"><path d="M62.086 0h392.4492v537.0352H62.0859zm0 0" fill="#5eb3d1"/><path d="M320.2773 72.293h-20.6562v464.7422h113.6016v-371.793zm0 0" fill="#4fa1b7"/><path d="M392.5703 599H.1211V61.9648H289.293l103.2773 103.2774zm0 0" fill="#87ced9"/><path d="M392.5703 165.2422H289.293V61.9648zm0 0" fill="#b9e6ed"/><path d="M72.414 196.2227h247.8633v20.6562H72.4141zm0 0M72.414 134.2578h82.6212v20.6563H72.414zm0 0M72.414 258.1914h165.2423v20.6524H72.414zm0 0M258.3125 258.1914h61.9648v20.6524h-61.9648zm0 0M72.414 320.1563h247.8633v20.6523H72.4141zm0 0M72.414 444.086h247.8633v20.6562H72.4141zm0 0M165.3633 382.121h154.914v20.6524h-154.914zm0 0M72.414 382.121h72.293v20.6524H72.414zm0 0M72.414 506.0508h41.3087v20.6562H72.414zm0 0M134.379 506.0508h185.8983v20.6562H134.379zm0 0" fill="#5eb3d1"/></svg> */}
+          <svg id="copy-clipboard-btn" type="button" className="btn btn-outline-info btn-pill" onClick={copyToClipboard} height="28" viewBox="-21 0 512 512" width="28" xmlns="http://www.w3.org/2000/svg"><path d="m186.667969 416c-49.984375 0-90.667969-40.683594-90.667969-90.667969v-218.664062h-37.332031c-32.363281 0-58.667969 26.300781-58.667969 58.664062v288c0 32.363281 26.304688 58.667969 58.667969 58.667969h266.664062c32.363281 0 58.667969-26.304688 58.667969-58.667969v-37.332031zm0 0" fill="#1976d2"/><path d="m469.332031 58.667969c0-32.40625-26.261719-58.667969-58.664062-58.667969h-224c-32.40625 0-58.667969 26.261719-58.667969 58.667969v266.664062c0 32.40625 26.261719 58.667969 58.667969 58.667969h224c32.402343 0 58.664062-26.261719 58.664062-58.667969zm0 0" fill="#2196f3"/></svg>
+          </div>
+        }
+        </div>
+        
         {/* download button */}
         {showResults && (
           <div id="special">
-            <button
+            {/* <button
               onClick={props.saveImage}
               id="save-me-btn"
               className="btn btn-success btn-pill"
             >
               ↓
-            </button>
+            </button> */}
+            <svg type="button" className="btn btn-outline-info btn-pill" onClick={props.saveImage}
+              id="save-me-btn" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" height="30px" width="30px"><path d="M243.968 378.528c3.04 3.488 7.424 5.472 12.032 5.472s8.992-2.016 12.032-5.472l112-128c4.16-4.704 5.12-11.424 2.528-17.152S374.272 224 368 224h-64V16c0-8.832-7.168-16-16-16h-64c-8.832 0-16 7.168-16 16v208h-64c-6.272 0-11.968 3.68-14.56 9.376-2.624 5.728-1.6 12.416 2.528 17.152l112 128z" fill="#2196f3"/><path d="M432 352v96H80v-96H16v128c0 17.696 14.336 32 32 32h416c17.696 0 32-14.304 32-32V352h-64z" fill="#607d8b"/></svg>
           </div>
         )}
 
