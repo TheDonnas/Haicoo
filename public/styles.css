@@ -187,6 +187,7 @@ div[id^=font-picker] {
 #multiCollapseExample2 > div > div > div.hue-picker > div > div {
   border-radius: 20px !important;
 }
+
 #multiCollapseExample2 > div > div > div.hue-picker {
   width: 100% !important;
   border-radius: 20px;
