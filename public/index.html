@@ -103,6 +103,18 @@
       js.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0";
       fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));</script>
+
+    <script>
+    window.fbAsyncInit = function() {
+      FB.init({
+        appId  : "2745935255517172",
+        status : true,
+        cookie : true,
+        xfbml  : true  // parse XFBML
+      });
+     };
+     </script>
+
     <script async src="https://platform.twitter.com/widgets.js" charSet="utf-8"></script>
 
     <script type="text/javascript">
