@@ -160,7 +160,7 @@ function ImageLoader(props) {
     inputRef.current.value = "";
     redo();
   };
-  
+
   const copyToClipboard = () => {
     let elem = document.createElement("textarea");
     document.body.appendChild(elem);
@@ -259,7 +259,7 @@ function ImageLoader(props) {
           ) : (
             <div>
               {modelReady ? (
-                <div>
+                <div id="circleStick">
                   {/* <div id="spacer2" /> */}
                   <img
                     className="circleLoader"
@@ -268,7 +268,7 @@ function ImageLoader(props) {
                   />
                 </div>
               ) : (
-                <div id="spacer" />
+                <div />
               )}
               <img
                 id="loader"
@@ -307,7 +307,7 @@ function ImageLoader(props) {
             </button>
           )}
         </div>
-        
+
         {/* choose different image button */}
         {actionButton[appState].text === "Give me a Haiku" && (
           <button
@@ -318,7 +318,7 @@ function ImageLoader(props) {
             Choose different Image
           </button>
         )}
-        
+
         <div>
         {showResults &&
           <div id="special2">
@@ -326,7 +326,7 @@ function ImageLoader(props) {
           </div>
         }
         </div>
-        
+
         {/* download button */}
         {showResults && (
           <div id="special">
