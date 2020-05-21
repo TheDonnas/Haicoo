@@ -24,20 +24,13 @@ class Haiku extends React.Component {
       this.sendToApp();
     }
   }
-  
+
   sendToApp = () => {
     this.props.callbackFromHaiku(this.state.poem);
   };
-  
+
   render() {
-    // const { poem } = this.state;
-    return (
-      <div />
-        // {/* {poem.map((line) => (
-        //   <p key={line}>{line}</p>
-        // ))} */}
-      // </div>
-    );
+    return <div />;
   }
 }
 
