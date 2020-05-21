@@ -1,6 +1,7 @@
 import React, { useState, useRef, useReducer, useEffect } from "react";
 import * as mobilenet from "@tensorflow-models/mobilenet";
 import { HuePicker } from "react-color";
+import FontPicker from "font-picker-react";
 import { bindColorTextureToFramebuffer } from "@tensorflow/tfjs-core/dist/backends/webgl/webgl_util";
 // import "../App.css";
 
@@ -36,6 +37,8 @@ function ImageLoader(props) {
   const [model, setModel] = useState(null);
   const [modelReady, setModelReady] = useState(null);
   const [fontColor, setFontColor] = useState("#000000");
+  const [activeFontFamily, setActiveFontFamily] = useState("Arial");
+
   let imageRef = useRef();
   let inputRef = useRef();
   // useEffect(() => {loadModel()}, [])
@@ -146,6 +149,10 @@ function ImageLoader(props) {
     setFontColor(color.hex);
   };
 
+  const handleFontChange = (nextFont) => {
+    setActiveFontFamily(nextFont.family);
+  };
+
   const handleUndo = () => {
     inputRef.current.value = "";
     redo();
@@ -185,12 +192,28 @@ function ImageLoader(props) {
                 className="collapse multi-collapse"
                 id="multiCollapseExample2"
               >
-                {actionButton[appState].text === "Start Over" && (
-                  <div id="picker">
-                    <p>Text Color</p>
-                    <HuePicker onChange={handleChange} color={fontColor} />
-                  </div>
-                )}
+                <div>
+                  {actionButton[appState].text === "Start Over" && (
+                    <div id="text-color">
+                      <p>Text Color</p>
+                      <HuePicker onChange={handleChange} color={fontColor} />
+                    </div>
+                  )}
+                </div>
+
+                <div>
+                  {actionButton[appState].text === "Start Over" && (
+                    <div id="font">
+                      <p>Font Style</p>
+                      <FontPicker
+                        apiKey=""
+                        nextFont={activeFontFamily}
+                        onChange={handleFontChange}
+                        // font={fontStyle}
+                      />
+                    </div>
+                  )}
+                </div>
               </div>
             </div>
           </div>
@@ -237,7 +260,7 @@ function ImageLoader(props) {
             </div>
           )}
 
-          <div id="poem">
+          <div className="apply-font" id="poem">
             {showResults &&
               props.poem &&
               props.poem.map((line) => (
