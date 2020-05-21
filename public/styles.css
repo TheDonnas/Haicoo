@@ -178,9 +178,9 @@ li:not(:last-child) {
   width: 110%;
 }
 
-#buttons {
+/* #buttons {
   padding-top: 15px;
-}
+} */
 
 .btn-info {
   background-color: linear-gradient(rgba(255, 0, 0, 0.699), rgba(132, 43, 235, 0.801));
@@ -194,7 +194,7 @@ li:not(:last-child) {
 
 #sticky {
   position: absolute;
-  bottom: -95vh;
+  bottom: -99vh;
   right: 0;
   left: 0;
 }
@@ -203,7 +203,7 @@ li:not(:last-child) {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  margin-top: 20%;
+  /* margin-top: 10%; */
   /* border-top: solid 0.5px rgb(160, 160, 160);
   padding-top: 2%; */
   /* height: 0.1px; */
@@ -266,7 +266,7 @@ img.circleLoader {
 }
 
 .spacer {
-  height: 8vh
+  padding: 3vh
 }
 
 .spacer2 {
@@ -279,8 +279,13 @@ img.circleLoader {
   /* margin: 120px; */
 }
 
+.col-sm-4 {
+  padding-bottom: 20px;
+}
+
 #image {
   max-width: 60%;
+  max-height: 40%;
   border-radius: 10px;
   margin-bottom: 20px ;
   margin-top: 20px ;
