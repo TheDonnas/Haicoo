@@ -5,7 +5,10 @@ import FontPicker from "font-picker-react";
 import { bindColorTextureToFramebuffer } from "@tensorflow/tfjs-core/dist/backends/webgl/webgl_util";
 // import "../App.css";
 
+
 let counter = 0;
+
+// const API = process.env.apiKeySecret
 
 const machine = {
   initial: "uploadReady",
@@ -201,7 +204,7 @@ function ImageLoader(props) {
                       {/* </div> */}
                       <div className="spacer2"/>
                         <FontPicker
-                          apiKey=""
+                          apiKey={process.env.REACT_APP_GOOGLE_API_KEY}
                           nextFont={activeFontFamily}
                           onChange={handleFontChange}
                           // font={fontStyle}
