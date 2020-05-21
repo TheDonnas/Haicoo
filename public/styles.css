@@ -166,7 +166,12 @@ li:not(:last-child) {
   justify-content: center;
 }
 
-#picker {
+#text-color {
+  text-align: left;
+}
+
+#font {
+  border-radius: 10px;
   text-align: left;
 }
 
