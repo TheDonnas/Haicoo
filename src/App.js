@@ -113,7 +113,6 @@ class App extends React.Component {
             >
               Share
             </a>
-            {/* </div> */}
 
             <a
               href="https://twitter.com/share?ref_src=twsrc%5Etfw"

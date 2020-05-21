@@ -37,7 +37,6 @@ function ImageLoader(props) {
   const [fontColor, setFontColor] = useState("#000000");
   let imageRef = useRef();
   let inputRef = useRef();
-
   // useEffect(() => {loadModel()}, [])
   // console.log("PROPS: ", props);
 
@@ -54,7 +53,7 @@ function ImageLoader(props) {
       console.log("MODEL WILL BE LOADED");
       const model = await mobilenet.load();
       setModel(model);
-      console.log("MODEL LOADED!!!!");
+      // console.log("MODEL LOADED!!!!");
       counter++;
     }
   };
@@ -212,21 +211,13 @@ function ImageLoader(props) {
               ref={imageRef}
             />
           ) : (
-            // {!!counter ? (
+            <div>
               <img
                 id="loader"
                 alt="imageLoader"
                 src="https://media3.giphy.com/headers/shanebeam/myU7u7UKroOg.gif"
               />
-            // ) : (
-            //   <img
-            //     id="loader"
-            //     alt="imageLoader"
-            //     src="https://media3.giphy.com/headers/shanebeam/myU7u7UKroOg.gif"
-            //   />
-            // )
-
-            // }
+            </div>
           )}
 
           <div id="poem">
