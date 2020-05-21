@@ -1,5 +1,7 @@
 import React, { useState, useRef, useReducer, useEffect } from "react";
 import * as mobilenet from "@tensorflow-models/mobilenet";
+import { HuePicker } from "react-color";
+import { bindColorTextureToFramebuffer } from "@tensorflow/tfjs-core/dist/backends/webgl/webgl_util";
 // import "../App.css";
 
 let counter = 0;
@@ -9,8 +11,6 @@ const machine = {
   states: {
     uploadReady: {
       on: { next: "imageReady" },
-      showImage: false,
-      showResults: false,
     },
     imageReady: {
       on: { next: "identifying", redo: "uploadReady" },
@@ -34,10 +34,12 @@ function ImageLoader(props) {
   const [results, setResults] = useState([]);
   const [imageURL, setImageURL] = useState(null);
   const [model, setModel] = useState(null);
+  const [modelReady, setModelReady] = useState(null);
+  const [fontColor, setFontColor] = useState("#000000");
   let imageRef = useRef();
   let inputRef = useRef();
   // useEffect(() => {loadModel()}, [])
-  console.log("PROPS: ", props);
+  // console.log("PROPS: ", props);
 
   const reducer = (state, event) => {
     return machine.states[state].on[event] || machine.initial;
@@ -49,9 +51,11 @@ function ImageLoader(props) {
 
   const loadModel = async () => {
     if (counter === 0) {
+      setModelReady(true);
       console.log("MODEL WILL BE LOADED");
       const model = await mobilenet.load();
       setModel(model);
+      setModelReady(null);
       console.log("MODEL LOADED!!!!");
       counter++;
     }
@@ -69,7 +73,7 @@ function ImageLoader(props) {
     console.log(results);
     let word;
 
-    console.log(typeof results[0].probability, "PROBABILITY??? type");
+    // console.log(typeof results[0].probability, "PROBABILITY??? type");
     if (
       results.length &&
       results[0].probability < 0.25 &&
@@ -96,7 +100,7 @@ function ImageLoader(props) {
     console.log(results);
     let word;
 
-    console.log(typeof results[0].probability, "PROBABILITY??? type");
+    // console.log(typeof results[0].probability, "PROBABILITY??? type");
     if (
       results.length &&
       results[0].probability < 0.25 &&
@@ -121,6 +125,7 @@ function ImageLoader(props) {
     inputRef.current.value = "";
     next();
     inputRef.current.click();
+    console.log("DONE resetting")
   };
 
   const upload = () => {
@@ -135,6 +140,10 @@ function ImageLoader(props) {
       setImageURL(url);
       next();
     }
+  };
+
+  const handleChange = (color) => {
+    setFontColor(color.hex);
   };
 
   const handleUndo = () => {
@@ -153,57 +162,144 @@ function ImageLoader(props) {
   const { showImage, showResults } = machine.states[appState];
 
   return (
-    <div id="container">
+    <div id="container" className="row">
+      {(actionButton[appState].text === "Start Over" ||
+        actionButton[appState].text === "Identifying...") && (
+        <div className="col-sm-4">
+          <p>
+            <button
+              id="edit-btn"
+              className="btn btn-info btn-pill"
+              type="button"
+              data-toggle="collapse"
+              data-target="#multiCollapseExample2"
+              aria-expanded="false"
+              aria-controls="multiCollapseExample2"
+            >
+              Editor
+            </button>
+          </p>
+          <div className="row">
+            <div className="col">
+              <div
+                className="collapse multi-collapse"
+                id="multiCollapseExample2"
+              >
+                {actionButton[appState].text === "Start Over" && (
+                  <div id="picker">
+                    <p>Text Color</p>
+                    <HuePicker onChange={handleChange} color={fontColor} />
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
 
-      {/* <div id="content-container"> */}
-      <div id="saveme">
-        <input
-          type="file"
-          accept="image/x-png,image/jpeg,image/gif"
-          onChange={handleUpload}
-          ref={inputRef}
-        />
-        {showImage && (
-          <img src={imageURL} alt="upload-preview" ref={imageRef} />
+      <div id="buttons" className="col-sm">
+        <div id="saveme">
+
+          <input
+            type="file"
+            accept="image/x-png,image/jpeg,image/gif"
+            onChange={handleUpload}
+            ref={inputRef}
+          />
+
+          {showImage ? (
+            <img
+              id="image"
+              src={imageURL}
+              alt="upload-preview"
+              ref={imageRef}
+            />
+          ) : (
+            <div>
+              {modelReady ? (
+            <div>
+              {/* <div id="spacer2" /> */}
+              <img
+                className="circleLoader"
+                alt="poemLoader"
+                src="https://i.pinimg.com/originals/f2/9f/02/f29f025c9ff5297e8083c52b01f1a709.gif"
+              />
+              </div>
+          ) : (
+            <div id="spacer" />
+
+          )}
+              <img
+                id="loader"
+                alt="imageLoader"
+                src="https://media3.giphy.com/headers/shanebeam/myU7u7UKroOg.gif"
+              />
+            </div>
+          )}
+
+          <div id="poem">
+            {showResults &&
+              props.poem &&
+              props.poem.map((line) => (
+                <p style={{ color: fontColor }} key={line}>
+                  {line}
+                </p>
+              ))}
+          </div>
+        </div>
+
+        {/* main button */}
+        <div className="d-flex justify-content-center">
+          {actionButton[appState].text === "Identifying..." ? (
+            <img
+              className="circleLoader"
+              alt="poemLoader"
+              src="https://i.pinimg.com/originals/f2/9f/02/f29f025c9ff5297e8083c52b01f1a709.gif"
+            />
+          ) : (
+            <button
+              id="action-btn"
+              className="btn btn-outline-info btn-pill"
+              onClick={actionButton[appState].action || (() => {})}
+            >
+              {actionButton[appState].text}
+            </button>
+          )}
+        </div>
+        {/* choose different image button */}
+        {actionButton[appState].text === "Give me a Haiku" && (
+          <button
+            id="reidentify-btn"
+            className="btn btn-outline-info btn-pill"
+            onClick={handleUndo}
+          >
+            Choose different Image
+          </button>
+        )}
+        {/* download button */}
+        {showResults && (
+          <div id="special">
+            <button
+              onClick={props.saveImage}
+              id="save-me-btn"
+              className="btn btn-success btn-pill"
+            >
+              ↓
+            </button>
+          </div>
         )}
 
-        {/* <div id="box"> */}
-        {showResults &&
-          props.poem &&
-          props.poem.map((line) => <p key={line}>{line}</p>)}
-        {/* </div> */}
+        {/* give another haiku button */}
+        {actionButton[appState].text === "Start Over" && (
+          <button
+            id="reidentify-btn"
+            className="btn btn-outline-info btn-pill"
+            onClick={actionButton.reIdentify.action || (() => {})}
+          >
+            Give me another Haiku
+          </button>
+        )}
       </div>
-
-      <button
-        id="action-btn"
-        className="btn btn-info btn-pill"
-        onClick={actionButton[appState].action || (() => {})}
-      >
-        {actionButton[appState].text}
-      </button>
-
-      {actionButton[appState].text === "Give me a Haiku" && (
-        <button
-          id="reidentify-btn"
-          className="btn btn-info btn-pill"
-          onClick={handleUndo}
-        >
-
-          Choose different Image
-        </button>
-      )}
-
-      {actionButton[appState].text === "Start Over" && (
-        <button
-          id="reidentify-btn"
-          className="btn btn-info btn-pill"
-          onClick={actionButton.reIdentify.action || (() => {})}
-        >
-          Give me another Haiku
-        </button>
-      )}
-
-      {/* </div> */}
     </div>
   );
 }
