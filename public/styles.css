@@ -10,8 +10,6 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  /* overflow-y: scroll;
-  scroll-behavior: smooth; */
 }
 
 div #home {
@@ -32,11 +30,13 @@ div #app {
   background-color: #fffef7;
   height: 100vh;
   padding-top: 5vh;
+  margin: auto;
+  /* this used to be 5vh */
 }
 
-div #saveme {
+/* div #saveme {
   margin: 5px;
-}
+} */
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
@@ -44,11 +44,7 @@ code {
 }
 
 div {
-  /* display: flex; */
-  /* flex-direction: column; */
   text-align: center;
-  /* align-items: center; */
-  /* padding: 30px; */
 }
 
 input {
@@ -156,18 +152,18 @@ li:not(:last-child) {
   text-align: left;
 }
 
-#img {
-  max-width: 90%;
+#loader {
+  padding-top: 20vh;
+  /* margin-top: 5%; */
+  width: 75vw;
+}
+
+#image {
+  max-width: 60%;
   border-radius: 10px;
   margin-bottom: 20px ;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   background-color: rgba(35, 35, 36, 0.089);
-}
-
-#loader {
-  padding-top: 20vh;
-  margin-top: 5%;
-  width: 75vw;
 }
 
 #wordLoader {

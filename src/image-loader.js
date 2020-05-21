@@ -11,8 +11,6 @@ const machine = {
   states: {
     uploadReady: {
       on: { next: "imageReady" },
-      showImage: false,
-      showResults: false,
     },
     imageReady: {
       on: { next: "identifying", redo: "uploadReady" },
@@ -125,6 +123,7 @@ function ImageLoader(props) {
     inputRef.current.value = "";
     next();
     inputRef.current.click();
+    console.log("DONE resetting")
   };
 
   const upload = () => {
@@ -206,14 +205,16 @@ function ImageLoader(props) {
             onChange={handleUpload}
             ref={inputRef}
           />
-          {!showImage ? (
-            <img
-              id="loader"
-              alt="img"
-              src="https://media3.giphy.com/headers/shanebeam/myU7u7UKroOg.gif"
-            />
-          ) : (
-            <img id="img" src={imageURL} alt="upload-preview" ref={imageRef} />
+          {showImage ? (
+            <img id="image" src={imageURL} alt="upload-preview" ref={imageRef} />
+            ) : (
+              <div>
+              <img
+                id="loader"
+                alt="imageLoader"
+                src="https://media3.giphy.com/headers/shanebeam/myU7u7UKroOg.gif"
+              />
+              </div>
           )}
 
           <div id="poem">
@@ -231,8 +232,8 @@ function ImageLoader(props) {
         <div className="d-flex justify-content-center">
           {actionButton[appState].text === "Identifying..." ? (
             <img
-              id="wordLoader"
-              alt="img"
+              // id="wordLoader"
+              alt="poemLoader"
               src="https://i.pinimg.com/originals/f2/9f/02/f29f025c9ff5297e8083c52b01f1a709.gif"
             />
           ) : (
