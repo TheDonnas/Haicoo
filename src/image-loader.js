@@ -43,6 +43,7 @@ function ImageLoader(props) {
   console.log("PROPS: ", props);
 
   const reducer = (state, event) => {
+    console.log("stateeeeeee:",machine.states[state].on)
     return machine.states[state].on[event] || machine.initial;
   };
 
@@ -207,7 +208,7 @@ function ImageLoader(props) {
           />
           {!showImage ? (
             <img
-              className="loader"
+              id="loader"
               alt="img"
               src="https://media3.giphy.com/headers/shanebeam/myU7u7UKroOg.gif"
             />
@@ -230,6 +231,7 @@ function ImageLoader(props) {
         <div className="d-flex justify-content-center">
           {actionButton[appState].text === "Identifying..." ? (
             <img
+              id="wordLoader"
               alt="img"
               src="https://i.pinimg.com/originals/f2/9f/02/f29f025c9ff5297e8083c52b01f1a709.gif"
             />
