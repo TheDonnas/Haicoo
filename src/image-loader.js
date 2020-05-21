@@ -34,6 +34,7 @@ function ImageLoader(props) {
   const [results, setResults] = useState([]);
   const [imageURL, setImageURL] = useState(null);
   const [model, setModel] = useState(null);
+  const [modelReady, setModelReady] = useState(null);
   const [fontColor, setFontColor] = useState("#000000");
   let imageRef = useRef();
   let inputRef = useRef();
@@ -50,9 +51,11 @@ function ImageLoader(props) {
 
   const loadModel = async () => {
     if (counter === 0) {
+      setModelReady(true);
       console.log("MODEL WILL BE LOADED");
       const model = await mobilenet.load();
       setModel(model);
+      setModelReady(null);
       // console.log("MODEL LOADED!!!!");
       counter++;
     }
@@ -196,14 +199,27 @@ function ImageLoader(props) {
 
       <div id="buttons" className="col-sm">
         <div id="saveme">
+          {modelReady ? (
+            <div>
+              <div id="spacer2" />
+              <img
+                className="circleLoader"
+                alt="poemLoader"
+                src="https://i.pinimg.com/originals/f2/9f/02/f29f025c9ff5297e8083c52b01f1a709.gif"
+              />
+              </div>
+          ) : (
+            <div id="spacer" />
+
+          )}
           <input
             type="file"
             accept="image/x-png,image/jpeg,image/gif"
             onChange={handleUpload}
             ref={inputRef}
           />
+
           {showImage ? (
-            // <div id="special">
             <img
               id="image"
               src={imageURL}
@@ -212,6 +228,7 @@ function ImageLoader(props) {
             />
           ) : (
             <div>
+
               <img
                 id="loader"
                 alt="imageLoader"
@@ -235,7 +252,7 @@ function ImageLoader(props) {
         <div className="d-flex justify-content-center">
           {actionButton[appState].text === "Identifying..." ? (
             <img
-              // id="wordLoader"
+              className="circleLoader"
               alt="poemLoader"
               src="https://i.pinimg.com/originals/f2/9f/02/f29f025c9ff5297e8083c52b01f1a709.gif"
             />
@@ -260,15 +277,17 @@ function ImageLoader(props) {
           </button>
         )}
         {/* download button */}
-        {showResults && <div id="special">
-          <button
-            onClick={props.saveImage}
-            id="save-me-btn"
-            className="btn btn-success btn-pill"
-          >
-            ↓
-          </button>
-        </div>}
+        {showResults && (
+          <div id="special">
+            <button
+              onClick={props.saveImage}
+              id="save-me-btn"
+              className="btn btn-success btn-pill"
+            >
+              ↓
+            </button>
+          </div>
+        )}
 
         {/* give another haiku button */}
         {actionButton[appState].text === "Start Over" && (
