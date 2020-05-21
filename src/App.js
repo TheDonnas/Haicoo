@@ -105,6 +105,7 @@ class App extends React.Component {
 
           {!word.length ? <InstallButton /> : <div />}
             </div>
+            <div id="sticky">
           <div id="share-btns">
             {/* <div className="fb-share-button" data-href="https://haicoo.herokuapp.com/index.html" data-layout="button" data-size="large" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse" className="fb-xfbml-parse-ignore" target="_blank"> */}
             <a
@@ -124,6 +125,7 @@ class App extends React.Component {
             >
               Twitter
             </a>
+          </div>
           </div>
         </div>
       </div>

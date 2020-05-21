@@ -258,17 +258,15 @@ function ImageLoader(props) {
             />
           ) : (
             <div>
-              {modelReady ? (
-                <div>
+              {modelReady && (
+                <div id="circleStick">
                   {/* <div id="spacer2" /> */}
                   <img
                     className="circleLoader"
                     alt="poemLoader"
                     src="https://i.pinimg.com/originals/f2/9f/02/f29f025c9ff5297e8083c52b01f1a709.gif"
                   />
-                </div>
-              ) : (
-                <div id="spacer" />
+                 </div>
               )}
               <img
                 id="loader"
