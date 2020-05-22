@@ -159,7 +159,8 @@ li:not(:last-child) {
   border-radius: 50px;
   height: 38px;
   width: 38px;
-  padding: 5px 10px 5px 10px
+  font-size: 24px;
+  padding: 0px 0.5px 0px 3px;
 }
 
 #copy-clipboard-btn:hover {
