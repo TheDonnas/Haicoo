@@ -41,6 +41,8 @@ function ImageLoader(props) {
   const [modelReady, setModelReady] = useState(null);
   const [fontColor, setFontColor] = useState("#000000");
   const [activeFontFamily, setActiveFontFamily] = useState("Open Sans");
+  const [show, setShow] = useState(false);
+  const target = useRef(null);
 
   let imageRef = useRef();
   let inputRef = useRef();
@@ -169,6 +171,7 @@ function ImageLoader(props) {
     elem.select();
     document.execCommand("copy");
     document.body.removeChild(elem);
+    setShow(!show)
   };
 
   const actionButton = {
@@ -309,29 +312,18 @@ function ImageLoader(props) {
         )}
 
         <div>
-          {showResults && (
-            <div id="special2">
-              <svg
-                id="copy-clipboard-btn"
-                type="button"
-                className="btn btn-outline-info btn-pill"
-                onClick={copyToClipboard}
-                height="28"
-                viewBox="-21 0 512 512"
-                width="28"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="m186.667969 416c-49.984375 0-90.667969-40.683594-90.667969-90.667969v-218.664062h-37.332031c-32.363281 0-58.667969 26.300781-58.667969 58.664062v288c0 32.363281 26.304688 58.667969 58.667969 58.667969h266.664062c32.363281 0 58.667969-26.304688 58.667969-58.667969v-37.332031zm0 0"
-                  fill="#1976d2"
-                />
-                <path
-                  d="m469.332031 58.667969c0-32.40625-26.261719-58.667969-58.664062-58.667969h-224c-32.40625 0-58.667969 26.261719-58.667969 58.667969v266.664062c0 32.40625 26.261719 58.667969 58.667969 58.667969h224c32.402343 0 58.664062-26.261719 58.664062-58.667969zm0 0"
-                  fill="#2196f3"
-                />
-              </svg>
-            </div>
-          )}
+
+        {showResults &&
+          <div id="special2">
+            <svg id="copy-clipboard-btn" type="button" className="btn btn-outline-info btn-pill" onClick={copyToClipboard} viewBox="-21 0 512 512" xmlns="http://www.w3.org/2000/svg" ref={target}><path d="m186.667969 416c-49.984375 0-90.667969-40.683594-90.667969-90.667969v-218.664062h-37.332031c-32.363281 0-58.667969 26.300781-58.667969 58.664062v288c0 32.363281 26.304688 58.667969 58.667969 58.667969h266.664062c32.363281 0 58.667969-26.304688 58.667969-58.667969v-37.332031zm0 0" fill="#1976d2"/><path d="m469.332031 58.667969c0-32.40625-26.261719-58.667969-58.664062-58.667969h-224c-32.40625 0-58.667969 26.261719-58.667969 58.667969v266.664062c0 32.40625 26.261719 58.667969 58.667969 58.667969h224c32.402343 0 58.664062-26.261719 58.664062-58.667969zm0 0" fill="#2196f3"/></svg><Overlay target={target.current} show={show} placement="right">
+        {(props) => (
+          <Tooltip id="popover-contained" {...props}>
+            Copied!
+          </Tooltip>
+        )}
+      </Overlay>
+          </div>
+        }
         </div>
 
         {/* download button */}
@@ -344,25 +336,10 @@ function ImageLoader(props) {
             >
               ↓
             </button> */}
-            <svg
-              type="button"
-              className="btn btn-outline-info btn-pill"
-              onClick={props.saveImage}
-              id="save-me-btn"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 512 512"
-              height="30px"
-              width="30px"
-            >
-              <path
-                d="M243.968 378.528c3.04 3.488 7.424 5.472 12.032 5.472s8.992-2.016 12.032-5.472l112-128c4.16-4.704 5.12-11.424 2.528-17.152S374.272 224 368 224h-64V16c0-8.832-7.168-16-16-16h-64c-8.832 0-16 7.168-16 16v208h-64c-6.272 0-11.968 3.68-14.56 9.376-2.624 5.728-1.6 12.416 2.528 17.152l112 128z"
-                fill="#2196f3"
-              />
-              <path
-                d="M432 352v96H80v-96H16v128c0 17.696 14.336 32 32 32h416c17.696 0 32-14.304 32-32V352h-64z"
-                fill="#607d8b"
-              />
-            </svg>
+
+            <svg type="button" className="btn btn-outline-info btn-pill" onClick={props.saveImage}
+              id="save-me-btn" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" height="400px" width="400px"><path d="M243.968 378.528c3.04 3.488 7.424 5.472 12.032 5.472s8.992-2.016 12.032-5.472l112-128c4.16-4.704 5.12-11.424 2.528-17.152S374.272 224 368 224h-64V16c0-8.832-7.168-16-16-16h-64c-8.832 0-16 7.168-16 16v208h-64c-6.272 0-11.968 3.68-14.56 9.376-2.624 5.728-1.6 12.416 2.528 17.152l112 128z" fill="#2196f3"/><path d="M432 352v96H80v-96H16v128c0 17.696 14.336 32 32 32h416c17.696 0 32-14.304 32-32V352h-64z" fill="#607d8b"/></svg>
+
           </div>
         )}
 
