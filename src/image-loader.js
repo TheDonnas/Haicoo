@@ -201,7 +201,7 @@ function ImageLoader(props) {
               aria-expanded="false"
               aria-controls="multiCollapseExample2"
             >
-              {     }editor
+              {     }Text Editor
             </button>
           </p>
           <div className="row">
