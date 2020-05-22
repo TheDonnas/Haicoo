@@ -4,16 +4,19 @@ import Haiku from "./haiku";
 import * as htmlToImage from "html-to-image";
 import InstallButton from "./InstallButton";
 
+
 class App extends React.Component {
   constructor() {
     super();
     this.state = {
       word: "",
       poem: null,
+      copySuccess: ''
     };
     this.updateWord = this.updateWord.bind(this);
     this.saveImage = this.saveImage.bind(this);
     this.callbackFromHaiku = this.callbackFromHaiku.bind(this);
+    this.copyToClipboard = this.copyToClipboard.bind(this);
   }
 
   updateWord(word) {
@@ -34,7 +37,8 @@ class App extends React.Component {
           link.download = "haicoo.png";
           link.href = dataUrl;
           link.click();
-        });
+          localStorage.setItem('poemImg', dataUrl)
+        })
     } catch (err) {
       console.error(err);
     }
@@ -45,10 +49,26 @@ class App extends React.Component {
     console.log("STATE POEM IN APP: ", this.state.poem);
   };
 
+  copyToClipboard = () => {
+    var elem = document.createElement("textarea");
+    document.body.appendChild(elem);
+    elem.value = this.state.poem;
+    elem.select();
+    document.execCommand("copy");
+    document.body.removeChild(elem);
+  }
+
 
   render() {
-    let { word, poem, button } = this.state;
-    // console.log("THIS STATE IN APP", this.state);
+    let { word, poem } = this.state;
+    console.log("THIS STATE IN APP", this.state);
+    // let imgUrl = localStorage.getItem("poemImg")
+    // document.getElementsByTagName('meta')[12].content= imgUrl
+
+    let link = document.createElement('meta');
+    link.setAttribute('property', 'og:image');
+    link.content = localStorage.getItem("poemImg");
+    document.getElementsByTagName('head')[0].appendChild(link);
 
     return (
       <div id="background">
@@ -90,7 +110,6 @@ class App extends React.Component {
           <ImageLoader
             updateWord={this.updateWord}
             saveImage={this.saveImage}
-            button={button}
             poem={poem}
             callbackFromHaiku={this.callbackFromHaiku}
           />
@@ -108,6 +127,7 @@ class App extends React.Component {
 
           {!word.length ? <InstallButton /> : <div />}
             </div>
+            <div id="sticky">
           <div id="share-btns">
             {/* <div className="fb-share-button" data-href="https://haicoo.herokuapp.com/index.html" data-layout="button" data-size="large" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse" className="fb-xfbml-parse-ignore" target="_blank"> */}
             <a
@@ -127,6 +147,7 @@ class App extends React.Component {
             >
               Twitter
             </a>
+          </div>
           </div>
         </div>
       </div>
