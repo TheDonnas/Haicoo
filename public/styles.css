@@ -181,7 +181,7 @@ li:not(:last-child) {
   border-radius: 50px;
   position: absolute;
   left: -20px;
-  width: 110%;
+  width: 100%;
 }
 
 /* #buttons {
