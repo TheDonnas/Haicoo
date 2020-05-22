@@ -23,6 +23,7 @@ div #home {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: fixed;
+  position: relative;
 }
 
 div #app {
@@ -35,7 +36,7 @@ div #app {
 }
 
 #definition {
-  margin: -170px 50px 115px 50px;
+  margin: -150px 50px 100px 50px;
   color: aliceblue;
   font-family: "Courier New", Courier, monospace;
   font-weight: lighter;
@@ -103,7 +104,7 @@ li:not(:last-child) {
 }
 
 #title {
-  padding-top: 50px;
+  padding-top: 100px;
   padding-bottom: 190px;
   font-style: italic;
   font-family: "Reenie Beanie", cursive;
@@ -137,24 +138,24 @@ li:not(:last-child) {
   border-radius: 50px;
   position: absolute;
   margin-left: 110px;
-  bottom: -43px;
+  bottom: -42.8px;
   height: 38px;
   width: 38px;
   padding: 5px 10px 5px 10px;
 }
 
-#save-me-btn:hover {
-  background-color: rgba(94, 189, 204, 0.445);
-}
+/* #save-me-btn:hover {
+  background-color: rgba(94, 189, 204, 0.432);
+} */
 
-#save-me-btn:active:focus {
+/* #save-me-btn:active:focus {
   box-shadow: 0 0 0 0.4rem rgba(23,162,184,.5)
-}
+} */
 
 #copy-clipboard-btn {
   margin: 2.5px;
   position: absolute;
-  bottom: -0.25px;
+  bottom: 0.2px;
   margin-left: 110px;
   border-radius: 50px;
   height: 38px;
@@ -162,13 +163,13 @@ li:not(:last-child) {
   padding: 5px 10px 5px 10px
 }
 
-#copy-clipboard-btn:hover {
+/* #copy-clipboard-btn:hover {
   background-color: rgba(94, 189, 204, 0.445);
 }
 
 #copy-clipboard-btn:active:focus {
   box-shadow: 0 0 0 0.4rem rgba(23,162,184,.5)
-}
+} */
 
 #install-btn {
   margin: 2.5px;
@@ -192,9 +193,13 @@ li:not(:last-child) {
 }
 
 #get-started-btn {
-  margin-top: 20px;
+  /* margin-top: 1%; */
   padding: 5px;
   border-radius: 50px;
+  position: absolute;
+  bottom: 80px;
+  right: 0;
+  left: 0;
 }
 
 #sticky {
@@ -277,6 +282,9 @@ img.circleLoader {
 .spacer2 {
   height: 4vh
 }
+.spacer3 {
+  padding: 10px
+}
 
 #spacer {
   /* height: 20px */
@@ -321,6 +329,20 @@ img.circleLoader {
   justify-content: center;
 }
 
+hr {
+  width: 80%;
+}
+
+span {
+  color: #fffef7c5;
+
+}
+
+#bold {
+  color: #fffef7f1;
+  font-size: 15.5px;
+}
+
 /* smaller than 500 */
 @media only screen and (max-width: 500px) {
   #title {
@@ -328,6 +350,8 @@ img.circleLoader {
     font-size: 600%;
     color: rgba(230, 232, 238, 0.9);
   }
+}
+
   /* #copy-clipboard-btn {
     margin: 2.5px;
     position: absolute;
@@ -348,9 +372,9 @@ img.circleLoader {
     width: 38px;
     padding: 2px 4px 2px 4px;
   } */
-}
+
 /* bigger than 500 */
-/* @media only screen and (min-width: 970px) {
+ /* @media only screen and (min-width: 970px) {
   #copy-clipboard-btn {
     margin: 2.5px;
     position: absolute;
@@ -358,4 +382,9 @@ img.circleLoader {
     margin-left: -25px;
     width: fit-content;
   }
-} */
+}  */
+@media only screen and (max-width: 330px) {
+  .hidden {
+    display: none
+  }  
+}

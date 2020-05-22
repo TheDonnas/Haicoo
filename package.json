@@ -16,6 +16,7 @@
     "axios": "^0.19.2",
     "bootstrap": "^4.5.0",
     "express": "^4.17.1",
+    "font-awesome": "^4.7.0",
     "font-picker-react": "^3.5.2",
     "html-to-image": "^0.1.1",
     "morgan": "^1.10.0",
