@@ -97,6 +97,31 @@
 
     <div id="root"></div>
     <div id="fb-root"></div>
+
+    <script>
+    window.fbAsyncInit = function() {
+      FB.init({
+        appId  : "2745935255517172",
+        autoLogAppEvents : true,
+        xfbml            : true,
+        version          : 'v7.0'
+      });
+
+
+      FB.login(function(response) {
+      if (response.authResponse) {
+     console.log('Welcome!  Fetching your information.... ');
+     FB.api('/me', function(response) {
+       console.log('Good to see you, ' + response.name + '.');
+     });
+    } else {
+     console.log('User cancelled login or did not fully authorize.');
+    }
+    })
+    };
+    </script>
+    <script async defer src="https://connect.facebook.net/en_US/sdk.js"></script>
+
     <script>(function(d, s, id) {
       var js, fjs = d.getElementsByTagName(s)[0];
       if (d.getElementById(id)) return;
@@ -105,16 +130,6 @@
       fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));</script>
 
-    <script>
-    window.fbAsyncInit = function() {
-      FB.init({
-        appId  : "2745935255517172",
-        status : true,
-        cookie : true,
-        xfbml  : true  // parse XFBML
-      });
-     };
-     </script>
 
     <script async src="https://platform.twitter.com/widgets.js" charSet="utf-8"></script>
 
