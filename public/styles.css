@@ -34,10 +34,14 @@ div #app {
   /* this used to be 5vh */
 }
 
-/* #saveme {
-  position: relative;
-  margin-top: 3%;
-} */
+#definition {
+  margin: -170px 50px 115px 50px;
+  color: aliceblue;
+  font-family: "Courier New", Courier, monospace;
+  font-weight: lighter;
+  font-size: 90%;
+}
+
 
 #poem {
   font-family: 'Courier New', Courier, monospace;
@@ -99,7 +103,7 @@ li:not(:last-child) {
 }
 
 #title {
-  padding-top: 70px;
+  padding-top: 50px;
   padding-bottom: 190px;
   font-style: italic;
   font-family: "Reenie Beanie", cursive;
@@ -112,7 +116,8 @@ li:not(:last-child) {
   color: aliceblue;
   font-family: "Reenie Beanie", cursive;
   font-weight: lighter;
-  font-size: 150%;
+  /* font-size: 150%; */
+  font-size: 200%
 }
 
 #action-btn {
@@ -323,6 +328,26 @@ img.circleLoader {
     font-size: 600%;
     color: rgba(230, 232, 238, 0.9);
   }
+  /* #copy-clipboard-btn {
+    margin: 2.5px;
+    position: absolute;
+    bottom: -0.25px;
+    margin-left: 110px;
+    border-radius: 50px;
+    height: 38px;
+    width: 38px;
+    padding: 3px 6px 3px 6px
+  }
+  #save-me-btn {
+    margin: 2.5px;
+    border-radius: 50px;
+    position: absolute;
+    margin-left: 110px;
+    bottom: -43px;
+    height: 38px;
+    width: 38px;
+    padding: 2px 4px 2px 4px;
+  } */
 }
 /* bigger than 500 */
 /* @media only screen and (min-width: 970px) {
