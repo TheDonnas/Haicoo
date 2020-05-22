@@ -75,10 +75,10 @@ class App extends React.Component {
         <div id="home">
           <h2 id="title">Haicoo~</h2>
           <p id="definition">
-          <span>
+          <span className="hidden">
             Haiku is a Japanese poem of seventeen syllables, in three lines of five, seven, and five, traditionally evoking images of the natural world.</span>
           <div className="spacer3" />
-          <hr />
+          <hr className="hidden"/>
 
           <div className="spacer3" />
           <span id="bold">

@@ -23,6 +23,7 @@ div #home {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: fixed;
+  position: relative;
 }
 
 div #app {
@@ -192,9 +193,13 @@ li:not(:last-child) {
 }
 
 #get-started-btn {
-  margin-top: 8%;
+  /* margin-top: 1%; */
   padding: 5px;
   border-radius: 50px;
+  position: absolute;
+  bottom: 80px;
+  right: 0;
+  left: 0;
 }
 
 #sticky {
@@ -345,6 +350,8 @@ span {
     font-size: 600%;
     color: rgba(230, 232, 238, 0.9);
   }
+}
+
   /* #copy-clipboard-btn {
     margin: 2.5px;
     position: absolute;
@@ -365,9 +372,9 @@ span {
     width: 38px;
     padding: 2px 4px 2px 4px;
   } */
-}
+
 /* bigger than 500 */
-/* @media only screen and (min-width: 970px) {
+ /* @media only screen and (min-width: 970px) {
   #copy-clipboard-btn {
     margin: 2.5px;
     position: absolute;
@@ -375,4 +382,9 @@ span {
     margin-left: -25px;
     width: fit-content;
   }
-} */
+}  */
+@media only screen and (max-width: 330px) {
+  .hidden {
+    display: none
+  }  
+}
