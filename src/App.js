@@ -3,7 +3,7 @@ import ImageLoader from "./image-loader";
 import Haiku from "./haiku";
 import * as htmlToImage from "html-to-image";
 import InstallButton from "./InstallButton";
-
+import '../node_modules/font-awesome/css/font-awesome.min.css';
 
 class App extends React.Component {
   constructor() {
@@ -75,27 +75,34 @@ class App extends React.Component {
         <div id="home">
           <h2 id="title">Haicoo~</h2>
           <p id="definition">
-            Haiku is a Japanese poem of seventeen syllables, in three lines of five, seven, and five, traditionally evoking images of the natural world.
-          </p>
-          <div id="description">
-            {/* <h4>What is Haicoo?</h4> */}
-            <p>
-              Click <i>"upload image"</i> <br />
+          <span>
+            Haiku is a Japanese poem of seventeen syllables, in three lines of five, seven, and five, traditionally evoking images of the natural world.</span>
+          <div className="spacer3" />
+          <hr />
+
+          <div className="spacer3" />
+          <span id="bold">
+          Click <i>upload image</i> <br />
               we will give you a haiku!
               <br />
               ...then try it again!
-            </p>
-          </div>
+            </span></p>
+          {/* <div id="definition"> */}
+
+          {/* </div> */}
+
           <a href="#app">
             <button
               id="get-started-btn"
               type="button"
               className="btn btn-outline-light btn-pill"
             >
+
               Get Started
             </button>
           </a>
         </div>
+
         <div id="app" className="container-fluid">
           {word.length ? (
             <Haiku
@@ -114,16 +121,6 @@ class App extends React.Component {
             callbackFromHaiku={this.callbackFromHaiku}
           />
           <div className="col-sm">
-
-          {/* {word.length ? (
-            <button
-              onClick={this.saveImage}
-              id="save-me-btn"
-              className="btn btn-success btn-pill"
-            >
-              ↓
-            </button>
-          ) : null} */}
 
           {!word.length ? <InstallButton /> : <div />}
             </div>
