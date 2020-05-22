@@ -29,15 +29,15 @@ div #app {
   scroll-snap-align: center;
   background-color: #fffef7;
   height: 100vh;
-  padding-top: 5vh;
+  padding-top: 2vh;
   margin: auto;
   /* this used to be 5vh */
 }
 
-#saveme {
-  /* position: relative; */
+/* #saveme {
+  position: relative;
   margin-top: 3%;
-}
+} */
 
 #poem {
   font-family: 'Courier New', Courier, monospace;
@@ -178,9 +178,9 @@ li:not(:last-child) {
   width: 110%;
 }
 
-#buttons {
+/* #buttons {
   padding-top: 15px;
-}
+} */
 
 .btn-info {
   background-color: linear-gradient(rgba(255, 0, 0, 0.699), rgba(132, 43, 235, 0.801));
@@ -192,11 +192,18 @@ li:not(:last-child) {
   border-radius: 50px;
 }
 
+#sticky {
+  position: absolute;
+  bottom: -99vh;
+  right: 0;
+  left: 0;
+}
+
 #share-btns {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  margin-top: 30%;
+  /* margin-top: 10%; */
   /* border-top: solid 0.5px rgb(160, 160, 160);
   padding-top: 2%; */
   /* height: 0.1px; */
@@ -233,14 +240,24 @@ div[id^=font-picker] {
 }
 
 #loader{
-  /* padding-top: 20vh; */
+  padding-top: 10vh;
+  padding-bottom: 3vh;
   width: 75vw;
   position: relative;
 }
 
+#circleStick {
+  position: absolute;
+  bottom: -35vh;
+  right: 0;
+  left: 0;
+}
+
 img.circleLoader {
-  position: relative;
-  top: 80px
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin: auto;
 }
 
 #text-color > div > div > div {
@@ -249,7 +266,7 @@ img.circleLoader {
 }
 
 .spacer {
-  height: 8vh
+  padding: 3vh
 }
 
 .spacer2 {
@@ -262,8 +279,14 @@ img.circleLoader {
   /* margin: 120px; */
 }
 
+.col-sm-4 {
+  padding-top: 15px;
+  padding-bottom: 20px;
+}
+
 #image {
   max-width: 60%;
+  max-height: 40%;
   border-radius: 10px;
   margin-bottom: 20px ;
   margin-top: 20px ;
