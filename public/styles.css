@@ -349,8 +349,11 @@ span {
 }
 
 #bold {
+  font-family: 'Raleway', sans-serif;
+  letter-spacing: 2px;
   color: #fffef7f1;
   font-size: 15.5px;
+  text-shadow: 2px 2px 5px rgba(67, 141, 110, 0.767);
 }
 
 /* smaller than 500 */
@@ -358,7 +361,7 @@ span {
   #title {
     font-family: "Reenie Beanie", cursive;
     font-size: 600%;
-    color: rgba(230, 232, 238, 0.9);
+    color: rgba(159, 174, 221, 0.9);
   }
 }
 
