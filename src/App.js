@@ -4,6 +4,7 @@ import Haiku from "./haiku";
 import * as htmlToImage from "html-to-image";
 import InstallButton from "./InstallButton";
 import '../node_modules/font-awesome/css/font-awesome.min.css';
+import Typewriter from 'typewriter-effect';
 
 class App extends React.Component {
   constructor() {
@@ -66,27 +67,75 @@ class App extends React.Component {
     // document.getElementsByTagName('meta')[12].content= imgUrl
 
     let link = document.createElement('meta');
-    link.setAttribute('property', 'og:image');
+    link.setAttribute("property", "og:image");
     link.content = localStorage.getItem("poemImg");
-    document.getElementsByTagName('head')[0].appendChild(link);
+    document.getElementsByTagName("head")[0].appendChild(link);
+    // const string =
+    // "Haiku is a Japanese poem of seventeen syllables, in three lines
+    // of five, seven, and five, traditionally evoking images of the
+    // natural world."
+    // console.log(string)
 
     return (
       <div id="background">
         <div id="home">
           <h2 id="title">Haicoo~</h2>
-          <p id="definition">
-          <span className="hidden">
-            Haiku is a Japanese poem of seventeen syllables, in three lines of five, seven, and five, traditionally evoking images of the natural world.</span>
-          <div className="spacer3" />
-          <hr className="hidden"/>
+          {/* <Typewriter
+            options={{
+              strings: [
+                "Haiku",
+                "is",
+                "a",
+                "Japanese",
+                "poem",
+                "of",
+                "seventeen",
+                "syllables,",
+                "in",
+                "three",
+                "lines",
+                "of",
+                "five,",
+                "poem",
+                "seven,",
+                "and",
+                "five,",
+                "traditionally",
+                "evoking",
+                "images",
+                "of",
+                "the",
+                "natural",
+                "world.",
+              ],
+              autoStart: true,
+              loop: true,
+            }}
+          /> */}
 
-          <div className="spacer3" />
-          <span id="bold">
-          Click <i>upload image</i> <br />
+          <div id="definition">
+            <span className="hidden">
+            <Typewriter
+            onInit={(typewriter) => {
+              typewriter
+                .typeString("Haiku is a Japanese poem of seventeen syllables, in three lines of five, seven, and five, traditionally evoking images of the natural world.")
+                .callFunction(() => {
+                  console.log("String typed out!");
+                })
+                .start();
+            }}
+          />
+            </span>
+            <div className="spacer3" />
+            <hr className="hidden" />
+            <div className="spacer3" />
+            <span id="bold">
+              Click <i>upload image</i> <br />
               we will give you a haiku!
               <br />
               ...then try it again!
-            </span></p>
+            </span>
+          </div>
           {/* <div id="definition"> */}
 
           {/* </div> */}
@@ -97,7 +146,6 @@ class App extends React.Component {
               type="button"
               className="btn btn-outline-light btn-pill"
             >
-
               Get Started
             </button>
           </a>
@@ -121,30 +169,29 @@ class App extends React.Component {
             callbackFromHaiku={this.callbackFromHaiku}
           />
           <div className="col-sm">
-
-          {!word.length ? <InstallButton /> : <div />}
-            </div>
-            <div id="sticky">
-          <div id="share-btns">
-            {/* <div className="fb-share-button" data-href="https://haicoo.herokuapp.com/index.html" data-layout="button" data-size="large" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse" className="fb-xfbml-parse-ignore" target="_blank"> */}
-            <a
-              className="fb-share-button"
-              href="https://haicoo.herokuapp.com/index.html"
-              data-layout="button"
-              data-size="large"
-            >
-              Share
-            </a>
-
-            <a
-              href="https://twitter.com/share?ref_src=twsrc%5Etfw"
-              className="twitter-share-button share-button"
-              data-size="large"
-              data-show-count="false"
-            >
-              Twitter
-            </a>
+            {!word.length ? <InstallButton /> : <div />}
           </div>
+          <div id="sticky">
+            <div id="share-btns">
+              {/* <div className="fb-share-button" data-href="https://haicoo.herokuapp.com/index.html" data-layout="button" data-size="large" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse" className="fb-xfbml-parse-ignore" target="_blank"> */}
+              <a
+                className="fb-share-button"
+                href="https://haicoo.herokuapp.com/index.html"
+                data-layout="button"
+                data-size="large"
+              >
+                Share
+              </a>
+
+              <a
+                href="https://twitter.com/share?ref_src=twsrc%5Etfw"
+                className="twitter-share-button share-button"
+                data-size="large"
+                data-show-count="false"
+              >
+                Twitter
+              </a>
+            </div>
           </div>
         </div>
       </div>
