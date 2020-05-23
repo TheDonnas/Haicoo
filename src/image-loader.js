@@ -159,6 +159,7 @@ function ImageLoader(props) {
 
   const handleUndo = () => {
     inputRef.current.value = "";
+    inputRef.current.click();
     redo();
   };
 
