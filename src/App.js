@@ -118,7 +118,7 @@ class App extends React.Component {
             <Typewriter
             onInit={(typewriter) => {
               typewriter
-                .typeString("Haiku is a Japanese poem of seventeen syllables, in three lines of five, seven, and five, traditionally evoking images of the natural world.")
+                .typeString("A haiku is a Japanese poem of seventeen syllables, in three lines of five, seven, and five, traditionally evoking images of the natural world.")
                 .callFunction(() => {
                   console.log("String typed out!");
                 })

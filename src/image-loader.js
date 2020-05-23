@@ -1,14 +1,11 @@
-import React, { useState, useRef, useReducer, useEffect } from "react";
+import React, { useState, useRef, useReducer } from "react";
 import * as mobilenet from "@tensorflow-models/mobilenet";
 import { HuePicker } from "react-color";
 import FontPicker from "font-picker-react";
 import { Overlay, Tooltip } from 'react-bootstrap';
 import { bindColorTextureToFramebuffer } from "@tensorflow/tfjs-core/dist/backends/webgl/webgl_util";
-// import "../App.css";
 
 let counter = 0;
-
-// const API = process.env.apiKeySecret
 
 const machine = {
   initial: "uploadReady",
@@ -50,6 +47,7 @@ function ImageLoader(props) {
   // console.log("PROPS: ", props);
 
   const reducer = (state, event) => {
+    console.log("state", machine.states[state].on)
     return machine.states[state].on[event] || machine.initial;
   };
 
@@ -59,8 +57,8 @@ function ImageLoader(props) {
 
   const loadModel = async () => {
     if (counter === 0) {
-      setModelReady(true);
       console.log("MODEL WILL BE LOADED");
+      setModelReady(true);
       const model = await mobilenet.load();
       setModel(model);
       setModelReady(null);
@@ -324,7 +322,7 @@ function ImageLoader(props) {
               className="btn btn-outline-info btn-pill"
               ref={target}
             >
-              <i class="fa fa-clone" aria-hidden="true"></i>
+              <i className="fa fa-clone" aria-hidden="true"></i>
             </button>
 
 
