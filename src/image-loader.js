@@ -2,7 +2,7 @@ import React, { useState, useRef, useReducer, useEffect } from "react";
 import * as mobilenet from "@tensorflow-models/mobilenet";
 import { HuePicker } from "react-color";
 import FontPicker from "font-picker-react";
-import { Overlay, Tooltip } from 'react-bootstrap';
+import { Overlay, Tooltip } from "react-bootstrap";
 import { bindColorTextureToFramebuffer } from "@tensorflow/tfjs-core/dist/backends/webgl/webgl_util";
 // import "../App.css";
 
@@ -40,7 +40,7 @@ function ImageLoader(props) {
   const [model, setModel] = useState(null);
   const [modelReady, setModelReady] = useState(null);
   const [fontColor, setFontColor] = useState("#000000");
-  const [activeFontFamily, setActiveFontFamily] = useState("Open Sans");
+  const [font, setFont] = useState("Arial");
   const [show, setShow] = useState(false);
   const target = useRef(null);
 
@@ -146,7 +146,7 @@ function ImageLoader(props) {
     if (files.length > 0) {
       const url = URL.createObjectURL(event.target.files[0]);
       setImageURL(url);
-      console.log('img URL: ', url)
+      console.log("img URL: ", url);
       next();
     }
   };
@@ -155,8 +155,9 @@ function ImageLoader(props) {
     setFontColor(color.hex);
   };
 
-  const handleFontChange = (nextFont) => {
-    setActiveFontFamily(nextFont.family);
+  const handleFontChange = (event) => {
+    const font = event.target.value;
+    setFont(font);
   };
 
   const handleUndo = () => {
@@ -171,7 +172,7 @@ function ImageLoader(props) {
     elem.select();
     document.execCommand("copy");
     document.body.removeChild(elem);
-    setShow(!show)
+    setShow(!show);
   };
 
   const actionButton = {
@@ -184,9 +185,25 @@ function ImageLoader(props) {
 
   const { showImage, showResults } = machine.states[appState];
 
+  const fontOptions = [
+    {
+      fontFamily: "arial",
+      name: "Arial",
+    },
+    {
+      fontFamily: "impact",
+      name: "Impact",
+    },
+    {
+      fontFamily: "courier new",
+      name: "Courier New",
+    },
+    { fontFamily: "helvetica", name: "Helvetica" },
+    { fontFamily: "georgia", name: "Georgia" },
+  ];
+
   return (
     <div id="container" className="row">
-
       {(actionButton[appState].text === "Start Over" ||
         actionButton[appState].text === "Identifying...") && (
         <div className="col-sm-4">
@@ -217,12 +234,25 @@ function ImageLoader(props) {
                       <HuePicker onChange={handleChange} color={fontColor} />
                       {/* </div> */}
                       <div className="spacer2" />
-                      <FontPicker
+                      <select id="fonts" onChange={handleFontChange}>
+                        {fontOptions.map((option) => (
+                          <option
+                            className="special"
+                            key={option}
+                            style={{ fontFamily: option.fontFamily }}
+                            value={option.value}
+                          >
+                            {option.name}
+                          </option>
+                        ))}
+                      </select>
+
+                      {/* <FontPicker
                         apiKey={process.env.REACT_APP_API_KEY}
                         activeFontFamily={activeFontFamily}
                         nextFont={activeFontFamily}
                         onChange={handleFontChange}
-                      />
+                      />*/}
                     </div>
                   )}
                 </div>
@@ -272,10 +302,7 @@ function ImageLoader(props) {
             {showResults &&
               props.poem &&
               props.poem.map((line) => (
-                <p
-                  style={{ color: fontColor, fontFamily: activeFontFamily }}
-                  key={line}
-                >
+                <p style={{ color: fontColor, fontFamily: font }} key={line}>
                   {line}
                 </p>
               ))}
@@ -313,36 +340,31 @@ function ImageLoader(props) {
         )}
 
         <div>
+          {showResults && (
+            <div id="special2">
+              <button
+                onClick={copyToClipboard}
+                id="copy-clipboard-btn"
+                className="btn btn-outline-info btn-pill"
+                ref={target}
+              >
+                <i class="fa fa-clone" aria-hidden="true"></i>
+              </button>
 
-
-        {showResults &&
-          <div id="special2">
-
-            <button
-              onClick={copyToClipboard}
-              id="copy-clipboard-btn"
-              className="btn btn-outline-info btn-pill"
-              ref={target}
-            >
-              <i class="fa fa-clone" aria-hidden="true"></i>
-            </button>
-
-
-
-            {/* <svg id="copy-clipboard-btn" type="button" className="btn btn-outline-info btn-pill" onClick={copyToClipboard} viewBox="-21 0 512 512" xmlns="http://www.w3.org/2000/svg" ref={target}>
+              {/* <svg id="copy-clipboard-btn" type="button" className="btn btn-outline-info btn-pill" onClick={copyToClipboard} viewBox="-21 0 512 512" xmlns="http://www.w3.org/2000/svg" ref={target}>
               <path d="m186.667969 416c-49.984375 0-90.667969-40.683594-90.667969-90.667969v-218.664062h-37.332031c-32.363281 0-58.667969 26.300781-58.667969 58.664062v288c0 32.363281 26.304688 58.667969 58.667969 58.667969h266.664062c32.363281 0 58.667969-26.304688 58.667969-58.667969v-37.332031zm0 0" fill="#1976d2"/>
               <path d="m469.332031 58.667969c0-32.40625-26.261719-58.667969-58.664062-58.667969h-224c-32.40625 0-58.667969 26.261719-58.667969 58.667969v266.664062c0 32.40625 26.261719 58.667969 58.667969 58.667969h224c32.402343 0 58.664062-26.261719 58.664062-58.667969zm0 0" fill="#2196f3"/>
               </svg> */}
 
-            <Overlay target={target.current} show={show} placement="right">
-        {(props) => (
-          <Tooltip id="popover-contained" {...props}>
-            Copied!
-          </Tooltip>
-        )}
-      </Overlay>
-          </div>
-        }
+              <Overlay target={target.current} show={show} placement="right">
+                {(props) => (
+                  <Tooltip id="popover-contained" {...props}>
+                    Copied!
+                  </Tooltip>
+                )}
+              </Overlay>
+            </div>
+          )}
         </div>
 
         {/* download button */}
@@ -355,7 +377,6 @@ function ImageLoader(props) {
             >
               <i className="fa fa-cloud-download"></i>
             </button>
-
           </div>
         )}
 
