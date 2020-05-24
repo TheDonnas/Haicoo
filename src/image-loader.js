@@ -4,6 +4,7 @@ import { HuePicker } from "react-color";
 import FontPicker from "font-picker-react";
 import { Overlay, Tooltip } from 'react-bootstrap';
 import { bindColorTextureToFramebuffer } from "@tensorflow/tfjs-core/dist/backends/webgl/webgl_util";
+import { CSSTransition, TransitionGroup } from 'react-transition-group'
 
 let counter = 0;
 
@@ -39,8 +40,9 @@ function ImageLoader(props) {
   const [fontColor, setFontColor] = useState("#000000");
   const [activeFontFamily, setActiveFontFamily] = useState("Open Sans");
   const [show, setShow] = useState(false);
-  const target = useRef(null);
+  const [showCircle, setshowCircle] = useState(true);
 
+  const target = useRef(null);
   let imageRef = useRef();
   let inputRef = useRef();
   // useEffect(() => {loadModel()}, [])
@@ -248,16 +250,24 @@ function ImageLoader(props) {
               ref={imageRef}
             />
           ) : (
+
             <div>
               {modelReady && (
                 <div id="circleStick">
+                  <CSSTransition
+              in={showCircle}
+              appear={true}
+              timeout={1500}
+              classNames="fade"
+            >
                   {/* <div id="spacer2" /> */}
                   <img
                     className="circleLoader"
                     alt="poemLoader"
                     src="https://i.pinimg.com/originals/f2/9f/02/f29f025c9ff5297e8083c52b01f1a709.gif"
-                  />
+                  /></CSSTransition>
                 </div>
+
               )}
               <img
                 id="loader"
@@ -265,6 +275,7 @@ function ImageLoader(props) {
                 src="https://media3.giphy.com/headers/shanebeam/myU7u7UKroOg.gif"
               />
             </div>
+
           )}
 
           <div className="apply-font" id="poem">

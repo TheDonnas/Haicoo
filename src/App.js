@@ -5,6 +5,7 @@ import * as htmlToImage from "html-to-image";
 import InstallButton from "./InstallButton";
 import '../node_modules/font-awesome/css/font-awesome.min.css';
 import Typewriter from 'typewriter-effect';
+import { CSSTransition, TransitionGroup } from 'react-transition-group'
 
 class App extends React.Component {
   constructor() {
@@ -12,7 +13,8 @@ class App extends React.Component {
     this.state = {
       word: "",
       poem: null,
-      copySuccess: ''
+      copySuccess: '',
+      appearHaiku: true
     };
     this.updateWord = this.updateWord.bind(this);
     this.saveImage = this.saveImage.bind(this);
@@ -79,40 +81,14 @@ class App extends React.Component {
     return (
       <div id="background">
         <div id="home">
+        {/* <CSSTransition
+              in={this.state.appearHaiku}
+              appear={true}
+              timeout={1500}
+              classNames="fade"
+            > */}
           <h2 id="title">Haicoo~</h2>
-          {/* <Typewriter
-            options={{
-              strings: [
-                "Haiku",
-                "is",
-                "a",
-                "Japanese",
-                "poem",
-                "of",
-                "seventeen",
-                "syllables,",
-                "in",
-                "three",
-                "lines",
-                "of",
-                "five,",
-                "poem",
-                "seven,",
-                "and",
-                "five,",
-                "traditionally",
-                "evoking",
-                "images",
-                "of",
-                "the",
-                "natural",
-                "world.",
-              ],
-              autoStart: true,
-              loop: true,
-            }}
-          /> */}
-
+          {/* </CSSTransition> */}
           <div id="definition">
             <span className="hidden">
             <Typewriter
@@ -129,16 +105,22 @@ class App extends React.Component {
             <div className="spacer3" />
             <hr className="hidden" />
             <div className="spacer3" />
+
+            <CSSTransition
+              in={this.state.appearHaiku}
+              appear={true}
+              timeout={1500}
+              classNames="fade"
+            >
             <span id="bold">
               Click <i>upload image</i> <br />
               we will give you a haiku!
               <br />
               ...then try it again!
             </span>
-          </div>
-          {/* <div id="definition"> */}
+            </CSSTransition>
 
-          {/* </div> */}
+          </div>
 
           <a href="#app">
             <button
