@@ -5,7 +5,7 @@ import * as htmlToImage from "html-to-image";
 import InstallButton from "./InstallButton";
 import '../node_modules/font-awesome/css/font-awesome.min.css';
 import Typewriter from 'typewriter-effect';
-import { CSSTransition, TransitionGroup } from 'react-transition-group'
+import { CSSTransition } from 'react-transition-group'
 
 class App extends React.Component {
   constructor() {
@@ -28,7 +28,7 @@ class App extends React.Component {
 
   saveImage = async () => {
     try {
-      console.log("pushhhh");
+      // console.log("pushhhh");
       htmlToImage
         .toPng(document.getElementById("saveme"), {
           quality: 0.95,
@@ -49,7 +49,7 @@ class App extends React.Component {
 
   callbackFromHaiku = (haiku) => {
     this.setState({ poem: haiku });
-    console.log("STATE POEM IN APP: ", this.state.poem);
+    // console.log("STATE POEM IN APP: ", this.state.poem);
   };
 
   copyToClipboard = () => {
@@ -64,7 +64,7 @@ class App extends React.Component {
 
   render() {
     let { word, poem } = this.state;
-    console.log("THIS STATE IN APP", this.state);
+    // console.log("THIS STATE IN APP", this.state);
     // let imgUrl = localStorage.getItem("poemImg")
     // document.getElementsByTagName('meta')[12].content= imgUrl
 
@@ -95,9 +95,9 @@ class App extends React.Component {
             onInit={(typewriter) => {
               typewriter
                 .typeString("A haiku is a Japanese poem of seventeen syllables, in three lines of five, seven, and five, traditionally evoking images of the natural world.")
-                .callFunction(() => {
-                  console.log("String typed out!");
-                })
+                // .callFunction(() => {
+                //   console.log("String typed out!");
+                // })
                 .start();
             }}
           />
@@ -109,7 +109,7 @@ class App extends React.Component {
             <CSSTransition
               in={this.state.appearHaiku}
               appear={true}
-              timeout={1500}
+              timeout={2000}
               classNames="fade"
             >
             <span id="bold">
