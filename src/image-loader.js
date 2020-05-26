@@ -1,14 +1,11 @@
-import React, { useState, useRef, useReducer, useEffect } from "react";
+import React, { useState, useRef, useReducer } from "react";
 import * as mobilenet from "@tensorflow-models/mobilenet";
 import { HuePicker } from "react-color";
 import FontPicker from "font-picker-react";
 import { Overlay, Tooltip } from "react-bootstrap";
 import { bindColorTextureToFramebuffer } from "@tensorflow/tfjs-core/dist/backends/webgl/webgl_util";
-// import "../App.css";
 
 let counter = 0;
-
-// const API = process.env.apiKeySecret
 
 const machine = {
   initial: "uploadReady",
@@ -50,6 +47,7 @@ function ImageLoader(props) {
   // console.log("PROPS: ", props);
 
   const reducer = (state, event) => {
+    console.log("state", machine.states[state].on)
     return machine.states[state].on[event] || machine.initial;
   };
 
@@ -59,8 +57,8 @@ function ImageLoader(props) {
 
   const loadModel = async () => {
     if (counter === 0) {
-      setModelReady(true);
       console.log("MODEL WILL BE LOADED");
+      setModelReady(true);
       const model = await mobilenet.load();
       setModel(model);
       setModelReady(null);
@@ -162,6 +160,7 @@ function ImageLoader(props) {
 
   const handleUndo = () => {
     inputRef.current.value = "";
+    inputRef.current.click();
     redo();
   };
 
@@ -351,10 +350,17 @@ function ImageLoader(props) {
                 <i class="fa fa-clone" aria-hidden="true"></i>
               </button>
 
-              {/* <svg id="copy-clipboard-btn" type="button" className="btn btn-outline-info btn-pill" onClick={copyToClipboard} viewBox="-21 0 512 512" xmlns="http://www.w3.org/2000/svg" ref={target}>
-              <path d="m186.667969 416c-49.984375 0-90.667969-40.683594-90.667969-90.667969v-218.664062h-37.332031c-32.363281 0-58.667969 26.300781-58.667969 58.664062v288c0 32.363281 26.304688 58.667969 58.667969 58.667969h266.664062c32.363281 0 58.667969-26.304688 58.667969-58.667969v-37.332031zm0 0" fill="#1976d2"/>
-              <path d="m469.332031 58.667969c0-32.40625-26.261719-58.667969-58.664062-58.667969h-224c-32.40625 0-58.667969 26.261719-58.667969 58.667969v266.664062c0 32.40625 26.261719 58.667969 58.667969 58.667969h224c32.402343 0 58.664062-26.261719 58.664062-58.667969zm0 0" fill="#2196f3"/>
-              </svg> */}
+        {showResults &&
+          <div id="special2">
+
+            <button
+              onClick={copyToClipboard}
+              id="copy-clipboard-btn"
+              className="btn btn-outline-info btn-pill"
+              ref={target}
+            >
+              <i className="fa fa-clone" aria-hidden="true"></i>
+            </button>
 
               <Overlay target={target.current} show={show} placement="right">
                 {(props) => (

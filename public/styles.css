@@ -43,7 +43,6 @@ div #app {
   font-size: 90%;
 }
 
-
 #poem {
   font-family: 'Courier New', Courier, monospace;
 }
@@ -80,12 +79,13 @@ ul {
   padding: 10px;
 }
 #font-picker > button {
-  width: 90%;
   left: 0px;
 }
 
 #font-picker {
   box-shadow: none;
+  padding-top: 10px;
+  width: 80%;
 }
 
 img {
@@ -178,6 +178,7 @@ li:not(:last-child) {
 
 #edit-btn {
   margin: 2.5px;
+  top: 0px;
   border-radius: 50px;
   position: absolute;
   left: -20px;
@@ -236,13 +237,23 @@ div[id^=font-picker] {
   border-radius: 10px;
   text-align: left;
 }
-#multiCollapseExample2 > div > div > div.hue-picker > div > div {
-  border-radius: 20px !important;
-}
 
 #multiCollapseExample2 > div > div > div.hue-picker {
-  width: 100% !important;
-  border-radius: 20px;
+  width: 95% !important;
+}
+
+/* #multiCollapseExample2 > div > div.hue-picker > div > div {
+
+  width: 90% ;
+}
+
+#multiCollapseExample2 > div > div.hue-picker {
+  width: 100%;
+
+} */
+
+#multiCollapseExample2 > div > div > div.hue-picker > div > div {
+  border-radius: 20px !important;
 }
 
 #wrapper {
@@ -276,11 +287,11 @@ img.circleLoader {
 }
 
 .spacer {
-  padding: 3vh
+  padding: 15px
 }
 
 .spacer2 {
-  height: 4vh
+  height: 5px
 }
 .spacer3 {
   padding: 10px
@@ -294,12 +305,11 @@ img.circleLoader {
 
 .col-sm-4 {
   padding-top: 15px;
-  padding-bottom: 20px;
+  /* padding-bottom: 20px; */
 }
 
 #image {
   max-width: 60%;
-  max-height: 40%;
   border-radius: 10px;
   margin-bottom: 20px ;
   margin-top: 20px ;
@@ -339,8 +349,11 @@ span {
 }
 
 #bold {
+  font-family: 'Raleway', sans-serif;
+  letter-spacing: 2px;
   color: #fffef7f1;
   font-size: 15.5px;
+  text-shadow: 0.1px 0.1px 2px rgba(238, 242, 255, 0.5)
 }
 
 /* smaller than 500 */
@@ -348,7 +361,6 @@ span {
   #title {
     font-family: "Reenie Beanie", cursive;
     font-size: 600%;
-    color: rgba(230, 232, 238, 0.9);
   }
 }
 
@@ -383,7 +395,7 @@ span {
     width: fit-content;
   }
 }  */
-@media only screen and (max-width: 330px) {
+@media only screen and (max-width: 390px) {
   .hidden {
     display: none
   }  
