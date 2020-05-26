@@ -150,8 +150,8 @@ li:not(:last-child) {
 }
 
 #title {
-  padding-top: 100px;
-  padding-bottom: 190px;
+  padding-top: 10vh;
+  padding-bottom: 19vh;
   font-style: italic;
   font-family: "Reenie Beanie", cursive;
   font-size: 1100%;
@@ -413,26 +413,15 @@ span {
   }
 }
 
-  /* #copy-clipboard-btn {
-    margin: 2.5px;
-    position: absolute;
-    bottom: -0.25px;
-    margin-left: 110px;
-    border-radius: 50px;
-    height: 38px;
-    width: 38px;
-    padding: 3px 6px 3px 6px
+@media only screen and (max-height: 600px) {
+  .hidden {
+    display: none
   }
-  #save-me-btn {
-    margin: 2.5px;
-    border-radius: 50px;
-    position: absolute;
-    margin-left: 110px;
-    bottom: -43px;
-    height: 38px;
-    width: 38px;
-    padding: 2px 4px 2px 4px;
-  } */
+  #get-started-btn {
+
+    bottom: 10vh;
+  }
+}
 
 /* bigger than 500 */
  /* @media only screen and (min-width: 970px) {
