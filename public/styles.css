@@ -331,6 +331,9 @@ img.circleLoader {
   border-radius: 30px;
   width: 85%;
 }
+#fonts {
+  margin-top: 10px;
+}
 
 .spacer {
   padding: 15px
