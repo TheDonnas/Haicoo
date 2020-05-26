@@ -176,7 +176,10 @@ function ImageLoader(props) {
     elem.select();
     document.execCommand("copy");
     document.body.removeChild(elem);
-    setShow(!show);
+    setShow(!show)
+    setTimeout(() => {
+      setShow(show)
+    }, 2000);
   };
 
   const actionButton = {
