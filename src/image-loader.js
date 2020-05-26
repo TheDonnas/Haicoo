@@ -2,7 +2,7 @@ import React, { useState, useRef, useReducer } from "react";
 import * as mobilenet from "@tensorflow-models/mobilenet";
 import { HuePicker } from "react-color";
 import FontPicker from "font-picker-react";
-import { Overlay, Tooltip } from 'react-bootstrap';
+import { Overlay, Tooltip } from "react-bootstrap";
 import { bindColorTextureToFramebuffer } from "@tensorflow/tfjs-core/dist/backends/webgl/webgl_util";
 // import { CSSTransition, TransitionGroup } from 'react-transition-group'
 
@@ -38,7 +38,7 @@ function ImageLoader(props) {
   const [model, setModel] = useState(null);
   const [modelReady, setModelReady] = useState(null);
   const [fontColor, setFontColor] = useState("#000000");
-  const [activeFontFamily, setActiveFontFamily] = useState("Open Sans");
+  const [font, setFont] = useState("Arial");
   const [show, setShow] = useState(false);
   // const [showCircle, setshowCircle] = useState(false);
 
@@ -149,7 +149,7 @@ function ImageLoader(props) {
     if (files.length > 0) {
       const url = URL.createObjectURL(event.target.files[0]);
       setImageURL(url);
-      console.log('img URL: ', url)
+      console.log("img URL: ", url);
       next();
     }
   };
@@ -158,8 +158,9 @@ function ImageLoader(props) {
     setFontColor(color.hex);
   };
 
-  const handleFontChange = (nextFont) => {
-    setActiveFontFamily(nextFont.family);
+  const handleFontChange = (event) => {
+    const font = event.target.value;
+    setFont(font);
   };
 
   const handleUndo = () => {
@@ -175,7 +176,7 @@ function ImageLoader(props) {
     elem.select();
     document.execCommand("copy");
     document.body.removeChild(elem);
-    setShow(!show)
+    setShow(!show);
   };
 
   const actionButton = {
@@ -187,6 +188,23 @@ function ImageLoader(props) {
   };
 
   const { showImage, showResults } = machine.states[appState];
+
+  const fontOptions = [
+    {
+      fontFamily: "arial",
+      name: "Arial",
+    },
+    {
+      fontFamily: "impact",
+      name: "Impact",
+    },
+    {
+      fontFamily: "courier new",
+      name: "Courier New",
+    },
+    { fontFamily: "helvetica", name: "Helvetica" },
+    { fontFamily: "georgia", name: "Georgia" },
+  ];
 
   return (
     <div id="container" className="row">
@@ -220,12 +238,25 @@ function ImageLoader(props) {
                       <HuePicker onChange={handleChange} color={fontColor} />
                       {/* </div> */}
                       <div className="spacer2" />
-                      <FontPicker
+                      <select id="fonts" onChange={handleFontChange}>
+                        {fontOptions.map((option) => (
+                          <option
+                            className="special"
+                            key={option}
+                            style={{ fontFamily: option.fontFamily }}
+                            value={option.value}
+                          >
+                            {option.name}
+                          </option>
+                        ))}
+                      </select>
+
+                      {/* <FontPicker
                         apiKey={process.env.REACT_APP_API_KEY}
                         activeFontFamily={activeFontFamily}
                         nextFont={activeFontFamily}
                         onChange={handleFontChange}
-                      />
+                      />*/}
                     </div>
                   )}
                 </div>
@@ -274,10 +305,7 @@ function ImageLoader(props) {
             {showResults &&
               props.poem &&
               props.poem.map((line) => (
-                <p
-                  style={{ color: fontColor, fontFamily: activeFontFamily }}
-                  key={line}
-                >
+                <p style={{ color: fontColor, fontFamily: font }} key={line}>
                   {line}
                 </p>
               ))}
