@@ -61,10 +61,10 @@ function ImageLoader(props) {
     if (counter === 0) {
       console.log("MODEL WILL BE LOADED");
       setModelReady(true);
-      setshowCircle(true)
+      // setshowCircle(true)
       const model = await mobilenet.load();
       setModel(model);
-      setshowCircle(false)
+      // setshowCircle(false)
       setModelReady(null);
       console.log("MODEL LOADED!!!!");
       counter++;
