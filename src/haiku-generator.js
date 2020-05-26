@@ -27,7 +27,7 @@ export default class HaikuGenerator extends WordFetcher {
         },
       };
       let usedWords = []; // ["salad", "sweet"]
-      console.log("HAIKUGENERATOR BEFORE FOR LOOP");
+      // console.log("HAIKUGENERATOR BEFORE FOR LOOP");
       for (let syllableCount of haikuSyllables) {
         //haikuSyllables = [5, 7, 5];
         let syllableTarget = syllableCount; // 5-2, 3-1, 0
@@ -39,7 +39,7 @@ export default class HaikuGenerator extends WordFetcher {
             console.log("I AM GOING TO TAKE YOU OUT OF THIS INFINITE LOOP ;)");
           }
           counter++;
-          console.log("PART OF SPEECH", structureMap[currWordType].next);
+          // console.log("PART OF SPEECH", structureMap[currWordType].next);
           errCount += 1; // 1
           let currWords = []; //["salad", "sweet", "baked"] STORE EVERY POSSIBLE WORD <= 5/7 SYLL
           for (let word of structureMap[currWordType].wordList) {

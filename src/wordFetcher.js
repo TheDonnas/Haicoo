@@ -26,21 +26,21 @@ export default class WordFetcher {
       console.log(
         "PROMISE RESULTS",
         "followingWords: ",
-        followingWords,
+        followingWords, '\n',
         "nouns: ",
-        nouns,
+        nouns, '\n',
         "verbs: ",
-        verbs,
+        verbs, '\n',
         "adjectives: ",
-        adj,
+        adj, '\n',
         "adverbs: ",
-        adv,
+        adv, '\n',
         "relatedWords: ",
-        relatedWords,
+        relatedWords, '\n',
         "popularNouns: ",
-        popularNouns,
+        popularNouns, '\n',
         "popularAdjs: ",
-        popularAdjs
+        popularAdjs, '\n'
       );
     });
 
@@ -84,7 +84,7 @@ export default class WordFetcher {
       console.log(error);
     }
   }
-  
+
   async getPopularNouns(word) {
     try {
       this.popularNouns = await this.requestWords(
@@ -95,7 +95,7 @@ export default class WordFetcher {
       console.log(error);
     }
   }
-  
+
   async getPopularAdjs(word) {
     try {
       this.popularAdjs = await this.requestWords(
@@ -115,6 +115,7 @@ export default class WordFetcher {
       nouns = [...popularNouns, ...relatedNouns];
       return nouns;
     } catch (error) {
+      console.log("NOT ENOUGH NOUNS!")
       let nouns = [
         {word: "life", numSyllables: 1},
         {word: "joy", numSyllables: 1},
@@ -143,7 +144,9 @@ export default class WordFetcher {
           verbsList.push(followingWords[i]);
         }
       }
+      console.log("VERBS: ", verbsList)
       if (verbsList.length < 1) {
+        console.log("NOT ENOUGH VERBS!")
         verbsList = [
           {word: "am", numSyllables: 1},
           {word: "could", numSyllables: 1},
@@ -179,8 +182,10 @@ export default class WordFetcher {
         if (followingWords[i].tags && followingWords[i].tags.includes("adv")) {
           advList.push(followingWords[i]);
         }
-      } 
+      }
+      console.log("ADVERBS: ", advList)
       if (advList.length < 1) {
+        console.log("NOT ENOUGH ADVERBS!")
         advList = [
           {word: "cheerfully", numSyllables: 3},
           {word: "happily", numSyllables: 3},
@@ -205,7 +210,7 @@ export default class WordFetcher {
           {word: "yeah", numSyllables: 1},
           {word: "well", numSyllables: 1},
           {word: "WHOA", numSyllables: 1}
-        ]  
+        ]
       }
       return advList;
     } catch (error) {
@@ -219,6 +224,7 @@ export default class WordFetcher {
       let adjs = popularAdj;
       console.log('ADJS BEFORE IF STMT: ', adjs);
       if (adjs.length < 1) {
+        console.log("NOT ENOUGH ADJECTIVES!")
         adjs = [
           {word: "beautiful", numSyllables: 4},
           {word: "fancy", numSyllables: 2},
@@ -237,6 +243,7 @@ export default class WordFetcher {
       }
       return adjs;
     } catch (error) {
+      console.log("NOT ENOUGH ADJECTIVES!")
       let adjs = [
         {word: "beautiful", numSyllables: 4},
         {word: "fancy", numSyllables: 2},

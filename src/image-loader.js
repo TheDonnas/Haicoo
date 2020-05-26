@@ -4,6 +4,7 @@ import { HuePicker } from "react-color";
 import FontPicker from "font-picker-react";
 import { Overlay, Tooltip } from "react-bootstrap";
 import { bindColorTextureToFramebuffer } from "@tensorflow/tfjs-core/dist/backends/webgl/webgl_util";
+// import { CSSTransition, TransitionGroup } from 'react-transition-group'
 
 let counter = 0;
 
@@ -39,15 +40,16 @@ function ImageLoader(props) {
   const [fontColor, setFontColor] = useState("#000000");
   const [font, setFont] = useState("Arial");
   const [show, setShow] = useState(false);
-  const target = useRef(null);
+  // const [showCircle, setshowCircle] = useState(false);
 
+  const target = useRef(null);
   let imageRef = useRef();
   let inputRef = useRef();
   // useEffect(() => {loadModel()}, [])
   // console.log("PROPS: ", props);
 
   const reducer = (state, event) => {
-    console.log("state", machine.states[state].on)
+    // console.log("state", machine.states[state].on)
     return machine.states[state].on[event] || machine.initial;
   };
 
@@ -59,8 +61,10 @@ function ImageLoader(props) {
     if (counter === 0) {
       console.log("MODEL WILL BE LOADED");
       setModelReady(true);
+      setshowCircle(true)
       const model = await mobilenet.load();
       setModel(model);
+      setshowCircle(false)
       setModelReady(null);
       console.log("MODEL LOADED!!!!");
       counter++;
@@ -85,6 +89,7 @@ function ImageLoader(props) {
       results[0].probability < 0.25 &&
       results[2].probability < 0.1
     ) {
+      console.log("using default word list because of low probabilities!")
       word = chooseRandom(["flower", "love", "rainbow", "star"]);
     } else {
       word = results[0].className.split(", ")[0];
@@ -131,7 +136,7 @@ function ImageLoader(props) {
     inputRef.current.value = "";
     next();
     inputRef.current.click();
-    console.log("DONE resetting");
+    // console.log("DONE resetting");
   };
 
   const upload = () => {
@@ -281,12 +286,11 @@ function ImageLoader(props) {
             <div>
               {modelReady && (
                 <div id="circleStick">
-                  {/* <div id="spacer2" /> */}
-                  <img
-                    className="circleLoader"
-                    alt="poemLoader"
-                    src="https://i.pinimg.com/originals/f2/9f/02/f29f025c9ff5297e8083c52b01f1a709.gif"
-                  />
+                    <img
+                      className="circleLoader"
+                      alt="poemLoader"
+                      src="https://i.pinimg.com/originals/f2/9f/02/f29f025c9ff5297e8083c52b01f1a709.gif"
+                    />
                 </div>
               )}
               <img
@@ -347,9 +351,8 @@ function ImageLoader(props) {
                 className="btn btn-outline-info btn-pill"
                 ref={target}
               >
-                <i class="fa fa-clone" aria-hidden="true"></i>
+                <i className="fa fa-clone" aria-hidden="true"></i>
               </button>
-
               <Overlay target={target.current} show={show} placement="right">
                 {(props) => (
                   <Tooltip id="popover-contained" {...props}>
