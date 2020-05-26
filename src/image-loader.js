@@ -350,18 +350,6 @@ function ImageLoader(props) {
                 <i class="fa fa-clone" aria-hidden="true"></i>
               </button>
 
-        {showResults &&
-          <div id="special2">
-
-            <button
-              onClick={copyToClipboard}
-              id="copy-clipboard-btn"
-              className="btn btn-outline-info btn-pill"
-              ref={target}
-            >
-              <i className="fa fa-clone" aria-hidden="true"></i>
-            </button>
-
               <Overlay target={target.current} show={show} placement="right">
                 {(props) => (
                   <Tooltip id="popover-contained" {...props}>
