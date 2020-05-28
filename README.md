@@ -1,5 +1,5 @@
 # Haicoo
-> A progressive web application that poems based on photos provided by users
+> A PWA that poems based on photos provided by users
 
 ## Instructions
 Click upload image<br />
@@ -26,3 +26,23 @@ git clone https://github.com/TheDonnas/Haicoo.git
 npm install
 npm start
 ```
+
+## Links
+
+* [TensorFlow.js](https://www.tensorflow.org/js)
+* [React](https://reactjs.org/)
+* [Datamuse API](http://www.datamuse.com/api/)
+* [Progressive Web Apps](https://developers.google.com/web/progressive-web-apps/)
+* [Workbox](https://github.com/GoogleChrome/workbox)
+* [Bootstrap](https://getbootstrap.com)
+* [Shards](https://designrevision.com/docs/shards/index.html)
+
+## Credits
+
+* [TensorFlow.js](https://github.com/jonnyk20/dogscope-react)
+* [React](https://reactjs.org/)
+* [Datamuse API](http://www.datamuse.com/api/)
+* [Progressive Web Apps](https://developers.google.com/web/progressive-web-apps/)
+* [Workbox](https://github.com/GoogleChrome/workbox)
+* [Bootstrap](https://getbootstrap.com)
+* [Shards](https://designrevision.com/docs/shards/index.html)
