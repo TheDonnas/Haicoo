@@ -39,6 +39,6 @@ npm start
 
 ## Credits
 
-* [Dog Classifier by Jonny Kalambay](https://github.com/jonnyk20/dogscope-react)
-* [Haiku Generator by d-rivera-c](https://github.com/d-rivera-c/haiku-generator)
+* [Dog Classifier](https://github.com/jonnyk20/dogscope-react) by [Jonny Kalambay] (https://github.com/jonnyk20)
+* [Haiku Generator](https://github.com/d-rivera-c/haiku-generator) by [d-rivera-c] (https://github.com/d-rivera-c)
 * Images by [Joanna Kosinska](https://github.com/d-rivera-c/haiku-generator)
