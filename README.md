@@ -12,8 +12,6 @@ we will give you a haiku!<br />
 * Nichole Cruzalegui
 * Yourhee Lily Min
 
-## Technologies Used
-* React, Node.js, Workbox/Lighthouse, Tensorflow, Datamuse API, Bootstrap
 
 ## Site Walk-Through
 * Click Get Started
@@ -29,6 +27,8 @@ npm start
 
 ## Links
 
+* [Node.js](https://nodejs.org/)
+Node.js is an open-source, cross-platform, JavaScript runtime environment that executes JavaScript code outside of a web browser.
 * [TensorFlow.js](https://www.tensorflow.org/js)
 * [React](https://reactjs.org/)
 * [Datamuse API](http://www.datamuse.com/api/)
@@ -39,6 +39,6 @@ npm start
 
 ## Credits
 
-* [Dog Classifier](https://github.com/jonnyk20/dogscope-react) by [Jonny Kalambay] (https://github.com/jonnyk20)
-* [Haiku Generator](https://github.com/d-rivera-c/haiku-generator) by [d-rivera-c] (https://github.com/d-rivera-c)
+* [Dog Classifier](https://github.com/jonnyk20/dogscope-react) by Jonny Kalambay
+* [Haiku Generator](https://github.com/d-rivera-c/haiku-generator) by d-rivera-c
 * Images by [Joanna Kosinska](https://github.com/d-rivera-c/haiku-generator)
