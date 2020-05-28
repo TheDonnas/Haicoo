@@ -39,10 +39,6 @@ npm start
 
 ## Credits
 
-* [TensorFlow.js](https://github.com/jonnyk20/dogscope-react)
-* [React](https://reactjs.org/)
-* [Datamuse API](http://www.datamuse.com/api/)
-* [Progressive Web Apps](https://developers.google.com/web/progressive-web-apps/)
-* [Workbox](https://github.com/GoogleChrome/workbox)
-* [Bootstrap](https://getbootstrap.com)
-* [Shards](https://designrevision.com/docs/shards/index.html)
+* [Dog Classifier by Jonny Kalambay](https://github.com/jonnyk20/dogscope-react)
+* [Haiku Generator by d-rivera-c](https://github.com/d-rivera-c/haiku-generator)
+* Images by [Joanna Kosinska](https://github.com/d-rivera-c/haiku-generator)
