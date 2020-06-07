@@ -27,9 +27,14 @@ npm start
 
 ## Links
 
-* [Node.js](https://nodejs.org/) an open-source, cross-platform, JavaScript runtime environment that executes JavaScript code outside of a web browser.
-* [TensorFlow.js](https://www.tensorflow.org/js)
-* [React](https://reactjs.org/)
+* [Node.js](https://nodejs.org/) an open source JavaScript runtime environment, built on top of Chrome's V8 engine that executes JavaScript code outside of a web browser.
+* [TensorFlow.js](https://www.tensorflow.org/js) an open source platform for machine learning.
+* [React](https://reactjs.org/) created for developers to make
+through the use of a virtual DOM it
+a javascript library used for creating interactive UIs.
+keeps UI & state in-sync
+Triggers => state change
+Uses virtual DOM, compares with regular DOM and renders any changes
 * [Datamuse API](http://www.datamuse.com/api/)
 * [Progressive Web Apps](https://developers.google.com/web/progressive-web-apps/)
 * [Workbox](https://github.com/GoogleChrome/workbox)
