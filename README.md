@@ -25,6 +25,15 @@ npm install
 npm start
 ```
 
+## Key Concepts
+
+The TensorFlow model MobileNet is loaded and saved onto the component's state. User-provided data is kept private since classifications are performed locally.
+
+While there is no need for a persistent network connection to continue classifying images we have provided a default word bank in the case that the DataMuse API is unavailable.
+
+Haicoo can run on a desktop platform and be 'installed' on a mobile device. Our manifest file allows the app to be 'installed' on mobile devices, creating a native app experience complete with an app icon on the home screen.
+
+
 ## Links
 
 * [Node.js](https://nodejs.org/) an open source JavaScript runtime environment, built on top of Chrome's V8 engine that executes JavaScript code outside of a web browser.
