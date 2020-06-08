@@ -12,11 +12,6 @@ we will give you a haiku!<br />
 * Nichole Cruzalegui
 * Yourhee Lily Min
 
-## Instructions
-* Click Get Started
-* Upload Photo
-* Click Give Me a Haiku
-
 ## Get Started
 ```
 git clone https://github.com/TheDonnas/Haicoo.git
