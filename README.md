@@ -52,7 +52,7 @@ Haicoo can run on a desktop platform and be <i>installed</i> on a mobile device.
 * [Progressive Web Apps](https://developers.google.com/web/progressive-web-apps/)
 * [Workbox](https://github.com/GoogleChrome/workbox)
 
-# Styling libraries
+### Styling libraries
 
 * [Bootstrap](https://getbootstrap.com)
 * [Shards](https://designrevision.com/docs/shards/index.html)
