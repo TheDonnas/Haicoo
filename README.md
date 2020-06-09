@@ -1,3 +1,7 @@
+<p align="center"><img src="public/Haicoo.png" width="450"></p>
+
+<hr>
+
 # Haicoo
 A PWA that uses a pretrained TensorFlow Model (MobileNet) for image classification and a word-finding query engine to create a haiku based on a user provided photo.
 
@@ -5,12 +9,6 @@ A PWA that uses a pretrained TensorFlow Model (MobileNet) for image classificati
 Click upload image<br />
 we will give you a haiku!<br />
 ...then try it again!<br />
-
-## The Team
-* Arianna Campesi
-* Jessica Choi
-* Nichole Cruzalegui
-* Yourhee Lily Min
 
 ## Get Started
 ```
@@ -43,7 +41,6 @@ Haicoo can run on a desktop platform and be <i>installed</i> on a mobile device.
 * [MobileNet] (https://github.com/tensorflow/tfjs-models/tree/master/mobilenet): a small, low-latency, low-power model pretrained for image classification. It takes an input (such as <img>, <video> or <canvas> elements) and returns an array of its top predictions along with its confidences.
 * [React](https://reactjs.org/): an open source javascript library used for keeping the UI & state in-sync and easily creating interactive UIs. Through a comparison of a virtual DOM to the DOM, it renders components only as needed.
 * [Datamuse API](http://www.datamuse.com/api/) a word-finding query engine that given a set of constraints and a context, users can query for a vast variety of specific wordlists of their choosing.
-
 * [Progressive Web Apps](https://developers.google.com/web/progressive-web-apps/)
 * [Workbox](https://github.com/GoogleChrome/workbox)
 
@@ -51,6 +48,12 @@ Haicoo can run on a desktop platform and be <i>installed</i> on a mobile device.
 
 * [Bootstrap](https://getbootstrap.com)
 * [Shards](https://designrevision.com/docs/shards/index.html)
+
+## The Team
+* [Arianna Campesi](https://github.com/ariannacampesi)
+* [Jessica Choi](https://github.com/jchoi37)
+* [Nichole Cruzalegui](https://github.com/cruzn978)
+* [Yourhee Lily Min](https://github.com/ymin17)
 
 ## Credits
 
