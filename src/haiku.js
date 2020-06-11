@@ -14,7 +14,6 @@ class Haiku extends React.Component {
       return;
     } else {
       let generator = new HaikuGenerator(this.props.word);
-      //const generator = new HaikuGenerator("flower"); //TEST ONLY
       let poem = await generator.buildHaiku();
       //let poem = new HaikuGenerator(this.props.word);
       //word from props that comes from image

@@ -26,28 +26,25 @@ export default class HaikuGenerator extends WordFetcher {
           wordList: await this.adv,
         },
       };
-      let usedWords = []; // ["salad", "sweet"]
-      // console.log("HAIKUGENERATOR BEFORE FOR LOOP");
+      let usedWords = [];
       for (let syllableCount of haikuSyllables) {
-        //haikuSyllables = [5, 7, 5];
-        let syllableTarget = syllableCount; // 5-2, 3-1, 0
-        let currLine = []; //["salad", "sweet"]
-        let errCount = 0; //1
+        let syllableTarget = syllableCount; // syllableTarget will get decremented
+        let currLine = [];
+        let errCount = 0;
         let counter = 0;
         while (syllableTarget > 0 && counter < 30) {
           if (counter === 29) {
             console.log("I AM GOING TO TAKE YOU OUT OF THIS INFINITE LOOP ;)");
           }
           counter++;
-          // console.log("PART OF SPEECH", structureMap[currWordType].next);
-          errCount += 1; // 1
-          let currWords = []; //["salad", "sweet", "baked"] STORE EVERY POSSIBLE WORD <= 5/7 SYLL
+          errCount += 1;
+          let currWords = []; // currWords stores every possible word
           for (let word of structureMap[currWordType].wordList) {
             if (word.numSyllables && word["numSyllables"] <= syllableTarget) {
               currWords.push(word);
             }
           }
-          let wordToAdd = this.choose(currWords); // choose random possible word in arr {word:, score:, etc}
+          let wordToAdd = this.choose(currWords); // choose random possible word in array
           if (
             wordToAdd &&
             usedWords.includes(wordToAdd["word"]) &&
@@ -73,14 +70,3 @@ export default class HaikuGenerator extends WordFetcher {
     }
   }
 }
-
-// function main() {
-//   let pg = new HaikuGenerator("flower");
-//   console.log(pg.buildHaiku());
-// }
-
-// main();
-
-// const generator = new PoemGenerator();
-// const results = generator.getRelatedWords("flower");
-// console.log("RESULTS", results);

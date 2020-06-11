@@ -1,10 +1,7 @@
 import React, { useState, useRef, useReducer } from "react";
 import * as mobilenet from "@tensorflow-models/mobilenet";
 import { HuePicker } from "react-color";
-import FontPicker from "font-picker-react";
 import { Overlay, Tooltip } from "react-bootstrap";
-import { bindColorTextureToFramebuffer } from "@tensorflow/tfjs-core/dist/backends/webgl/webgl_util";
-// import { CSSTransition, TransitionGroup } from 'react-transition-group'
 
 let counter = 0;
 
@@ -40,13 +37,10 @@ function ImageLoader(props) {
   const [fontColor, setFontColor] = useState("#000000");
   const [font, setFont] = useState("Arial");
   const [show, setShow] = useState(false);
-  // const [showCircle, setshowCircle] = useState(false);
 
   const target = useRef(null);
   let imageRef = useRef();
   let inputRef = useRef();
-  // useEffect(() => {loadModel()}, [])
-  // console.log("PROPS: ", props);
 
   const reducer = (state, event) => {
     // console.log("state", machine.states[state].on)
@@ -59,14 +53,10 @@ function ImageLoader(props) {
 
   const loadModel = async () => {
     if (counter === 0) {
-      console.log("MODEL WILL BE LOADED");
       setModelReady(true);
-      // setshowCircle(true)
       const model = await mobilenet.load();
       setModel(model);
-      // setshowCircle(false)
       setModelReady(null);
-      console.log("MODEL LOADED!!!!");
       counter++;
     }
   };
@@ -83,7 +73,6 @@ function ImageLoader(props) {
     console.log(results);
     let word;
 
-    // console.log(typeof results[0].probability, "PROBABILITY??? type");
     if (
       results.length &&
       results[0].probability < 0.25 &&
@@ -111,7 +100,6 @@ function ImageLoader(props) {
     console.log(results);
     let word;
 
-    // console.log(typeof results[0].probability, "PROBABILITY??? type");
     if (
       results.length &&
       results[0].probability < 0.25 &&
@@ -136,7 +124,6 @@ function ImageLoader(props) {
     inputRef.current.value = "";
     next();
     inputRef.current.click();
-    // console.log("DONE resetting");
   };
 
   const upload = () => {
@@ -237,9 +224,7 @@ function ImageLoader(props) {
                   {actionButton[appState].text === "Start Over" && (
                     <div>
                       <div className="spacer" />
-                      {/* <div id="text-color"> */}
                       <HuePicker onChange={handleChange} color={fontColor} />
-                      {/* </div> */}
                       <div className="spacer2" />
                       <select id="fonts" onChange={handleFontChange}>
                         {fontOptions.map((option) => (
@@ -253,13 +238,6 @@ function ImageLoader(props) {
                           </option>
                         ))}
                       </select>
-
-                      {/* <FontPicker
-                        apiKey={process.env.REACT_APP_API_KEY}
-                        activeFontFamily={activeFontFamily}
-                        nextFont={activeFontFamily}
-                        onChange={handleFontChange}
-                      />*/}
                     </div>
                   )}
                 </div>

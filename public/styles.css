@@ -13,41 +13,6 @@ html {
   opacity: 1;
   transition: opacity 2000ms linear;
 }
-/* .circleLoad-enter {
-  opacity: 0.01;
-  transform: scale(1.1);
-}
-
-.circleLoad-enter.circleLoad-enter-active {
-  opacity: 1;
-  transform: scale(1);
-  transition: all 5000ms;
-}
-
-.circleLoad-exit {
-  opacity: 1;
-  transform: scale(1);
-}
-
-.circleLoad-exit.circleLoad-exit-active {
-  opacity: 0.01;
-  transform: scale(1.1);
-  transition: all 5000ms;
-}
-.circleLoad-exit-done {
-  opacity: 0; */
-  /* transform: scale(1); */
-/* } */
-/* .circleLoad-enter {
-  opacity: 0;
-  z-index: 1;
-}
-
-circleLoad-enter-active {
-  opacity: 1;
-  transition: opacity 5000ms linear;
-} */
-
 
 body {
   margin: 0;
@@ -60,10 +25,8 @@ body {
 
 
 div #home {
-  /* background-color: blueviolet; */
   background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
     url("background-img\ blur.jpg");
-  /* padding: 50spx; */
   height: 100vh;
   width: 100vw;
   background-size: cover;
@@ -78,7 +41,6 @@ div #app {
   height: 100vh;
   padding-top: 2vh;
   margin: auto;
-  /* this used to be 5vh */
 }
 
 #definition {
@@ -116,10 +78,7 @@ label,
 ul {
   width: 200px;
   box-sizing: border-box;
-  /* border: solid 1px white; */
   border-radius: 50px;
-  /* background: black; */
-  /* color: white; */
   font-size: 24px;
   margin: auto;
   padding: 10px;
@@ -173,8 +132,6 @@ li:not(:last-child) {
 }
 
 #reidentify-btn {
-  /* margin-top: 3%;
-  margin-bottom: 3%; */
   margin: 2.5px;
   border-radius: 50px;
 }
@@ -190,13 +147,6 @@ li:not(:last-child) {
   padding: 5px 10px 5px 10px;
 }
 
-/* #save-me-btn:hover {
-  background-color: rgba(94, 189, 204, 0.432);
-} */
-
-/* #save-me-btn:active:focus {
-  box-shadow: 0 0 0 0.4rem rgba(23,162,184,.5)
-} */
 
 #copy-clipboard-btn {
   margin: 2.5px;
@@ -208,14 +158,6 @@ li:not(:last-child) {
   width: 38px;
   padding: 5px 10px 5px 10px
 }
-
-/* #copy-clipboard-btn:hover {
-  background-color: rgba(94, 189, 204, 0.445);
-}
-
-#copy-clipboard-btn:active:focus {
-  box-shadow: 0 0 0 0.4rem rgba(23,162,184,.5)
-} */
 
 #install-btn {
   margin: 2.5px;
@@ -230,10 +172,6 @@ li:not(:last-child) {
   left: -20px;
   width: 100%;
 }
-
-/* #buttons {
-  padding-top: 15px;
-} */
 
 .btn-info {
   background-color: linear-gradient(rgba(255, 0, 0, 0.699), rgba(132, 43, 235, 0.801));
@@ -260,10 +198,6 @@ li:not(:last-child) {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  /* margin-top: 10%; */
-  /* border-top: solid 0.5px rgb(160, 160, 160);
-  padding-top: 2%; */
-  /* height: 0.1px; */
 }
 
 #buttonCenter {
@@ -287,16 +221,6 @@ div[id^=font-picker] {
 #multiCollapseExample2 > div > div > div.hue-picker {
   width: 95% !important;
 }
-
-/* #multiCollapseExample2 > div > div.hue-picker > div > div {
-
-  width: 90% ;
-}
-
-#multiCollapseExample2 > div > div.hue-picker {
-  width: 100%;
-
-} */
 
 #multiCollapseExample2 > div > div > div.hue-picker > div > div {
   border-radius: 20px !important;
@@ -347,14 +271,11 @@ img.circleLoader {
 }
 
 #spacer {
-  /* height: 20px */
   padding: 10vh;
-  /* margin: 120px; */
 }
 
 .col-sm-4 {
   padding-top: 15px;
-  /* padding-bottom: 20px; */
 }
 
 #image {
@@ -423,16 +344,6 @@ span {
   }
 }
 
-/* bigger than 500 */
- /* @media only screen and (min-width: 970px) {
-  #copy-clipboard-btn {
-    margin: 2.5px;
-    position: absolute;
-    bottom: 8px;
-    margin-left: -25px;
-    width: fit-content;
-  }
-}  */
 @media only screen and (max-width: 390px) {
   .hidden {
     display: none

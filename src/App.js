@@ -28,12 +28,10 @@ class App extends React.Component {
 
   saveImage = async () => {
     try {
-      // console.log("pushhhh");
       htmlToImage
         .toPng(document.getElementById("saveme"), {
           quality: 0.95,
           backgroundColor: "#f2e9e4",
-          // background: "https://www.pngkey.com/png/detail/203-2032708_scribble-frames-doodle-frame-png.png",
         })
         .then(function (dataUrl) {
           var link = document.createElement("a");
@@ -64,7 +62,6 @@ class App extends React.Component {
 
   render() {
     let { word, poem } = this.state;
-    // console.log("THIS STATE IN APP", this.state);
     // let imgUrl = localStorage.getItem("poemImg")
     // document.getElementsByTagName('meta')[12].content= imgUrl
 
@@ -72,32 +69,17 @@ class App extends React.Component {
     link.setAttribute("property", "og:image");
     link.content = localStorage.getItem("poemImg");
     document.getElementsByTagName("head")[0].appendChild(link);
-    // const string =
-    // "Haiku is a Japanese poem of seventeen syllables, in three lines
-    // of five, seven, and five, traditionally evoking images of the
-    // natural world."
-    // console.log(string)
 
     return (
       <div id="background">
         <div id="home">
-        {/* <CSSTransition
-              in={this.state.appearHaiku}
-              appear={true}
-              timeout={1500}
-              classNames="fade"
-            > */}
           <h2 id="title">Haicoo~</h2>
-          {/* </CSSTransition> */}
           <div id="definition">
             <span className="hidden">
             <Typewriter
             onInit={(typewriter) => {
               typewriter
                 .typeString("A haiku is a Japanese poem of seventeen syllables, in three lines of five, seven, and five, traditionally evoking images of the natural world.")
-                // .callFunction(() => {
-                //   console.log("String typed out!");
-                // })
                 .start();
             }}
           />
@@ -155,7 +137,6 @@ class App extends React.Component {
           </div>
           <div id="sticky">
             <div id="share-btns">
-              {/* <div className="fb-share-button" data-href="https://haicoo.herokuapp.com/index.html" data-layout="button" data-size="large" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse" className="fb-xfbml-parse-ignore" target="_blank"> */}
               <a
                 className="fb-share-button"
                 href="https://haicoo.herokuapp.com/index.html"
