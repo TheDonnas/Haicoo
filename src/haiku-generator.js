@@ -74,13 +74,3 @@ export default class HaikuGenerator extends WordFetcher {
   }
 }
 
-// function main() {
-//   let pg = new HaikuGenerator("flower");
-//   console.log(pg.buildHaiku());
-// }
-
-// main();
-
-// const generator = new PoemGenerator();
-// const results = generator.getRelatedWords("flower");
-// console.log("RESULTS", results);

@@ -1,9 +1,7 @@
 import React, { useState, useRef, useReducer } from "react";
 import * as mobilenet from "@tensorflow-models/mobilenet";
 import { HuePicker } from "react-color";
-import FontPicker from "font-picker-react";
 import { Overlay, Tooltip } from "react-bootstrap";
-import { bindColorTextureToFramebuffer } from "@tensorflow/tfjs-core/dist/backends/webgl/webgl_util";
 // import { CSSTransition, TransitionGroup } from 'react-transition-group'
 
 let counter = 0;
@@ -82,8 +80,6 @@ function ImageLoader(props) {
     setResults(results);
     console.log(results);
     let word;
-
-    // console.log(typeof results[0].probability, "PROBABILITY??? type");
     if (
       results.length &&
       results[0].probability < 0.25 &&
@@ -253,13 +249,6 @@ function ImageLoader(props) {
                           </option>
                         ))}
                       </select>
-
-                      {/* <FontPicker
-                        apiKey={process.env.REACT_APP_API_KEY}
-                        activeFontFamily={activeFontFamily}
-                        nextFont={activeFontFamily}
-                        onChange={handleFontChange}
-                      />*/}
                     </div>
                   )}
                 </div>
