@@ -1,0 +1,26 @@
+{
+  "files": {
+    "main.css": "/Haicoo/static/css/main.d498bfb3.chunk.css",
+    "main.js": "/Haicoo/static/js/main.c69384ea.chunk.js",
+    "main.js.map": "/Haicoo/static/js/main.c69384ea.chunk.js.map",
+    "runtime-main.js": "/Haicoo/static/js/runtime-main.e5e1ce49.js",
+    "runtime-main.js.map": "/Haicoo/static/js/runtime-main.e5e1ce49.js.map",
+    "static/css/2.79bf7de3.chunk.css": "/Haicoo/static/css/2.79bf7de3.chunk.css",
+    "static/js/2.7efbe9ae.chunk.js": "/Haicoo/static/js/2.7efbe9ae.chunk.js",
+    "static/js/2.7efbe9ae.chunk.js.map": "/Haicoo/static/js/2.7efbe9ae.chunk.js.map",
+    "index.html": "/Haicoo/index.html",
+    "precache-manifest.e0e15546ee022b5d17274d4dd9954856.js": "/Haicoo/precache-manifest.e0e15546ee022b5d17274d4dd9954856.js",
+    "service-worker.js": "/Haicoo/service-worker.js",
+    "static/css/2.79bf7de3.chunk.css.map": "/Haicoo/static/css/2.79bf7de3.chunk.css.map",
+    "static/css/main.d498bfb3.chunk.css.map": "/Haicoo/static/css/main.d498bfb3.chunk.css.map",
+    "static/js/2.7efbe9ae.chunk.js.LICENSE.txt": "/Haicoo/static/js/2.7efbe9ae.chunk.js.LICENSE.txt",
+    "static/media/font-awesome.min.css": "/Haicoo/static/media/fontawesome-webfont.fee66e71.woff"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.e5e1ce49.js",
+    "static/css/2.79bf7de3.chunk.css",
+    "static/js/2.7efbe9ae.chunk.js",
+    "static/css/main.d498bfb3.chunk.css",
+    "static/js/main.c69384ea.chunk.js"
+  ]
+}
