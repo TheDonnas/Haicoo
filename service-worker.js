@@ -1,39 +1,26 @@
-/**
- * Welcome to your Workbox-powered service worker!
- *
- * You'll need to register this file in your web app and you should
- * disable HTTP caching for this file too.
- * See https://goo.gl/nhQhGp
- *
- * The rest of the code is auto-generated. Please don't update this file
- * directly; instead, make changes to your Workbox build configuration
- * and re-run your build process.
- * See https://goo.gl/2aRDsh
- */
+if (typeof importScripts === "function") {
+  // eslint-disable-next-line no-undef
+  importScripts(
+    "https://storage.googleapis.com/workbox-cdn/releases/5.0.0/workbox-sw.js"
+  );
+  /* global workbox */
+  if (workbox) {
+    console.log("Workbox is loaded");
+    workbox.core.skipWaiting();
 
-importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
+    /* injection point for manifest files.  */
+    // eslint-disable-next-line no-restricted-globals
+    workbox.precaching.precacheAndRoute([]);
 
-importScripts(
-  "/Haicoo/precache-manifest.e0e15546ee022b5d17274d4dd9954856.js"
-);
-
-self.addEventListener('message', (event) => {
-  if (event.data && event.data.type === 'SKIP_WAITING') {
-    self.skipWaiting();
+    /* custom cache rules */
+    workbox.routing.registerRoute(
+      new workbox.routing.NavigationRoute(
+        new workbox.strategies.NetworkFirst({
+          cacheName: "PRODUCTION"
+        })
+      )
+    );
+  } else {
+    // console.log('Workbox could not be loaded. No Offline support');
   }
-});
-
-workbox.core.clientsClaim();
-
-/**
- * The workboxSW.precacheAndRoute() method efficiently caches and responds to
- * requests for URLs in the manifest.
- * See https://goo.gl/S9QRab
- */
-self.__precacheManifest = [].concat(self.__precacheManifest || []);
-workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
-
-workbox.routing.registerNavigationRoute(workbox.precaching.getCacheKeyForURL("/Haicoo/index.html"), {
-  
-  blacklist: [/^\/_/,/\/[^/?]+\.[^/]+$/],
-});
+}
